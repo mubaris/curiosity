@@ -1,0 +1,16 @@
+body {
+  font-family: "Source Code Pro", monospace;
+  font-size: 15px;
+  background-color: #272822;
+  color: white;
+  line-height: 200%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+#content {
+  margin: 50px;
+}
