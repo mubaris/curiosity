@@ -12,7 +12,7 @@ var usernames = [
   "JacksonTian",
   "substack",
   "stormzhang",
-  "angusshire",
+  "muan",
   "onevcat",
   "clowwindy",
   "getify",
@@ -27,7 +27,46 @@ var usernames = [
 ]
 
 var reqNo = 0;
-var accessToken = "fe3c190aad07d0c475b7df840d79fc75980ee932";
+
+if (window.localStorage) {
+  if (!localStorage.getItem('accessToken')) {
+    swal({
+      title: "Submit Github Token",
+      text: "Curiosity uses Github Token to access Github API. Your token will be saved in LocalStorage. So don't worry.",
+      input: "text",
+      showCancelButton: true,
+      confirmButtonText: "Submit",
+      showLoaderOnConfirm: false,
+      preConfirm: function (token) {
+        return new Promise(function(resolve, reject) {
+          setTimeout(function() {
+            if (token == '') {
+              reject("Enter Valid Token")
+            } else {
+              localStorage.setItem("accessToken", token);
+              resolve()
+            }
+          }, 1000);
+        })
+      },
+      allowOutsideClick: true
+    }).then(function(token) {
+      getData(token);
+      swal({
+        type: "success",
+        title: "Thank You"
+      })
+    })
+  }
+} else {
+  alert("Sorry! LocalStorage is not available");
+}
+
+accessToken = localStorage.getItem('accessToken');
+
+if(localStorage.getItem('accessToken')) {
+  getData(localStorage.getItem('accessToken'));
+}
 
 function httpGetAsync(url, callback) {
   var xmlHttp = new XMLHttpRequest();
@@ -40,21 +79,29 @@ function httpGetAsync(url, callback) {
   reqNo += 1;
 }
 
-function getData() {
+function getData(token) {
   for (i = 0; i < usernames.length; i++) {
-    url = "https://api.github.com/users/" + usernames[i] + "/starred?per_page=2&access_token=" + accessToken + "&page=" + reqNo + 1;
+    url = "https://api.github.com/users/" + usernames[i] + "/starred?per_page=2&access_token=" + token + "&page=" + reqNo + 1;
     httpGetAsync(url, dataCollector);
   }
 }
 var content = document.getElementById("content");
-var more = document.getElementById("more");
 var dataStorage = [];
 
 function dataCollector(response) {
   //dataStorage.push(response);
   for (i = 0; i < 2; i++) {
-    content.innerHTML += "<a href='" + JSON.parse(response)[i].html_url + "' target='_blank'>" + JSON.parse(response)[i].name + "</a>" + "<br>";
+    content.innerHTML += "<a href='" + JSON.parse(response)[i].html_url + "' target='_blank'>" + JSON.parse(response)[i].name + "</a>";
+    content.innerHTML += "<span> - " + JSON.parse(response)[i].description + "</span>" + "<br/>";
   }
 }
 
-getData();
+var options = {
+  distance: 10,
+  callback: function(done) {
+    getData(localStorage.getItem('accessToken'));
+    done();
+  }
+}
+
+infiniteScroll(options);
