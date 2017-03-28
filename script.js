@@ -32,7 +32,7 @@ if (window.localStorage) {
   if (!localStorage.getItem('accessToken')) {
     swal({
       title: "Submit Github Token",
-      text: "Curiosity uses Github Token to access Github API. Your token will be saved in LocalStorage. So don't worry.",
+      html: "Curiosity uses Github Token to access Github API. Your token will be saved in LocalStorage. So don't worry. Get new token <a target='_blank' href='https://github.com/settings/tokens/new'>here</a>.",
       input: "text",
       showCancelButton: true,
       confirmButtonText: "Submit",
