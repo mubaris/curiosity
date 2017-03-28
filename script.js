@@ -6,6 +6,8 @@ var usernames = [
   "gaearon",
   "defunkt",
   "daimajia",
+  "kvz",
+  "omgmog",
   "yyx990803",
   "kennethreitz",
   "Trinea",
@@ -23,8 +25,7 @@ var usernames = [
   "justjavac",
   "ChenYilong",
   "cusspvz",
-  "feross",
-  "omgmog"
+  "feross"
 ]
 
 var reqNo = 0;
