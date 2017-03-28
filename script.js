@@ -19,13 +19,15 @@ var usernames = [
   "ibireme",
   "phodal",
   "ryanb",
-  "muan",
   "isaacs",
   "justjavac",
   "ChenYilong",
   "cusspvz",
   "feross"
 ]
+
+var reqNo = 0;
+var accessToken = "fe3c190aad07d0c475b7df840d79fc75980ee932";
 
 function httpGetAsync(url, callback) {
   var xmlHttp = new XMLHttpRequest();
@@ -35,18 +37,24 @@ function httpGetAsync(url, callback) {
   }
   xmlHttp.open("GET", url, true);
   xmlHttp.send(null);
+  reqNo += 1;
 }
 
-for (i = 0; i < usernames.length; i++) {
-  url = "https://api.github.com/users/" + usernames[i] + "/starred?access_token=fe3c190aad07d0c475b7df840d79fc75980ee932";
-  httpGetAsync(url, dataCollector);
+function getData() {
+  for (i = 0; i < usernames.length; i++) {
+    url = "https://api.github.com/users/" + usernames[i] + "/starred?per_page=2&access_token=" + accessToken + "&page=" + reqNo + 1;
+    httpGetAsync(url, dataCollector);
+  }
 }
 var content = document.getElementById("content");
+var more = document.getElementById("more");
 var dataStorage = [];
 
 function dataCollector(response) {
   //dataStorage.push(response);
-  for (i = 0; i < 30; i++) {
+  for (i = 0; i < 2; i++) {
     content.innerHTML += "<a href='" + JSON.parse(response)[i].html_url + "' target='_blank'>" + JSON.parse(response)[i].name + "</a>" + "<br>";
   }
 }
+
+getData();
