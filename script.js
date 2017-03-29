@@ -29,7 +29,7 @@ var usernames = [
   "m1guelpf"
 ]
 
-var reqNo = 0;
+var reqNo = Math.floor(Math.random() * 3) + 1;
 
 if (window.localStorage) {
   if (!localStorage.getItem('accessToken')) {
