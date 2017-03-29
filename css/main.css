@@ -4,6 +4,7 @@ body {
   background-color: #272822;
   color: white;
   line-height: 200%;
+  margin: 75px;
 }
 
 a {
@@ -23,4 +24,13 @@ h1 {
   font-size: 300%;
   color: #a6e22e;
   text-align: center;
+}
+
+li {
+  padding: 10px;
+  color: #fd971f;
+}
+
+.link {
+  border-width: 10px;
 }
