@@ -18,6 +18,8 @@ var usernames = [
   "onevcat",
   "clowwindy",
   "getify",
+  "csu",
+  "matiasinsaurralde",
   "ibireme",
   "phodal",
   "ryanb",
