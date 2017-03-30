@@ -31,6 +31,7 @@ var usernames = [
 
 var reqNo = Math.floor(Math.random() * 3) + 1;
 var repoNo = 1;
+var perPage = 5;
 
 if (window.localStorage) {
   if (!localStorage.getItem('accessToken')) {
@@ -85,7 +86,7 @@ function httpGetAsync(url, callback) {
 
 function getData(token) {
   for (i = 0; i < usernames.length; i++) {
-    url = "https://api.github.com/users/" + usernames[i] + "/starred?per_page=1&access_token=" + token + "&page=" + reqNo + 1;
+    url = "https://api.github.com/users/" + usernames[i] + "/starred?per_page=" + perPage + "&access_token=" + token + "&page=" + reqNo + 1;
     httpGetAsync(url, dataCollector);
   }
 }
@@ -94,7 +95,7 @@ var dataStorage = [];
 
 function dataCollector(response) {
   //dataStorage.push(response);
-  for (i = 0; i < 1; i++) {
+  for (i = 0; i < perPage; i++) {
     var innerContent = "<li><span class='link'><a href='" + JSON.parse(response)[i].html_url + "' target='_blank'>" + JSON.parse(response)[i].name + "<span> - " + JSON.parse(response)[i].description + "</span>" + "<br/></a></span></li>"
     content.innerHTML += innerContent;
     repoNo += 1;
