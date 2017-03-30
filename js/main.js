@@ -97,7 +97,7 @@ var dataStorage = [];
 function dataCollector(response) {
   //dataStorage.push(response);
   for (i = 0; i < perPage; i++) {
-    var innerContent = "<li><span class='link'><a href='" + JSON.parse(response)[i].html_url + "' target='_blank'>" + JSON.parse(response)[i].name + "<span> - " + String(JSON.parse(response)[i].description).replace(/(:.+:)/g, String('MUBU ' + String('$1'))) + "</span>" + "<br/></a></span></li>"
+    var innerContent = "<li><span class='link'><a href='" + JSON.parse(response)[i].html_url + "' target='_blank'>" + JSON.parse(response)[i].name + "<span> - " + String(JSON.parse(response)[i].description) + "</span>" + "<br/></a></span></li>"
     content.innerHTML += emoji.replace_colons(innerContent);
     emoji.img_sets.apple.path = 'http://mubaris.com/img-apple-64/emojis/';
     repoNo += 1;
