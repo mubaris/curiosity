@@ -1,39 +1,5 @@
-var usernames = [
-  "tj",
-  "addyosmani",
-  "paulirish",
-  "sindresorhus",
-  "gaearon",
-  "defunkt",
-  "daimajia",
-  "kvz",
-  "omgmog",
-  "yyx990803",
-  "kennethreitz",
-  "Trinea",
-  "JacksonTian",
-  "substack",
-  "stormzhang",
-  "muan",
-  "onevcat",
-  "clowwindy",
-  "getify",
-  "csu",
-  "matiasinsaurralde",
-  "ibireme",
-  "phodal",
-  "ryanb",
-  "isaacs",
-  "justjavac",
-  "ChenYilong",
-  "cusspvz",
-  "feross",
-  "m1guelpf"
-]
-
 var emoji = new EmojiConvertor();
 var reqNo = Math.floor(Math.random() * 3) + 1;
-var repoNo = 1;
 var perPage = 5;
 
 if (window.localStorage) {
@@ -93,17 +59,33 @@ function getData(token) {
     httpGetAsync(url, dataCollector);
   }
 }
+
+function nFormatter(num) {
+  if (num <= 999) {
+    return num + '';
+  }
+  else if (num <= 9999) {
+    return (num / 1000).toFixed(1) + 'k';
+  }
+  else if (num <= 99999) {
+    return (num / 10000).toFixed(1) + 'M';
+  }
+}
+
 var content = document.getElementById("content");
 var dataStorage = [];
 
 function dataCollector(response) {
   //dataStorage.push(response);
   for (i = 0; i < perPage; i++) {
-    var innerContent = "<li><span class='link'><a href='" + JSON.parse(response)[i].html_url + "' target='_blank'>" + JSON.parse(response)[i].name + "<span> - " + String(JSON.parse(response)[i].description) + "</span>" + "<br/></a></span></li>";
-    innerContent = emoji.replace_unified(innerContent);
-    content.innerHTML += emoji.replace_colons(innerContent);
-    emoji.img_sets.apple.path = 'http://cdn.mubaris.com//emojis/';
-    repoNo += 1;
+    if (typeof JSON.parse(response)[i] != 'undefined') {
+      var innerContent = "<li><span class='link'><a href='" + JSON.parse(response)[i].html_url + "' target='_blank'>" + JSON.parse(response)[i].name + "<span> - " + String(JSON.parse(response)[i].description) + "</span>" + "<br/></a></span>";
+      innerContent+= "<div class='additional'>" + nFormatter(JSON.parse(response)[i].stargazers_count) + " <i class='fa fa-star'></i> &emsp;" + nFormatter(JSON.parse(response)[i].forks) + "   <i class='fa fa-code-fork'></i></div></li>";
+      innerContent = emoji.replace_unified(innerContent);
+      content.innerHTML += emoji.replace_colons(innerContent);
+      emoji.img_sets.apple.path = 'http://cdn.mubaris.com/emojis/';
+      //repoNo += 1;
+    }
   }
 }
 
