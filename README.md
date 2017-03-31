@@ -6,7 +6,7 @@ Find amazing github projects as a feed. :zap: :zap:
 
 ## Peek at Curiosity
 
-![peek](https://i.imgsafe.org/bf56383de7.png)
+![peek](https://i.imgsafe.org/e6a506c205.png)
 
 ## How it's done
 
