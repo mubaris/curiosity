@@ -80,7 +80,8 @@ function dataCollector(response) {
   for (i = 0; i < perPage; i++) {
     if (typeof JSON.parse(response)[i] != 'undefined') {
       var innerContent = "<li><span class='link'><a href='" + JSON.parse(response)[i].html_url + "' target='_blank'>" + JSON.parse(response)[i].name + "<span> - " + String(JSON.parse(response)[i].description) + "</span>" + "<br/></a></span>";
-      innerContent+= "<div class='additional'>" + nFormatter(JSON.parse(response)[i].stargazers_count) + " <i class='fa fa-star'></i> &emsp;" + nFormatter(JSON.parse(response)[i].forks) + "   <i class='fa fa-code-fork'></i></div></li>";
+      innerContent += "<div class='additional'>" + nFormatter(JSON.parse(response)[i].stargazers_count) + " <i class='fa fa-star'></i> &emsp;" + nFormatter(JSON.parse(response)[i].forks) + "   <i class='fa fa-code-fork'></i>";
+      innerContent += (JSON.parse(response)[i].language != null) ? "&emsp;" + JSON.parse(response)[i].language +  "</div></li>" : "</div></li>";
       innerContent = emoji.replace_unified(innerContent);
       content.innerHTML += emoji.replace_colons(innerContent);
       emoji.img_sets.apple.path = 'http://cdn.mubaris.com/emojis/';
