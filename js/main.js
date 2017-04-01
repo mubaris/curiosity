@@ -1,6 +1,6 @@
 var emoji = new EmojiConvertor();
 var reqNo = Math.floor(Math.random() * 3) + 1;
-var perPage = 5;
+var perPage = 2;
 
 function httpGetAsync(url, callback) {
     var xmlHttp = new XMLHttpRequest();
