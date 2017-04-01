@@ -28,5 +28,14 @@ var usernames = [
     "ChenYilong",
     "cusspvz",
     "feross",
-    "m1guelpf"
+    "m1guelpf",
+    "brentvatne",
+    "sibelius",
+    "developit",
+    "grabbou",
+    "Kureev",
+    "mxstbr",
+    "jaredly",
+    "GantMan",
+    "lelandrichardson"
 ];
