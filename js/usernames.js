@@ -30,13 +30,8 @@ var usernames = [
     "feross",
     "m1guelpf",
     "brentvatne",
-    "sibelius",
     "developit",
-    "grabbou",
     "Kureev",
     "mxstbr",
-    "jaredly",
-    "GantMan",
-    "lelandrichardson",
-    "junedomingo"
+    "jaredly"
 ];
