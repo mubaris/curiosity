@@ -23,7 +23,7 @@ function getData(token) {
 function nFormatter(num) {
     if (num <= 999) {
         return num + "";
-    } else if (num <= 9999) {
+    } else if (num <= 99999) {
         return (num / 1000).toFixed(1) + "k";
     }
 }
