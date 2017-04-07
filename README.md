@@ -10,6 +10,14 @@ Find amazing github projects as a feed. :zap: :zap:
 
 ![peek](https://i.imgsafe.org/e6a506c205.png)
 
+## Get Chrome Extension
+
+Curiosity Chrome extension is available now. Which is made by [Aswanth](https://github.com/aswanthkoleri)
+
+[Get Chrome Extension](https://chrome.google.com/webstore/detail/curiosity/pmggmachmjpmgmfpgbfgdnhheneiedhj)
+
+[Have a look at Repo](https://github.com/aswanthkoleri/Curiosity)
+
 ## How it's done
 
 I've collected usernames of amazing stargazers :star: in Github. By using Github API, Curiosity will collect their stars and will show as a feed.
