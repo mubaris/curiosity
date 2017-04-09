@@ -2,6 +2,7 @@ var usernames = [
     "tj",
     "addyosmani",
     "paulirish",
+    "passy",
     "sindresorhus",
     "gaearon",
     "defunkt",
