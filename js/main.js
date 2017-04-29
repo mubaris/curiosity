@@ -2,21 +2,34 @@ var emoji = new EmojiConvertor();
 var reqNo = Math.floor(Math.random() * 3) + 1;
 var perPage = 2;
 
-function httpGetAsync(url, callback) {
-    var xmlHttp = new XMLHttpRequest();
-    xmlHttp.onreadystatechange = function() {
-        if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
-            callback(xmlHttp.responseText);
-    };
-    xmlHttp.open("GET", url, true);
-    xmlHttp.send(null);
-    reqNo += 1;
+function httpGetAsync(url) {
+    return new Promise(function(resolve, reject) {
+      var xmlHttp = new XMLHttpRequest();
+      xmlHttp.onreadystatechange = function() {
+          if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
+              resolve(xmlHttp.responseText);
+      };
+      xmlHttp.open("GET", url, true);
+      xmlHttp.send(null);
+      reqNo += 1;
+      setTimeout(function() {
+          reject("API Request failed to resolve.");
+      }, 10000);
+    });
 }
 
 function getData(token) {
     for (i = 0; i < usernames.length; i++) {
-        url = "https://api.github.com/users/" + usernames[i] + "/starred?per_page=" + perPage + "&access_token=" + token + "&page=" + reqNo + 1;
-        httpGetAsync(url, dataCollector);
+        const username = usernames[i];
+        url = "https://api.github.com/users/" + username + "/starred?per_page=" + perPage + "&access_token=" + token + "&page=" + reqNo + 1;
+        httpGetAsync(url)
+            .then(response => {
+                dataCollector(response, username);
+            })
+            .catch(err => {
+                // Ignore the failed API request.
+                // If the request does happen to resolve at some point after the timeout it will still be processed.
+            });
     }
 }
 
@@ -28,21 +41,29 @@ function nFormatter(num) {
     }
 }
 
+function userFormatter(username) {
+  return "<a href='https://github.com/" + username + "?tab=stars'>" + username + "</a>";
+}
+
 var content = document.getElementById("content");
 var dataStorage = [];
 
-function dataCollector(response) {
+function dataCollector(response, username) {
     //dataStorage.push(response);
-    for (i = 0; i < perPage; i++) {
-        if (typeof JSON.parse(response)[i] != "undefined") {
-            var innerContent = "<li><span class='link'><a href='" + JSON.parse(response)[i].html_url + "' target='_blank'>" + JSON.parse(response)[i].name + "<span> - " + String(JSON.parse(response)[i].description) + "</span>" + "<br/></a></span>";
-            innerContent += "<div class='additional'>" + nFormatter(JSON.parse(response)[i].stargazers_count) + " <i class='fa fa-star'></i> &emsp;" + nFormatter(JSON.parse(response)[i].forks) + "   <i class='fa fa-code-fork'></i>";
-            innerContent += (JSON.parse(response)[i].language != null) ? "&emsp;" + JSON.parse(response)[i].language + "</div></li>" : "</div></li>";
+    JSON.parse(response).forEach(function(entry) {
+        if (typeof entry != "undefined") {
+            var innerContent = "<li><span class='link'><a href='" + entry.html_url + "' target='_blank'>" + entry.name + "<span> - " + String(entry.description) + "</span>" + "<br/></a></span>";
+            innerContent += "<div class='additional'>";
+                innerContent += nFormatter(entry.stargazers_count) + " <i class='fa fa-star'></i>";
+                innerContent += "&emsp;" + nFormatter(entry.forks) + " <i class='fa fa-code-fork'></i>";
+                innerContent += (entry.language != null) ? "&emsp;" + entry.language : "";
+                innerContent += "&emsp;(from " + userFormatter(username) + ")";
+            innerContent += "</div></li>";
             innerContent = emoji.replace_unified(innerContent);
             content.innerHTML += emoji.replace_colons(innerContent);
             emoji.img_sets.apple.path = "http://cdn.mubaris.com/emojis/";
         }
-    }
+    });
 }
 
 if (window.localStorage) {
