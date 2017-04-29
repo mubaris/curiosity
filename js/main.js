@@ -2,37 +2,6 @@ var emoji = new EmojiConvertor();
 var reqNo = Math.floor(Math.random() * 3) + 1;
 var perPage = 2;
 
-function httpGetAsync(url) {
-    return new Promise(function(resolve, reject) {
-      var xmlHttp = new XMLHttpRequest();
-      xmlHttp.onreadystatechange = function() {
-          if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
-              resolve(xmlHttp.responseText);
-      };
-      xmlHttp.open("GET", url, true);
-      xmlHttp.send(null);
-      reqNo += 1;
-      setTimeout(function() {
-          reject("API Request failed to resolve.");
-      }, 10000);
-    });
-}
-
-function getData(token) {
-    for (i = 0; i < usernames.length; i++) {
-        const username = usernames[i];
-        url = "https://api.github.com/users/" + username + "/starred?per_page=" + perPage + "&access_token=" + token + "&page=" + reqNo + 1;
-        httpGetAsync(url)
-            .then(response => {
-                dataCollector(response, username);
-            })
-            .catch(err => {
-                // Ignore the failed API request.
-                // If the request does happen to resolve at some point after the timeout it will still be processed.
-            });
-    }
-}
-
 function nFormatter(num) {
     if (num <= 999) {
         return num + "";
@@ -45,12 +14,9 @@ function userFormatter(username) {
   return "<a href='https://github.com/" + username + "?tab=stars'>" + username + "</a>";
 }
 
-var content = document.getElementById("content");
-var dataStorage = [];
-
 function dataCollector(response, username) {
     //dataStorage.push(response);
-    JSON.parse(response).forEach(function(entry) {
+    response.data.forEach(function(entry) {
         if (typeof entry != "undefined") {
             var innerContent = "<li><span class='link'><a href='" + entry.html_url + "' target='_blank'>" + entry.name + "<span> - " + String(entry.description) + "</span>" + "<br/></a></span>";
             innerContent += "<div class='additional'>";
@@ -65,6 +31,26 @@ function dataCollector(response, username) {
         }
     });
 }
+
+function getData(token) {
+    for (var i = 0; i < usernames.length; i++) {
+        const username = usernames[i];
+        var url = "https://api.github.com/users/" + username + "/starred?per_page=" + perPage + "&access_token=" + token + "&page=" + reqNo + 1;
+
+        axios({
+            url,
+            method: "get",
+            responseType: "json"
+        }).then((response) => {
+            dataCollector(response, username);
+        }).catch((err) => {
+            // Do nothing.
+        });
+    }
+}
+
+var content = document.getElementById("content");
+var dataStorage = [];
 
 if (window.localStorage) {
     if (!localStorage.getItem("accessToken")) {
