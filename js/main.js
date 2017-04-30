@@ -2,24 +2,6 @@ var emoji = new EmojiConvertor();
 var reqNo = Math.floor(Math.random() * 3) + 1;
 var perPage = 2;
 
-function httpGetAsync(url, callback) {
-    var xmlHttp = new XMLHttpRequest();
-    xmlHttp.onreadystatechange = function() {
-        if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
-            callback(xmlHttp.responseText);
-    };
-    xmlHttp.open("GET", url, true);
-    xmlHttp.send(null);
-    reqNo += 1;
-}
-
-function getData(token) {
-    for (i = 0; i < usernames.length; i++) {
-        url = "https://api.github.com/users/" + usernames[i] + "/starred?per_page=" + perPage + "&access_token=" + token + "&page=" + reqNo + 1;
-        httpGetAsync(url, dataCollector);
-    }
-}
-
 function nFormatter(num) {
     if (num <= 999) {
         return num + "";
@@ -28,28 +10,53 @@ function nFormatter(num) {
     }
 }
 
-var content = document.getElementById("content");
-var dataStorage = [];
+function userFormatter(username) {
+  return "<a href='https://github.com/" + username + "?tab=stars'>" + username + "</a>";
+}
 
-function dataCollector(response) {
+function dataCollector(response, username) {
     //dataStorage.push(response);
-    for (i = 0; i < perPage; i++) {
-        if (typeof JSON.parse(response)[i] != "undefined") {
-            var innerContent = "<li><span class='link'><a href='" + JSON.parse(response)[i].html_url + "' target='_blank'>" + JSON.parse(response)[i].name + "<span> - " + String(JSON.parse(response)[i].description) + "</span>" + "<br/></a></span>";
-            innerContent += "<div class='additional'>" + nFormatter(JSON.parse(response)[i].stargazers_count) + " <i class='fa fa-star'></i> &emsp;" + nFormatter(JSON.parse(response)[i].forks) + "   <i class='fa fa-code-fork'></i>";
-            innerContent += (JSON.parse(response)[i].language != null) ? "&emsp;" + JSON.parse(response)[i].language + "</div></li>" : "</div></li>";
+    response.data.forEach(function(entry) {
+        if (typeof entry != "undefined") {
+            var innerContent = "<li><span class='link'><a href='" + entry.html_url + "' target='_blank'>" + entry.name + "<span> - " + String(entry.description) + "</span>" + "<br/></a></span>";
+            innerContent += "<div class='additional'>";
+                innerContent += nFormatter(entry.stargazers_count) + " <i class='fa fa-star'></i>";
+                innerContent += "&emsp;" + nFormatter(entry.forks) + " <i class='fa fa-code-fork'></i>";
+                innerContent += (entry.language != null) ? "&emsp;" + entry.language : "";
+                innerContent += "&emsp;(from " + userFormatter(username) + ")";
+            innerContent += "</div></li>";
             innerContent = emoji.replace_unified(innerContent);
             content.innerHTML += emoji.replace_colons(innerContent);
             emoji.img_sets.apple.path = "http://cdn.mubaris.com/emojis/";
         }
+    });
+}
+
+function getData(token) {
+    for (var i = 0; i < usernames.length; i++) {
+        const username = usernames[i];
+        var url = "https://api.github.com/users/" + username + "/starred?per_page=" + perPage + "&access_token=" + token + "&page=" + reqNo + 1;
+
+        axios({
+            url,
+            method: "get",
+            responseType: "json"
+        }).then((response) => {
+            dataCollector(response, username);
+        }).catch((err) => {
+            // Do nothing.
+        });
     }
 }
+
+var content = document.getElementById("content");
+var dataStorage = [];
 
 if (window.localStorage) {
     if (!localStorage.getItem("accessToken")) {
         swal({
             title: "Submit Github Token",
-            html: "Curiosity uses Github Token to access Github API. Your token will be saved in LocalStorage. So don't worry. Get new token <a target='_blank' href='https://github.com/settings/tokens/new'>here</a>.",
+            html: "Curiosity requires a Github Token to access Github API. Your token will be saved in LocalStorage. So don't worry. Get new token <a target='_blank' href='https://github.com/settings/tokens/new?description=Curiosity'>here</a>.",
             input: "text",
             showCancelButton: true,
             confirmButtonText: "Submit",
