@@ -30,3 +30,4 @@ You need to submit Github Token to access Github API.
 
 * [SweetAlert2](https://limonte.github.io/sweetalert2/)
 * [infinite-scroll](https://github.com/alexblack/infinite-scroll)
+* [Axios](https://github.com/mzabriskie/axios)
