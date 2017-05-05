@@ -18,6 +18,7 @@ function dataCollector(response, username) {
     //dataStorage.push(response);
     response.data.forEach(function(entry) {
         if (typeof entry != "undefined") {
+            if (!entry.description) entry.description = "";
             var innerContent = "<li><span class='link'><a href='" + entry.html_url + "' target='_blank'>" + entry.name + "<span> - " + String(entry.description) + "</span>" + "<br/></a></span>";
             innerContent += "<div class='additional'>";
                 innerContent += nFormatter(entry.stargazers_count) + " <i class='fa fa-star'></i>";
