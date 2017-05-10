@@ -1,9 +1,3 @@
-const usersPerCall = 5;
-const projectsPerCall = 25;
-var userIndex = 0;
-var projectsInCurrentCall = 0;
-function moreDataNeeded() { return (userIndex == usersPerCall) && (projectsInCurrentCall < projectsPerCall); }
-
 var emoji = new EmojiConvertor();
 var reqNo = Math.floor(Math.random() * 3) + 1;
 var perPage = 2;
@@ -21,10 +15,8 @@ function userFormatter(username) {
 }
 
 function dataCollector(response, username) {
-    //dataStorage.push(response);
     response.data.forEach(function(entry) {
         if (typeof entry != "undefined") {
-            ++projectsInCurrentCall;
             if (!entry.description) entry.description = "";
             var innerContent = "<li><span class='link'><a href='" + entry.html_url + "' target='_blank'>" + entry.name + "<span> - " + String(entry.description) + "</span>" + "<br/></a></span>";
             innerContent += "<div class='additional'>";
@@ -38,14 +30,13 @@ function dataCollector(response, username) {
             emoji.img_sets.apple.path = "http://cdn.mubaris.com/emojis/";
         }
     });
-    if(moreDataNeeded()) getData(localStorage.getItem("accessToken"));
 }
 
 function getData(token) {
-    projectsInCurrentCall = 0;
-    for (var i = 0; ((i < usersPerCall) && (userIndex < usernames.length)); i++, userIndex++) {
+    ++reqNo;
+    for (var i = 0; i < usernames.length; i++) {
         const username = usernames[i];
-        var url = "https://api.github.com/users/" + username + "/starred?per_page=" + perPage + "&access_token=" + token + "&page=" + reqNo + 1;
+        var url = "https://api.github.com/users/" + username + "/starred?per_page=" + perPage + "&access_token=" + token + "&page=" + reqNo;
 
         axios({
             url,
@@ -60,7 +51,6 @@ function getData(token) {
 }
 
 var content = document.getElementById("content");
-var dataStorage = [];
 
 if (window.localStorage) {
     if (!localStorage.getItem("accessToken")) {
