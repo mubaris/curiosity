@@ -1,6 +1,14 @@
+const minimumProjectsPerCall = 10;
+const maximumProjectsPerUser = 2;
+var projectsCurrentCall = 0;
+var usersCurrentCall = 0;
+function allUsersChecked() { return usersCurrentCall == usernames.length; }
+function moreDataNeeded() {  return ((allUsersChecked()) && (projectsCurrentCall < minimumProjectsPerCall)); }
+var callInProgress = true;
+
 var emoji = new EmojiConvertor();
 var reqNo = Math.floor(Math.random() * 3) + 1;
-var perPage = 2;
+var projectsPerPage = 2;
 
 function nFormatter(num) {
     if (num <= 999) {
@@ -15,8 +23,11 @@ function userFormatter(username) {
 }
 
 function dataCollector(response, username) {
-    response.data.forEach(function(entry) {
+    ++usersCurrentCall;
+    var filterFunction = languageFilter(languageSelected);
+    response.data.filter(filterFunction).slice(0, maximumProjectsPerUser).forEach(function(entry) {
         if (typeof entry != "undefined") {
+            ++projectsCurrentCall;
             if (!entry.description) entry.description = "";
             var innerContent = "<li><span class='link'><a href='" + entry.html_url + "' target='_blank'>" + entry.name + "<span> - " + String(entry.description) + "</span>" + "<br/></a></span>";
             innerContent += "<div class='additional'>";
@@ -30,14 +41,22 @@ function dataCollector(response, username) {
             emoji.img_sets.apple.path = "http://cdn.mubaris.com/emojis/";
         }
     });
+    if(moreDataNeeded()) {
+        getData(localStorage.getItem("accessToken"));
+    } else if(allUsersChecked()) {
+        projectsCurrentCall = 0, callInProgress = false;
+        document.getElementById("searching").innerHTML = "";
+    }
 }
 
-function getData(token) {
+function getData() {
+    document.getElementById("searching").innerHTML = "<br/>Searching for projects...";
+    usersCurrentCall = 0;
+    callInProgress = true;
     ++reqNo;
     for (var i = 0; i < usernames.length; i++) {
         const username = usernames[i];
-        var url = "https://api.github.com/users/" + username + "/starred?per_page=" + perPage + "&access_token=" + token + "&page=" + reqNo;
-
+        var url = "https://api.github.com/users/" + username + "/starred?per_page=" + projectsPerPage + "&access_token=" + accessToken + "&page=" + reqNo;
         axios({
             url,
             method: "get",
@@ -45,12 +64,13 @@ function getData(token) {
         }).then((response) => {
             dataCollector(response, username);
         }).catch((err) => {
-            // Do nothing.
+            console.log(err);
         });
     }
 }
 
 var content = document.getElementById("content");
+var accessToken;
 
 if (window.localStorage) {
     if (!localStorage.getItem("accessToken")) {
@@ -75,7 +95,9 @@ if (window.localStorage) {
             },
             allowOutsideClick: false
         }).then(function(token) {
-            getData(token);
+            accessToken = token;
+            getData();
+            getLanguagesToShow();
             swal({
                 type: "success",
                 title: "Thank You"
@@ -88,14 +110,15 @@ if (window.localStorage) {
 
 accessToken = localStorage.getItem("accessToken");
 
-if (localStorage.getItem("accessToken")) {
-    getData(localStorage.getItem("accessToken"));
+if (accessToken) {
+    getData();
+    getLanguagesToShow();
 }
 
 var options = {
     distance: 1,
     callback: function(done) {
-        getData(localStorage.getItem("accessToken"));
+        if(!callInProgress) getData();
         done();
     }
 }
