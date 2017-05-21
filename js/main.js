@@ -3,6 +3,7 @@ const maximumProjectsPerUser = 2;
 var projectsCurrentCall = 0;
 var usersCurrentCall = 0;
 function allUsersChecked() { return usersCurrentCall == usernames.length; }
+
 function moreDataNeeded() {  return ((allUsersChecked()) && (projectsCurrentCall < minimumProjectsPerCall)); }
 var callInProgress = true;
 
