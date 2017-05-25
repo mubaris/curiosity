@@ -1,4 +1,4 @@
-const minimumProjectsPerCall = 10;
+const minimumProjectsPerCall = 5;
 const maximumProjectsPerUser = 2;
 var projectsCurrentCall = 0;
 var usersCurrentCall = 0;
@@ -99,6 +99,7 @@ if (window.localStorage) {
             accessToken = token;
             getData();
             getLanguagesToShow();
+            renderUsernames();
             swal({
                 type: "success",
                 title: "Thank You"
@@ -114,8 +115,7 @@ accessToken = localStorage.getItem("accessToken");
 if (accessToken) {
     getData();
     getLanguagesToShow();
-    document.getElementById("addMoreUsername").innerHTML = "<a href=javascript:askForUsername()>Add more username</a>";
-    getUsernamesToShow();
+    renderUsernames();
 }
 
 var options = {
