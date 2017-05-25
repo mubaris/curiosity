@@ -44,6 +44,15 @@ li {
     animation: octocat-wave 560ms ease-in-out
 }
 
+a.username {
+  color: #fd971f;
+  font-size: 75%;
+}
+
+a.language {
+  color: #fd971f;
+  font-size: 75%;
+}
 @keyframes octocat-wave {
     0%,
     100% {

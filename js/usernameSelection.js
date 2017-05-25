@@ -101,7 +101,7 @@ function showLessUsernames() {
 function renderShowMoreLessUsernames() {
     var moreLessUsernamesElement = document.getElementById("showMoreLessUsernames");
     if (showingAllUsernames)
-        moreLessUsernamesElement.innerHTML = "  <a href=javascript:showLessUsernames()><strong>Show less usernames</strong></a>";
+        moreLessUsernamesElement.innerHTML = "<a href=javascript:showLessUsernames()><strong>Show less usernames</strong></a>";
     else
         moreLessUsernamesElement.innerHTML = "<a href=javascript:showAllUsernames()><strong>Show more usernames</strong></a>";
 }
@@ -111,16 +111,16 @@ function generateUsernameSelector() {
     var i = 0;
     if (showingAllUsernames || usernames.length <= maxUsernamesShowing) {
         for (; i < usernames.length - 1; i++) {
-            usernameSelector += userFormatter(usernames[i]);
+            usernameSelector += "<a class='username' href='https://github.com/" + usernames[i] + "?tab=stars'>" + usernames[i] + "</a>";
             usernameSelector += " | ";
         }    
     } else {
         for (; i < maxUsernamesShowing - 1; i++) {
-            usernameSelector += userFormatter(usernames[i]);
+            usernameSelector += "<a class='username' href='https://github.com/" + usernames[i] + "?tab=stars'>" + usernames[i] + "</a>";
             usernameSelector += " | ";
         }
     }
-    usernameSelector += userFormatter(usernames[i]);
+    usernameSelector += "<a class='username' href='https://github.com/" + usernames[i] + "?tab=stars'>" + usernames[i] + "</a>";
     return usernameSelector;
 }
 
