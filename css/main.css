@@ -40,3 +40,13 @@ li {
 .additional {
   font-size: 60%;
 }
+
+a.username {
+  color: #fd971f;
+  font-size: 75%;
+}
+
+a.language {
+  color: #fd971f;
+  font-size: 75%;
+}
