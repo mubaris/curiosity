@@ -1,6 +1,7 @@
 # Curiosity
 
 [![Say Thanks](https://img.shields.io/badge/Say%20Thanks!-%F0%9F%A6%89-1EAEDB.svg)](https://saythanks.io/to/mubaris)
+[![Gitter](https://badges.gitter.im/gitterHQ/gitter.png)](https://gitter.im/curiosity-project/Lobby)
 
 Find amazing github projects as a feed. :zap: :zap:
 

@@ -17,6 +17,7 @@ function addUsername() {
                     } else if (usernames.indexOf(username) > -1) {
                         reject('Username already exists! Please add a different username.');
                     } else {
+                        // check for valid username
                         var url = "https://api.github.com/users/" + username;
                         axios({
                             url,
@@ -33,7 +34,6 @@ function addUsername() {
         },
         allowOutsideClick: false
     }).then(function(username) {
-    	// need to check valid username
         addOneUsername(username);
         swal({
             type: "success",

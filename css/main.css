@@ -1,44 +1,47 @@
 @import url('https://fonts.googleapis.com/css?family=Source+Code+Pro');
-
 body {
-  font-family: "Source Code Pro", monospace;
-  font-size: 20px;
-  background-color: #272822;
-  color: white;
-  line-height: 200%;
-  margin: 75px;
+    font-family: "Source Code Pro", monospace;
+    font-size: 20px;
+    background-color: #272822;
+    color: white;
+    line-height: 200%;
+    margin: 75px;
 }
 
 a {
-  color: #66d9ef;
-  text-decoration: none;
+    color: #66d9ef;
+    text-decoration: none;
 }
 
 #content {
-  margin: 50px;
+    margin: 50px;
 }
 
 span {
-  color: #F92672;
+    color: #F92672;
 }
 
 h1 {
-  font-size: 300%;
-  color: #a6e22e;
-  text-align: center;
+    font-size: 300%;
+    color: #a6e22e;
+    text-align: center;
 }
 
 li {
-  padding: 10px;
-  color: #fd971f;
+    padding: 10px;
+    color: #fd971f;
 }
 
 .link {
-  border-width: 10px;
+    border-width: 10px;
 }
 
 .additional {
-  font-size: 60%;
+    font-size: 60%;
+}
+
+.github-corner:hover .octo-arm {
+    animation: octocat-wave 560ms ease-in-out
 }
 
 a.username {
@@ -49,4 +52,27 @@ a.username {
 a.language {
   color: #fd971f;
   font-size: 75%;
+}
+@keyframes octocat-wave {
+    0%,
+    100% {
+        transform: rotate(0)
+    }
+    20%,
+    60% {
+        transform: rotate(-25deg)
+    }
+    40%,
+    80% {
+        transform: rotate(10deg)
+    }
+}
+
+@media (max-width:500px) {
+    .github-corner:hover .octo-arm {
+        animation: none
+    }
+    .github-corner .octo-arm {
+        animation: octocat-wave 560ms ease-in-out
+    }
 }
