@@ -114,6 +114,8 @@ accessToken = localStorage.getItem("accessToken");
 if (accessToken) {
     getData();
     getLanguagesToShow();
+    document.getElementById("addMoreUsername").innerHTML = "<a href=javascript:askForUsername()>Add more username</a>";
+    getUsernamesToShow();
 }
 
 var options = {
