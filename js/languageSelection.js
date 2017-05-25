@@ -64,7 +64,7 @@ function generateLanguageSelector() {
         if (minimimalAppareancesFilter(appareances)) {
             var languageHTMLText = strongFont(language) ? "<strong>"+language+"</strong>" : language;
             languageSelector += (language == anyLanguage) ? "" : " | ";
-            languageSelector += "<a class='language' href=javascript:selectLanguage('"+encodeURIComponent(language.trim())+"')>"+languageHTMLText+"</a>";
+            languageSelector += "<a class='selectors' href=javascript:selectLanguage('"+encodeURIComponent(language.trim())+"')>"+languageHTMLText+"</a>";
         }
     });
     return languageSelector;
@@ -108,7 +108,7 @@ function showLessLanguages() {
 function renderShowMoreLessLanguages() {
     var moreLessLanguagesElement = document.getElementById("showMoreLessLanguages");
     if (minimimalNumberOfAppareances == 0)
-        moreLessLanguagesElement.innerHTML = "  <a href=javascript:showLessLanguages()><strong>Show less languages</strong></a>";
+        moreLessLanguagesElement.innerHTML = "<a class='showMoreOrLess' href=javascript:showLessLanguages()><strong>Show less languages</strong></a>";
     else
-        moreLessLanguagesElement.innerHTML = "<a href=javascript:showAllLanguages()><strong>Show more languages</strong></a>";
+        moreLessLanguagesElement.innerHTML = "<a class='showMoreOrLess' href=javascript:showAllLanguages()><strong>Show more languages</strong></a>";
 }
