@@ -64,7 +64,7 @@ function generateLanguageSelector() {
         if (minimimalAppareancesFilter(appareances)) {
             var languageHTMLText = strongFont(language) ? "<strong>"+language+"</strong>" : language;
             languageSelector += (language == anyLanguage) ? "" : " | ";
-            languageSelector += "<a href=javascript:selectLanguage('"+encodeURIComponent(language.trim())+"')>"+languageHTMLText+"</a>";
+            languageSelector += "<a class='language' href=javascript:selectLanguage('"+encodeURIComponent(language.trim())+"')>"+languageHTMLText+"</a>";
         }
     });
     return languageSelector;
