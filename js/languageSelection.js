@@ -11,19 +11,19 @@ function generateLanguageSelector() {
     }
 
     const languageSelectElement = document.createElement('select');
-    languageSelectElement.id = "languageSelectElement";
+    languageSelectElement.id = 'languageSelectElement';
     languageSelectElement.add(generateOption(ANY_LANGUAGE, 'All languages'));
     languageSelectElement.add(generateOption(NO_LANGUAGE, 'No Language'));
     LANGUAGES.forEach((language) => {
         languageSelectElement.add(generateOption(language, language));
     });
-    languageSelectElement.addEventListener("change", selectLanguage, false);
+    languageSelectElement.addEventListener('change', selectLanguage, false);
     return languageSelectElement;
 }
 
 function renderLanguageSelector() {
     const languageSelectorElement = document.getElementById('language_selector');
-    languageSelectorElement.innerHTML = "";
+    languageSelectorElement.innerHTML = '';
     languageSelectorElement.appendChild(generateLanguageSelector());
 }
 

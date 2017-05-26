@@ -1,4 +1,4 @@
-const LANGUAGES = [                        
+const LANGUAGES = [
     'ABAP',
     'ActionScript',
     'Ada',
@@ -303,5 +303,4 @@ const LANGUAGES = [
     'Xtend',
     'Yacc',
     'Zephir',
-    'Zimpl'
-];
+    'Zimpl'];
