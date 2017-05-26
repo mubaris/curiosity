@@ -13,7 +13,9 @@ function getUserStarredProjectsLanguages(username, page) {
         function addLanguage(language) {
             if (language) {
                 languages.set(anyLanguage, languages.get(anyLanguage) + 1);
-                if (languages.get(language)) { languages.set(language, languages.get(language) + 1); } else { languages.set(language, 1); }
+                if (languages.get(language)) {
+                    languages.set(language, languages.get(language) + 1);
+                } else { languages.set(language, 1); }
             }
         }
 
@@ -25,8 +27,10 @@ function getUserStarredProjectsLanguages(username, page) {
         });
         renderLanguagesSelector();
         renderShowMoreLessLanguages();
-        ++page;
-        if ((response.data.length != 0) && (page < maxNumberOfLanguageCallsPerUser)) getUserStarredProjectsLanguages(username, page);
+        page += 1;
+        if ((response.data.length != 0) && (page < maxNumberOfLanguageCallsPerUser)) {
+            getUserStarredProjectsLanguages(username, page);
+        }
     }
 
     const url = `https://api.github.com/users/${username}/starred?&access_token=${accessToken}&per_page=${languagesPerPage}&page=${page}`;
@@ -53,7 +57,9 @@ function generateLanguageSelector() {
     };
 
     function strongFont(language) {
-        return ((language == languageSelected) || ((language == anyLanguage) && (languageSelected == anyLanguage)));
+        out1 = (language == languageSelected);
+        out = out1 || ((language == anyLanguage) && (languageSelected == anyLanguage));
+        return out;
     }
 
     let languageSelector = '';
@@ -81,8 +87,13 @@ function selectLanguage(language) {
 }
 
 const languageFilter = function (languageToFilter) {
-    if (languageToFilter == anyLanguage) { return function (project) { return true; }; } else
-        if (languageSelected == noLanguage) { return function (project) { return project.language == null; }; }
+    if (languageToFilter == anyLanguage) {
+        return function (project) { return true; };
+    } else if (languageSelected == noLanguage) {
+        return function (project) {
+            return project.language == null;
+        };
+    }
     return function (project) { return project.language == languageToFilter; };
 };
 

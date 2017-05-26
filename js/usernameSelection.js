@@ -57,20 +57,20 @@ const inputOptions = new Promise((resolve) => {
 
 function removeUsername() {
     swal({
-    	title: 'Select username to remove',
-    	input: 'radio',
-    	showCancelButton: true,
-    	confirmButtonText: 'Remove',
-    	inputOptions,
-    	inputValidator(index) {
-        	return new Promise((resolve, reject) => {
-            if (index) {
-                resolve();
-            } else {
-                reject('You need to select a username!');
-            }
-        	});
-    	},
+        title: 'Select username to remove',
+        input: 'radio',
+        showCancelButton: true,
+        confirmButtonText: 'Remove',
+        inputOptions,
+        inputValidator(index) {
+            return new Promise((resolve, reject) => {
+                if (index) {
+                    resolve();
+                } else {
+                    reject('You need to select a username!');
+                }
+            });
+        },
     }).then((index) => {
         swal({
             type: 'success',
@@ -107,12 +107,12 @@ function generateUsernameSelector() {
     let usernameSelector = '';
     let i = 0;
     if (showingAllUsernames || usernames.length <= maxUsernamesShowing) {
-        for (; i < usernames.length - 1; i++) {
+        for (; i < usernames.length - 1; i += 1) {
             usernameSelector += `<a class='selectors' href='https://github.com/${usernames[i]}?tab=stars'>${usernames[i]}</a>`;
             usernameSelector += ' | ';
         }
     } else {
-        for (; i < maxUsernamesShowing - 1; i++) {
+        for (; i < maxUsernamesShowing - 1; i += 1) {
             usernameSelector += `<a class='selectors' href='https://github.com/${usernames[i]}?tab=stars'>${usernames[i]}</a>`;
             usernameSelector += ' | ';
         }
@@ -122,8 +122,8 @@ function generateUsernameSelector() {
 }
 
 function renderUsernames() {
-    document.getElementById("username_selector").innerHTML = generateUsernameSelector();
-    document.getElementById("addOrRemoveUsername").innerHTML = "<a class='addOrRemoveUsername' href=javascript:addUsername()><strong>Add more username</strong></a>"
-    + " | " + "<a class='addOrRemoveUsername' href=javascript:removeUsername()><strong>Remove username</strong></a>";
+    document.getElementById('username_selector').innerHTML = generateUsernameSelector();
+    document.getElementById('addOrRemoveUsername').innerHTML = "<a class='addOrRemoveUsername' href=javascript:addUsername()><strong>Add more username</strong></a>" +
+        " | <a class='addOrRemoveUsername' href=javascript:removeUsername()><strong>Remove username</strong></a>";
     renderShowMoreLessUsernames();
 }

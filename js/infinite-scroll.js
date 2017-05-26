@@ -11,7 +11,7 @@
             callback() {},
             distance: 50,
         };
-    // Populate defaults
+        // Populate defaults
         for (const key in defaults) {
             if (typeof options[key] === 'undefined') options[key] = defaults[key];
         }
@@ -24,14 +24,14 @@
         window.onscroll = function (event) {
             handleScroll(scroller, event);
         };
-    // For touch devices, try to detect scrolling by touching
+        // For touch devices, try to detect scrolling by touching
         document.ontouchmove = function (event) {
             handleScroll(scroller, event);
         };
     };
 
     function getScrollPos() {
-    // Handle scroll position in case of IE differently
+        // Handle scroll position in case of IE differently
         if (isIE) {
             return document.documentElement.scrollTop;
         }
@@ -40,7 +40,7 @@
 
     let prevScrollPos = getScrollPos();
 
-  // Respond to scroll events
+    // Respond to scroll events
     function handleScroll(scroller, event) {
         if (scroller.updateInitiated) {
             return;
@@ -50,11 +50,12 @@
             return; // nothing to do
         }
 
-    // Find the pageHeight and clientHeight(the no. of pixels to scroll to make the scrollbar reach max pos)
+        // Find the pageHeight and clientHeight
+        // (the no. of pixels to scroll to make the scrollbar reach max pos)
         const pageHeight = document.documentElement.scrollHeight;
         const clientHeight = document.documentElement.clientHeight;
 
-    // Check if scroll bar position is just 50px above the max, if yes, initiate an update
+        // Check if scroll bar position is just 50px above the max, if yes, initiate an update
         if (pageHeight - (scrollPos + clientHeight) < scroller.options.distance) {
             scroller.updateInitiated = true;
 

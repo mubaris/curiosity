@@ -4,6 +4,14 @@
         "import"
     ],
     "rules": {
-        "indent": ["error", 4]
+        "indent": ["error", 4],
+        "no-undef": "off",
+        "no-use-before-define": "off",
+        "no-param-reassign": "off",
+        "eol-last": "off",
+        "no-unused-vars": "off",
+        "space-before-function-paren": "error",
+        "eqeqeq": "off",
+        "no-restricted-syntax": "off"
     }
 }
