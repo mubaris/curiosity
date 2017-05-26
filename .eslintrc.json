@@ -12,6 +12,9 @@
         "no-unused-vars": "off",
         "space-before-function-paren": "error",
         "eqeqeq": "off",
-        "no-restricted-syntax": "off"
+        "no-restricted-syntax": "off",
+        "no-console": "off",
+        "func-names": "off",
+        "no-alert": "off"
     }
 }

@@ -72,7 +72,7 @@ function getData() {
         }).then((response) => {
             dataCollector(response, username);
         }).catch((err) => {
-            console.log(err);
+            console.error(err);
         });
     }
 }
