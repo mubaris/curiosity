@@ -122,8 +122,8 @@ function generateUsernameSelector() {
 }
 
 function renderUsernames() {
-    document.getElementById('username_selector').innerHTML = generateUsernameSelector();
-    document.getElementById('addOrRemoveUsername').innerHTML = '<a href=javascript:addUsername()><strong>Add more username</strong></a>'
-    + ' | ' + '<a href=javascript:removeUsername()><strong>Remove username</strong></a>';
+    document.getElementById("username_selector").innerHTML = generateUsernameSelector();
+    document.getElementById("addOrRemoveUsername").innerHTML = "<a class='addOrRemoveUsername' href=javascript:addUsername()><strong>Add more username</strong></a>"
+    + " | " + "<a class='addOrRemoveUsername' href=javascript:removeUsername()><strong>Remove username</strong></a>";
     renderShowMoreLessUsernames();
 }
