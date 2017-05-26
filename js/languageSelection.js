@@ -7,6 +7,7 @@ const maxNumberOfLanguageCallsPerUser = 2;
 const languages = new Map();
 languages.set(anyLanguage, 0);
 
+var userLanguagesRequested = 0;
 
 function getUserStarredProjectsLanguages(username, page) {
     function getLanguages(response) {
@@ -25,11 +26,16 @@ function getUserStarredProjectsLanguages(username, page) {
                 addLanguage(projectMainLanguage);
             }
         });
-        renderLanguagesSelector();
-        renderShowMoreLessLanguages();
+        
         page += 1;
         if ((response.data.length != 0) && (page < maxNumberOfLanguageCallsPerUser)) {
             getUserStarredProjectsLanguages(username, page);
+        }
+
+        ++userLanguagesRequested;
+        if (userLanguagesRequested == usernames.length)  {
+            renderLanguagesSelector();        
+            document.getElementById("languageSelectElement").addEventListener('change', selectLanguage, false);
         }
     }
 
@@ -48,42 +54,34 @@ function getUserStarredProjectsLanguages(username, page) {
 function getLanguagesToShow() {
     usernames.forEach((username) => {
         getUserStarredProjectsLanguages(username, 1);
+        
     });
 }
 
 function generateLanguageSelector() {
-    const minimimalAppareancesFilter = function (appareances) {
-        return (appareances >= minimimalNumberOfAppareances);
-    };
-
-    function strongFont(language) {
-        out1 = (language == languageSelected);
-        out = out1 || ((language == anyLanguage) && (languageSelected == anyLanguage));
-        return out;
-    }
-
-    let languageSelector = '';
+    var languageSelectElement = document.createElement("select");
+    languageSelectElement.id = "languageSelectElement";
     languages.forEach((appareances, language) => {
-        if (minimimalAppareancesFilter(appareances)) {
-            const languageHTMLText = strongFont(language) ? `<strong>${language}</strong>` : language;
-            languageSelector += (language == anyLanguage) ? '' : ' | ';
-            languageSelector += `<a class='selectors' href=javascript:selectLanguage('${encodeURIComponent(language.trim())}')>${languageHTMLText}</a>`;
-        }
+        var option = document.createElement("option");
+        option.text = language;
+        option.value = language;
+        languageSelectElement.add(option);
     });
-    return languageSelector;
+    return languageSelectElement;
 }
 
 function renderLanguagesSelector() {
-    document.getElementById('language_selector').innerHTML = generateLanguageSelector();
+    var languageSelectorElement = document.getElementById('language_selector');
+    languageSelectorElement.innerHTML = "";
+    languageSelectorElement.appendChild(generateLanguageSelector());
 }
 
-function selectLanguage(language) {
-    languageSelected = language;
+function selectLanguage(event) {
+    languageSelected = event.target.value;
     content.innerHTML = '';
     reqNo = Math.floor(Math.random() * 3) + 1;
     projectsPerPage = (languageSelected == anyLanguage) ? 2 : 100;
     getData();
-    renderLanguagesSelector();
 }
 
 const languageFilter = function (languageToFilter) {
@@ -96,20 +94,3 @@ const languageFilter = function (languageToFilter) {
     }
     return function (project) { return project.language == languageToFilter; };
 };
-
-function showAllLanguages() {
-    minimimalNumberOfAppareances = 0;
-    renderLanguagesSelector();
-    renderShowMoreLessLanguages();
-}
-
-function showLessLanguages() {
-    minimimalNumberOfAppareances = 10;
-    renderLanguagesSelector();
-    renderShowMoreLessLanguages();
-}
-
-function renderShowMoreLessLanguages() {
-    const moreLessLanguagesElement = document.getElementById('showMoreLessLanguages');
-    if (minimimalNumberOfAppareances == 0) { moreLessLanguagesElement.innerHTML = '  <a href=javascript:showLessLanguages()><strong>Show less languages</strong></a>'; } else { moreLessLanguagesElement.innerHTML = '<a href=javascript:showAllLanguages()><strong>Show more languages</strong></a>'; }
-}
