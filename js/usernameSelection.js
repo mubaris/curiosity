@@ -40,14 +40,14 @@ const addUsername = function addUsername() {
             title: `Username ${username} added!`,
         });
     });
-}
+};
 
 const addOneUsername = function addOneUsername(username) {
     USERNAMES.push(username);
     content.innerHTML = '';
     getData();
     renderUsernames();
-}
+};
 
 const inputOptions = new Promise((resolve) => {
     setTimeout(() => {
@@ -78,29 +78,29 @@ const removeUsername = function removeUsername() {
         });
         removeUsernameAtIndex(index);
     });
-}
+};
 
 const removeUsernameAtIndex = function removeUsernameAtIndex(index) {
     USERNAMES.splice(index, 1);
     content.innerHTML = '';
     getData();
     renderUsernames();
-}
+};
 
 const showAllUsernames = function showAllUsernames() {
     showingAllUsernames = true;
     renderUsernames();
-}
+};
 
 const showLessUsernames = function showLessUsernames() {
     showingAllUsernames = false;
     renderUsernames();
-}
+};
 
 const renderShowMoreLessUsernames = function renderShowMoreLessUsernames() {
     const moreLessUsernamesElement = document.getElementById('showMoreLessUsernames');
     if (showingAllUsernames) { moreLessUsernamesElement.innerHTML = '<a href=javascript:showLessUsernames()><strong>Show less usernames</strong></a>'; } else { moreLessUsernamesElement.innerHTML = '<a href=javascript:showAllUsernames()><strong>Show more usernames</strong></a>'; }
-}
+};
 
 const generateUsernameSelector = function generateUsernameSelector() {
     let usernameSelector = '';
@@ -118,11 +118,11 @@ const generateUsernameSelector = function generateUsernameSelector() {
     }
     usernameSelector += `<a class='selectors' href='https://github.com/${USERNAMES[i]}?tab=stars'>${USERNAMES[i]}</a>`;
     return usernameSelector;
-}
+};
 
 const renderUsernames = function renderUsernames() {
     document.getElementById('username_selector').innerHTML = generateUsernameSelector();
     document.getElementById('addOrRemoveUsername').innerHTML = "<a class='addOrRemoveUsername' href=javascript:addUsername()><strong>Add more username</strong></a>" +
         " | <a class='addOrRemoveUsername' href=javascript:removeUsername()><strong>Remove username</strong></a>";
     renderShowMoreLessUsernames();
-}
+};

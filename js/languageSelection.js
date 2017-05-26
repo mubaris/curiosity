@@ -8,7 +8,7 @@ const generateLanguageSelector = function generateLanguageSelector() {
         optionElement.value = value;
         optionElement.text = text;
         return optionElement;
-    }
+    };
 
     const languageSelectElement = document.createElement('select');
     languageSelectElement.id = 'languageSelectElement';
@@ -19,13 +19,13 @@ const generateLanguageSelector = function generateLanguageSelector() {
     });
     languageSelectElement.addEventListener('change', selectLanguage, false);
     return languageSelectElement;
-}
+};
 
 const renderLanguageSelector = function renderLanguageSelector() {
     const languageSelectorElement = document.getElementById('language_selector');
     languageSelectorElement.innerHTML = '';
     languageSelectorElement.appendChild(generateLanguageSelector());
-}
+};
 
 const selectLanguage = function selectLanguage(event) {
     languageSelected = event.target.value;
@@ -33,7 +33,7 @@ const selectLanguage = function selectLanguage(event) {
     reqNo = Math.floor(Math.random() * 3) + 1;
     projectsPerPage = (languageSelected == ANY_LANGUAGE) ? 2 : 100;
     getData();
-}
+};
 
 const languageFilter = function (languageToFilter) {
     if (languageToFilter == ANY_LANGUAGE) {

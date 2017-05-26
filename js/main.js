@@ -11,15 +11,15 @@ let accessToken;
 
 const allUsersChecked = function allUsersChecked() {
     return usersCurrentCall === USERNAMES.length;
-}
+};
 
 const moreDataNeeded = function moreDataNeeded() {
     return ((allUsersChecked()) && (projectsCurrentCall < MIN_PROJECTS_PER_CALL));
-}
+};
 
 const userFormatter = function userFormatter(username) {
     return `<a href='https://github.com/${username}?tab=stars'>${username}</a>`;
-}
+};
 
 const nFormatter = function nFormatter(num) {
     if (num <= 999) {
@@ -28,7 +28,7 @@ const nFormatter = function nFormatter(num) {
         return `${(num / 1000).toFixed(1)}k`;
     }
     return `${num}`;
-}
+};
 
 const dataCollector = function dataCollector(response, username) {
     usersCurrentCall += 1;
@@ -56,7 +56,7 @@ const dataCollector = function dataCollector(response, username) {
         callInProgress = false;
         document.getElementById('searching').innerHTML = '';
     }
-}
+};
 
 const getData = function getData() {
     document.getElementById('searching').innerHTML = '<br/>Fetching projects...';
@@ -75,7 +75,7 @@ const getData = function getData() {
             console.error(err);
         });
     });
-}
+};
 
 if (window.localStorage) {
     if (!localStorage.getItem('accessToken')) {
