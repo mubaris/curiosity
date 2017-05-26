@@ -108,16 +108,16 @@ function generateUsernameSelector() {
     let i = 0;
     if (showingAllUsernames || usernames.length <= maxUsernamesShowing) {
         for (; i < usernames.length - 1; i++) {
-            usernameSelector += `<a class='username' href='https://github.com/${usernames[i]}?tab=stars'>${usernames[i]}</a>`;
+            usernameSelector += `<a class='selectors' href='https://github.com/${usernames[i]}?tab=stars'>${usernames[i]}</a>`;
             usernameSelector += ' | ';
         }
     } else {
         for (; i < maxUsernamesShowing - 1; i++) {
-            usernameSelector += `<a class='username' href='https://github.com/${usernames[i]}?tab=stars'>${usernames[i]}</a>`;
+            usernameSelector += `<a class='selectors' href='https://github.com/${usernames[i]}?tab=stars'>${usernames[i]}</a>`;
             usernameSelector += ' | ';
         }
     }
-    usernameSelector += `<a class='username' href='https://github.com/${usernames[i]}?tab=stars'>${usernames[i]}</a>`;
+    usernameSelector += `<a class='selectors' href='https://github.com/${usernames[i]}?tab=stars'>${usernames[i]}</a>`;
     return usernameSelector;
 }
 
