@@ -1,5 +1,6 @@
 # Curiosity
 
+[![Build Status](https://travis-ci.org/mubaris/curiosity.svg?branch=master)](https://travis-ci.org/mubaris/curiosity)
 [![Say Thanks](https://img.shields.io/badge/Say%20Thanks!-%F0%9F%A6%89-1EAEDB.svg)](https://saythanks.io/to/mubaris)
 [![Gitter](https://badges.gitter.im/gitterHQ/gitter.png)](https://gitter.im/curiosity-project/Lobby)
 
