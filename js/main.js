@@ -2,15 +2,15 @@ const MIN_PROJECTS_PER_CALL = 5;
 const MAX_PROJECTS_PER_USER = 2;
 const CONTENT = document.getElementById('content');
 const EMOJI = new EmojiConvertor();
-var projectsCurrentCall = 0;
+let projectsCurrentCall = 0;
 let usersCurrentCall = 0;
 let callInProgress = true;
-var reqNo = Math.floor(Math.random() * 3) + 1;
-var projectsPerPage = 2;
-var accessToken;
+let reqNo = Math.floor(Math.random() * 3) + 1;
+let projectsPerPage = 2;
+let accessToken;
 
-function allUsersChecked() { 
-    return usersCurrentCall === USERNAMES.length; 
+function allUsersChecked() {
+    return usersCurrentCall === USERNAMES.length;
 }
 
 function moreDataNeeded() {
@@ -32,7 +32,7 @@ function nFormatter(num) {
 
 function dataCollector(response, username) {
     usersCurrentCall += 1;
-    let filterFunction = languageFilter(languageSelected);
+    const filterFunction = languageFilter(languageSelected);
     response.data.filter(filterFunction).slice(0, MAX_PROJECTS_PER_USER).forEach((entry) => {
         if (typeof entry !== 'undefined') {
             projectsCurrentCall += 1;
@@ -63,9 +63,8 @@ function getData() {
     usersCurrentCall = 0;
     callInProgress = true;
     reqNo += 1;
-    for (let i = 0; i < USERNAMES.length; i += 1) {
-        let username = USERNAMES[i];
-        let url = `https://api.github.com/users/${username}/starred?per_page=${projectsPerPage}&access_token=${accessToken}&page=${reqNo}`;
+    USERNAMES.forEach(function(username) {
+        const url = `https://api.github.com/users/${username}/starred?per_page=${projectsPerPage}&access_token=${accessToken}&page=${reqNo}`;
         axios({
             url,
             method: 'get',
@@ -75,7 +74,8 @@ function getData() {
         }).catch((err) => {
             console.error(err);
         });
-    }
+    });
+    
 }
 
 if (window.localStorage) {

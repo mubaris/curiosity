@@ -1,5 +1,5 @@
-var showingAllUsernames = true;
 const MAX_USERNAMES_SHOWING = 5;
+let showingAllUsernames = true;
 
 function addUsername() {
     swal({
