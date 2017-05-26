@@ -63,7 +63,7 @@ function getData() {
     usersCurrentCall = 0;
     callInProgress = true;
     reqNo += 1;
-    USERNAMES.forEach((username)  => {
+    USERNAMES.forEach((username) => {
         const url = `https://api.github.com/users/${username}/starred?per_page=${projectsPerPage}&access_token=${accessToken}&page=${reqNo}`;
         axios({
             url,
