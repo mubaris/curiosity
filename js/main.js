@@ -104,7 +104,7 @@ if (window.localStorage) {
         }).then((token) => {
             accessToken = token;
             getData();
-            getLanguagesToShow();
+            renderLanguageSelector();
             renderUsernames();
             swal({
                 type: 'success',
@@ -120,7 +120,7 @@ accessToken = localStorage.getItem('accessToken');
 
 if (accessToken) {
     getData();
-    getLanguagesToShow();
+    renderLanguageSelector();
     renderUsernames();
 }
 
