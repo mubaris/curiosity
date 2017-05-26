@@ -1,24 +1,25 @@
-const minimumProjectsPerCall = 5;
-const maximumProjectsPerUser = 2;
-let projectsCurrentCall = 0;
-let usersCurrentCall = 0;
-let callInProgress = true;
-const content = document.getElementById('content');
+const MIN_PROJECTS_PER_CALL = 5;
+const MAX_PROJECTS_PER_USER = 2;
+const CONTENT = document.getElementById('content');
+const EMOJI = new EmojiConvertor();
+var projectsCurrentCall = 0;
+var usersCurrentCall = 0;
+var callInProgress = true;
+var reqNo = Math.floor(Math.random() * 3) + 1;
+var projectsPerPage = 2;
+var accessToken;
 
-function allUsersChecked() { return usersCurrentCall === usernames.length; }
+function allUsersChecked() { 
+    return usersCurrentCall === USERNAMES.length; 
+}
 
 function moreDataNeeded() {
-    return ((allUsersChecked()) && (projectsCurrentCall < minimumProjectsPerCall));
+    return ((allUsersChecked()) && (projectsCurrentCall < MIN_PROJECTS_PER_CALL));
 }
 
 function userFormatter(username) {
     return `<a href='https://github.com/${username}?tab=stars'>${username}</a>`;
 }
-
-
-const emoji = new EmojiConvertor();
-let reqNo = Math.floor(Math.random() * 3) + 1;
-var projectsPerPage = 2;
 
 function nFormatter(num) {
     if (num <= 999) {
@@ -31,8 +32,8 @@ function nFormatter(num) {
 
 function dataCollector(response, username) {
     usersCurrentCall += 1;
-    const filterFunction = languageFilter(languageSelected);
-    response.data.filter(filterFunction).slice(0, maximumProjectsPerUser).forEach((entry) => {
+    let filterFunction = languageFilter(languageSelected);
+    response.data.filter(filterFunction).slice(0, MAX_PROJECTS_PER_USER).forEach((entry) => {
         if (typeof entry !== 'undefined') {
             projectsCurrentCall += 1;
             if (!entry.description) entry.description = '';
@@ -43,9 +44,9 @@ function dataCollector(response, username) {
             innerContent += (entry.language != null) ? `&emsp;${entry.language}` : '';
             innerContent += `&emsp;(from ${userFormatter(username)})`;
             innerContent += '</div></li>';
-            innerContent = emoji.replace_unified(innerContent);
-            content.innerHTML += emoji.replace_colons(innerContent);
-            emoji.img_sets.apple.path = 'http://cdn.mubaris.com/emojis/';
+            innerContent = EMOJI.replace_unified(innerContent);
+            CONTENT.innerHTML += EMOJI.replace_colons(innerContent);
+            EMOJI.img_sets.apple.path = 'http://cdn.mubaris.com/emojis/';
         }
     });
     if (moreDataNeeded()) {
@@ -62,9 +63,9 @@ function getData() {
     usersCurrentCall = 0;
     callInProgress = true;
     reqNo += 1;
-    for (let i = 0; i < usernames.length; i += 1) {
-        const username = usernames[i];
-        const url = `https://api.github.com/users/${username}/starred?per_page=${projectsPerPage}&access_token=${accessToken}&page=${reqNo}`;
+    for (let i = 0; i < USERNAMES.length; i += 1) {
+        let username = USERNAMES[i];
+        let url = `https://api.github.com/users/${username}/starred?per_page=${projectsPerPage}&access_token=${accessToken}&page=${reqNo}`;
         axios({
             url,
             method: 'get',
@@ -76,8 +77,6 @@ function getData() {
         });
     }
 }
-
-let accessToken;
 
 if (window.localStorage) {
     if (!localStorage.getItem('accessToken')) {
@@ -124,7 +123,7 @@ if (accessToken) {
     renderUsernames();
 }
 
-const options = {
+const OPTIONS = {
     distance: 1,
     callback(done) {
         if (!callInProgress) getData();
@@ -132,4 +131,4 @@ const options = {
     },
 };
 
-infiniteScroll(options);
+infiniteScroll(OPTIONS);

@@ -1,4 +1,4 @@
-const languages = [                        
+const LANGUAGES = [                        
     'ABAP',
     'ActionScript',
     'Ada',

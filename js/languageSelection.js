@@ -1,25 +1,20 @@
-const anyLanguage = 'All';
-const noLanguage = 'NoLanguage';
-let languageSelected = anyLanguage;
-const languagesPerPage = 100;
-let minimimalNumberOfAppareances = 10;
-const maxNumberOfLanguageCallsPerUser = 2;
-
-var userLanguagesRequested = 0;
+const ANY_LANGUAGE = 'All';
+const NO_LANGUAGE = 'NoLanguage';
+var languageSelected = ANY_LANGUAGE;
 
 function generateLanguageSelector() {
     function generateOption(value, text) {
-        var optionElement = document.createElement("option");
+        let optionElement = document.createElement("option");
         optionElement.value = value;
         optionElement.text = text;
         return optionElement;
     }
 
-    var languageSelectElement = document.createElement("select");
+    let languageSelectElement = document.createElement("select");
     languageSelectElement.id = "languageSelectElement";
-    languageSelectElement.add(generateOption("All", "All languages"));
-    languageSelectElement.add(generateOption("NoLanguage", "No Language"));
-    languages.forEach((language) => {
+    languageSelectElement.add(generateOption(ANY_LANGUAGE, "All languages"));
+    languageSelectElement.add(generateOption(NO_LANGUAGE, "No Language"));
+    LANGUAGES.forEach((language) => {
         languageSelectElement.add(generateOption(language, language));
     });
     languageSelectElement.addEventListener("change", selectLanguage, false);
@@ -27,7 +22,7 @@ function generateLanguageSelector() {
 }
 
 function renderLanguageSelector() {
-    var languageSelectorElement = document.getElementById('language_selector');
+    let languageSelectorElement = document.getElementById('language_selector');
     languageSelectorElement.innerHTML = "";
     languageSelectorElement.appendChild(generateLanguageSelector());
 }
@@ -36,14 +31,14 @@ function selectLanguage(event) {
     languageSelected = event.target.value;
     content.innerHTML = '';
     reqNo = Math.floor(Math.random() * 3) + 1;
-    projectsPerPage = (languageSelected == anyLanguage) ? 2 : 100;
+    projectsPerPage = (languageSelected == ANY_LANGUAGE) ? 2 : 100;
     getData();
 }
 
 const languageFilter = function (languageToFilter) {
-    if (languageToFilter == anyLanguage) {
+    if (languageToFilter == ANY_LANGUAGE) {
         return function (project) { return true; };
-    } else if (languageSelected == noLanguage) {
+    } else if (languageSelected == NO_LANGUAGE) {
         return function (project) {
             return project.language == null;
         };
