@@ -45,15 +45,14 @@ li {
 }
 
 a.selectors {
-  color: #fd971f;
-  font-size: 75%;
+    color: #fd971f;
+    font-size: 75%;
 }
 
-a.showMoreOrLess, a.addOrRemoveUsername {
-  font-size: 75%;
+a.showMoreOrLess,
+a.addOrRemoveUsername {
+    font-size: 75%;
 }
-
-
 
 @keyframes octocat-wave {
     0%,
