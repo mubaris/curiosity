@@ -1,19 +1,19 @@
 const ANY_LANGUAGE = 'All';
 const NO_LANGUAGE = 'NoLanguage';
-var languageSelected = ANY_LANGUAGE;
+let languageSelected = ANY_LANGUAGE;
 
 function generateLanguageSelector() {
     function generateOption(value, text) {
-        let optionElement = document.createElement("option");
+        const optionElement = document.createElement('option');
         optionElement.value = value;
         optionElement.text = text;
         return optionElement;
     }
 
-    let languageSelectElement = document.createElement("select");
+    const languageSelectElement = document.createElement('select');
     languageSelectElement.id = "languageSelectElement";
-    languageSelectElement.add(generateOption(ANY_LANGUAGE, "All languages"));
-    languageSelectElement.add(generateOption(NO_LANGUAGE, "No Language"));
+    languageSelectElement.add(generateOption(ANY_LANGUAGE, 'All languages'));
+    languageSelectElement.add(generateOption(NO_LANGUAGE, 'No Language'));
     LANGUAGES.forEach((language) => {
         languageSelectElement.add(generateOption(language, language));
     });
@@ -22,7 +22,7 @@ function generateLanguageSelector() {
 }
 
 function renderLanguageSelector() {
-    let languageSelectorElement = document.getElementById('language_selector');
+    const languageSelectorElement = document.getElementById('language_selector');
     languageSelectorElement.innerHTML = "";
     languageSelectorElement.appendChild(generateLanguageSelector());
 }
