@@ -1,0 +1,9 @@
+machine:
+  node:
+    version: 6.1.0
+dependencies:
+  override:
+    - npm install --dev
+test:
+  override:
+    - npm run lint
