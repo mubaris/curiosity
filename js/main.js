@@ -18,7 +18,7 @@ function userFormatter(username) {
 
 const emoji = new EmojiConvertor();
 let reqNo = Math.floor(Math.random() * 3) + 1;
-const projectsPerPage = 2;
+var projectsPerPage = 2;
 
 function nFormatter(num) {
     if (num <= 999) {
@@ -58,7 +58,7 @@ function dataCollector(response, username) {
 }
 
 function getData() {
-    document.getElementById('searching').innerHTML = '<br/>Searching for projects...';
+    document.getElementById('searching').innerHTML = '<br/>Fetching projects...';
     usersCurrentCall = 0;
     callInProgress = true;
     reqNo += 1;

@@ -54,6 +54,17 @@ a.addOrRemoveUsername {
     font-size: 75%;
 }
 
+#language_selector {
+    text-align: right;
+}
+
+select {
+    font-family: "Source Code Pro", monospace;
+    font-size: 75%;
+    background-color: #272822;
+    color: #fd971f;
+}
+
 @keyframes octocat-wave {
     0%,
     100% {
