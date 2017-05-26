@@ -56,11 +56,13 @@ a.addOrRemoveUsername {
 
 #language_selector {
     text-align: right;
+    font-size: 75%;
+    font-family: "Source Code Pro", monospace;
+    color: #fd971f;    
 }
 
 select {
     font-family: "Source Code Pro", monospace;
-    font-size: 75%;
     background-color: #272822;
     color: #fd971f;
 }
