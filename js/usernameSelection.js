@@ -1,7 +1,7 @@
 const MAX_USERNAMES_SHOWING = 5;
 let showingAllUsernames = true;
 
-function addUsername() {
+const addUsername = function addUsername() {
     swal({
         title: 'Submit Github Username',
         html: 'Who do you want to add?',
@@ -42,7 +42,7 @@ function addUsername() {
     });
 }
 
-function addOneUsername(username) {
+const addOneUsername = function addOneUsername(username) {
     USERNAMES.push(username);
     content.innerHTML = '';
     getData();
@@ -55,7 +55,7 @@ const inputOptions = new Promise((resolve) => {
     }, 2000);
 });
 
-function removeUsername() {
+const removeUsername = function removeUsername() {
     swal({
         title: 'Select username to remove',
         input: 'radio',
@@ -80,29 +80,29 @@ function removeUsername() {
     });
 }
 
-function removeUsernameAtIndex(index) {
+const removeUsernameAtIndex = function removeUsernameAtIndex(index) {
     USERNAMES.splice(index, 1);
     content.innerHTML = '';
     getData();
     renderUsernames();
 }
 
-function showAllUsernames() {
+const showAllUsernames = function showAllUsernames() {
     showingAllUsernames = true;
     renderUsernames();
 }
 
-function showLessUsernames() {
+const showLessUsernames = function showLessUsernames() {
     showingAllUsernames = false;
     renderUsernames();
 }
 
-function renderShowMoreLessUsernames() {
+const renderShowMoreLessUsernames = function renderShowMoreLessUsernames() {
     const moreLessUsernamesElement = document.getElementById('showMoreLessUsernames');
     if (showingAllUsernames) { moreLessUsernamesElement.innerHTML = '<a href=javascript:showLessUsernames()><strong>Show less usernames</strong></a>'; } else { moreLessUsernamesElement.innerHTML = '<a href=javascript:showAllUsernames()><strong>Show more usernames</strong></a>'; }
 }
 
-function generateUsernameSelector() {
+const generateUsernameSelector = function generateUsernameSelector() {
     let usernameSelector = '';
     let i = 0;
     if (showingAllUsernames || USERNAMES.length <= MAX_USERNAMES_SHOWING) {
@@ -120,7 +120,7 @@ function generateUsernameSelector() {
     return usernameSelector;
 }
 
-function renderUsernames() {
+const renderUsernames = function renderUsernames() {
     document.getElementById('username_selector').innerHTML = generateUsernameSelector();
     document.getElementById('addOrRemoveUsername').innerHTML = "<a class='addOrRemoveUsername' href=javascript:addUsername()><strong>Add more username</strong></a>" +
         " | <a class='addOrRemoveUsername' href=javascript:removeUsername()><strong>Remove username</strong></a>";

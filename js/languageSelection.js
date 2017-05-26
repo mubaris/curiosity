@@ -2,8 +2,8 @@ const ANY_LANGUAGE = 'All';
 const NO_LANGUAGE = 'NoLanguage';
 let languageSelected = ANY_LANGUAGE;
 
-function generateLanguageSelector() {
-    function generateOption(value, text) {
+const generateLanguageSelector = function generateLanguageSelector() {
+    const generateOption = function generateOption(value, text) {
         const optionElement = document.createElement('option');
         optionElement.value = value;
         optionElement.text = text;
@@ -21,13 +21,13 @@ function generateLanguageSelector() {
     return languageSelectElement;
 }
 
-function renderLanguageSelector() {
+const renderLanguageSelector = function renderLanguageSelector() {
     const languageSelectorElement = document.getElementById('language_selector');
     languageSelectorElement.innerHTML = '';
     languageSelectorElement.appendChild(generateLanguageSelector());
 }
 
-function selectLanguage(event) {
+const selectLanguage = function selectLanguage(event) {
     languageSelected = event.target.value;
     content.innerHTML = '';
     reqNo = Math.floor(Math.random() * 3) + 1;

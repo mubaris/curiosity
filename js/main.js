@@ -9,19 +9,19 @@ let reqNo = Math.floor(Math.random() * 3) + 1;
 let projectsPerPage = 2;
 let accessToken;
 
-function allUsersChecked() {
+const allUsersChecked = function allUsersChecked() {
     return usersCurrentCall === USERNAMES.length;
 }
 
-function moreDataNeeded() {
+const moreDataNeeded = function moreDataNeeded() {
     return ((allUsersChecked()) && (projectsCurrentCall < MIN_PROJECTS_PER_CALL));
 }
 
-function userFormatter(username) {
+const userFormatter = function userFormatter(username) {
     return `<a href='https://github.com/${username}?tab=stars'>${username}</a>`;
 }
 
-function nFormatter(num) {
+const nFormatter = function nFormatter(num) {
     if (num <= 999) {
         return `${num}`;
     } else if (num <= 99999) {
@@ -30,7 +30,7 @@ function nFormatter(num) {
     return `${num}`;
 }
 
-function dataCollector(response, username) {
+const dataCollector = function dataCollector(response, username) {
     usersCurrentCall += 1;
     const filterFunction = languageFilter(languageSelected);
     response.data.filter(filterFunction).slice(0, MAX_PROJECTS_PER_USER).forEach((entry) => {
@@ -58,7 +58,7 @@ function dataCollector(response, username) {
     }
 }
 
-function getData() {
+const getData = function getData() {
     document.getElementById('searching').innerHTML = '<br/>Fetching projects...';
     usersCurrentCall = 0;
     callInProgress = true;
