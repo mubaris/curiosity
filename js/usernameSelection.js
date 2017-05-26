@@ -101,9 +101,9 @@ function showLessUsernames() {
 function renderShowMoreLessUsernames() {
     var moreLessUsernamesElement = document.getElementById("showMoreLessUsernames");
     if (showingAllUsernames)
-        moreLessUsernamesElement.innerHTML = "<a href=javascript:showLessUsernames()><strong>Show less usernames</strong></a>";
+        moreLessUsernamesElement.innerHTML = "<a class='showMoreOrLess' href=javascript:showLessUsernames()><strong>Show less usernames</strong></a>";
     else
-        moreLessUsernamesElement.innerHTML = "<a href=javascript:showAllUsernames()><strong>Show more usernames</strong></a>";
+        moreLessUsernamesElement.innerHTML = "<a class='showMoreOrLess' href=javascript:showAllUsernames()><strong>Show more usernames</strong></a>";
 }
 
 function generateUsernameSelector() {
@@ -111,22 +111,22 @@ function generateUsernameSelector() {
     var i = 0;
     if (showingAllUsernames || usernames.length <= maxUsernamesShowing) {
         for (; i < usernames.length - 1; i++) {
-            usernameSelector += "<a class='username' href='https://github.com/" + usernames[i] + "?tab=stars'>" + usernames[i] + "</a>";
+            usernameSelector += "<a class='selectors' href='https://github.com/" + usernames[i] + "?tab=stars'>" + usernames[i] + "</a>";
             usernameSelector += " | ";
         }    
     } else {
         for (; i < maxUsernamesShowing - 1; i++) {
-            usernameSelector += "<a class='username' href='https://github.com/" + usernames[i] + "?tab=stars'>" + usernames[i] + "</a>";
+            usernameSelector += "<a class='selectors' href='https://github.com/" + usernames[i] + "?tab=stars'>" + usernames[i] + "</a>";
             usernameSelector += " | ";
         }
     }
-    usernameSelector += "<a class='username' href='https://github.com/" + usernames[i] + "?tab=stars'>" + usernames[i] + "</a>";
+    usernameSelector += "<a class='selectors' href='https://github.com/" + usernames[i] + "?tab=stars'>" + usernames[i] + "</a>";
     return usernameSelector;
 }
 
 function renderUsernames() {
     document.getElementById("username_selector").innerHTML = generateUsernameSelector();
-    document.getElementById("addOrRemoveUsername").innerHTML = "<a href=javascript:addUsername()><strong>Add more username</strong></a>"
-    + " | " + "<a href=javascript:removeUsername()><strong>Remove username</strong></a>";
+    document.getElementById("addOrRemoveUsername").innerHTML = "<a class='addOrRemoveUsername' href=javascript:addUsername()><strong>Add more username</strong></a>"
+    + " | " + "<a class='addOrRemoveUsername' href=javascript:removeUsername()><strong>Remove username</strong></a>";
     renderShowMoreLessUsernames();
 }
