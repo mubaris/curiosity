@@ -10,7 +10,8 @@ let projectsPerPage = 2;
 let accessToken;
 
 const allUsersChecked = function allUsersChecked() {
-    return usersCurrentCall === USERNAMES.length;
+    var usernames = JSON.parse(localStorage.getItem('usernames'));
+    return usersCurrentCall === usernames.length;
 };
 
 const moreDataNeeded = function moreDataNeeded() {
@@ -63,7 +64,8 @@ const getData = function getData() {
     usersCurrentCall = 0;
     callInProgress = true;
     reqNo += 1;
-    USERNAMES.forEach((username) => {
+    var usernames = JSON.parse(localStorage.getItem('usernames'));
+    usernames.forEach((username) => {
         const url = `https://api.github.com/users/${username}/starred?per_page=${projectsPerPage}&access_token=${accessToken}&page=${reqNo}`;
         axios({
             url,
@@ -101,6 +103,7 @@ if (window.localStorage) {
             allowOutsideClick: false,
         }).then((token) => {
             accessToken = token;
+            localStorage.setItem('usernames', JSON.stringify(USERNAMES));
             getData();
             renderLanguageSelector();
             renderUsernames();
@@ -117,6 +120,7 @@ if (window.localStorage) {
 accessToken = localStorage.getItem('accessToken');
 
 if (accessToken) {
+    localStorage.setItem('usernames', JSON.stringify(USERNAMES));
     getData();
     renderLanguageSelector();
     renderUsernames();
