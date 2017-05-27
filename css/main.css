@@ -1,4 +1,3 @@
-@import url('https://fonts.googleapis.com/css?family=Source+Code+Pro');
 body {
     font-family: "Source Code Pro", monospace;
     font-size: 20px;
@@ -44,14 +43,27 @@ li {
     animation: octocat-wave 560ms ease-in-out
 }
 
-a.selectors {
+.selectors {
     color: #fd971f;
     font-size: 75%;
 }
 
-a.showMoreOrLess,
-a.addOrRemoveUsername {
+.showMoreOrLess,
+.addOrRemoveUsername {
     font-size: 75%;
+}
+
+#language_selector {
+    text-align: right;
+    font-size: 75%;
+    font-family: "Source Code Pro", monospace;
+    color: #fd971f;    
+}
+
+select {
+    font-family: "Source Code Pro", monospace;
+    background-color: #272822;
+    color: #fd971f;
 }
 
 @keyframes octocat-wave {

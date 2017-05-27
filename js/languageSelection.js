@@ -1,115 +1,47 @@
-const anyLanguage = 'All';
-const noLanguage = 'NoLanguage';
-let languageSelected = anyLanguage;
-const languagesPerPage = 100;
-let minimimalNumberOfAppareances = 10;
-const maxNumberOfLanguageCallsPerUser = 2;
-const languages = new Map();
-languages.set(anyLanguage, 0);
+const ANY_LANGUAGE = 'All';
+const NO_LANGUAGE = 'NoLanguage';
+let languageSelected = ANY_LANGUAGE;
 
-
-function getUserStarredProjectsLanguages(username, page) {
-    function getLanguages(response) {
-        function addLanguage(language) {
-            if (language) {
-                languages.set(anyLanguage, languages.get(anyLanguage) + 1);
-                if (languages.get(language)) {
-                    languages.set(language, languages.get(language) + 1);
-                } else { languages.set(language, 1); }
-            }
-        }
-
-        response.data.forEach((starredProject) => {
-            if (typeof starredProject !== 'undefined') {
-                const projectMainLanguage = starredProject.language ? starredProject.language : 'NoLanguage';
-                addLanguage(projectMainLanguage);
-            }
-        });
-        renderLanguagesSelector();
-        renderShowMoreLessLanguages();
-        page += 1;
-        if ((response.data.length != 0) && (page < maxNumberOfLanguageCallsPerUser)) {
-            getUserStarredProjectsLanguages(username, page);
-        }
-    }
-
-    const url = `https://api.github.com/users/${username}/starred?&access_token=${accessToken}&per_page=${languagesPerPage}&page=${page}`;
-    axios({
-        url,
-        method: 'get',
-        responseType: 'json',
-    }).then((response) => {
-        getLanguages(response);
-    }).catch((err) => {
-        console.log(err);
-    });
-}
-
-function getLanguagesToShow() {
-    usernames.forEach((username) => {
-        getUserStarredProjectsLanguages(username, 1);
-    });
-}
-
-function generateLanguageSelector() {
-    const minimimalAppareancesFilter = function (appareances) {
-        return (appareances >= minimimalNumberOfAppareances);
+const generateLanguageSelector = function generateLanguageSelector() {
+    const generateOption = function generateOption(value, text) {
+        const optionElement = document.createElement('option');
+        optionElement.value = value;
+        optionElement.text = text;
+        return optionElement;
     };
 
-    function strongFont(language) {
-        out1 = (language == languageSelected);
-        out = out1 || ((language == anyLanguage) && (languageSelected == anyLanguage));
-        return out;
-    }
-
-    let languageSelector = '';
-    languages.forEach((appareances, language) => {
-        if (minimimalAppareancesFilter(appareances)) {
-            const languageHTMLText = strongFont(language) ? `<strong>${language}</strong>` : language;
-            languageSelector += (language == anyLanguage) ? '' : ' | ';
-            languageSelector += `<a class='selectors' href=javascript:selectLanguage('${encodeURIComponent(language.trim())}')>${languageHTMLText}</a>`;
-        }
+    const languageSelectElement = document.createElement('select');
+    languageSelectElement.id = 'languageSelectElement';
+    languageSelectElement.add(generateOption(ANY_LANGUAGE, 'All languages'));
+    languageSelectElement.add(generateOption(NO_LANGUAGE, 'No Language'));
+    LANGUAGES.forEach((language) => {
+        languageSelectElement.add(generateOption(language, language));
     });
-    return languageSelector;
-}
+    languageSelectElement.addEventListener('change', selectLanguage, false);
+    return languageSelectElement;
+};
 
-function renderLanguagesSelector() {
-    document.getElementById('language_selector').innerHTML = generateLanguageSelector();
-}
+const renderLanguageSelector = function renderLanguageSelector() {
+    const languageSelectorElement = document.getElementById('language_selector');
+    languageSelectorElement.innerHTML = '';
+    languageSelectorElement.appendChild(generateLanguageSelector());
+};
 
-function selectLanguage(language) {
-    languageSelected = language;
+const selectLanguage = function selectLanguage(event) {
+    languageSelected = event.target.value;
     content.innerHTML = '';
     reqNo = Math.floor(Math.random() * 3) + 1;
-    projectsPerPage = (languageSelected == anyLanguage) ? 2 : 100;
+    projectsPerPage = (languageSelected == ANY_LANGUAGE) ? 2 : 100;
     getData();
-    renderLanguagesSelector();
-}
+};
 
 const languageFilter = function (languageToFilter) {
-    if (languageToFilter == anyLanguage) {
+    if (languageToFilter == ANY_LANGUAGE) {
         return function (project) { return true; };
-    } else if (languageSelected == noLanguage) {
+    } else if (languageSelected == NO_LANGUAGE) {
         return function (project) {
             return project.language == null;
         };
     }
     return function (project) { return project.language == languageToFilter; };
 };
-
-function showAllLanguages() {
-    minimimalNumberOfAppareances = 0;
-    renderLanguagesSelector();
-    renderShowMoreLessLanguages();
-}
-
-function showLessLanguages() {
-    minimimalNumberOfAppareances = 10;
-    renderLanguagesSelector();
-    renderShowMoreLessLanguages();
-}
-
-function renderShowMoreLessLanguages() {
-    const moreLessLanguagesElement = document.getElementById('showMoreLessLanguages');
-    if (minimimalNumberOfAppareances == 0) { moreLessLanguagesElement.innerHTML = '  <a href=javascript:showLessLanguages()><strong>Show less languages</strong></a>'; } else { moreLessLanguagesElement.innerHTML = '<a href=javascript:showAllLanguages()><strong>Show more languages</strong></a>'; }
-}
