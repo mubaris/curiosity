@@ -1,6 +1,7 @@
 # Curiosity
 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/a28af21730b647da8a84974696776cc0)](https://www.codacy.com/app/mubaris/curiosity?utm_source=github.com&utm_medium=referral&utm_content=mubaris/curiosity&utm_campaign=badger)
+[![Code Climate](https://codeclimate.com/github/mubaris/curiosity/badges/gpa.svg)](https://codeclimate.com/github/mubaris/curiosity)
 [![Build Status](https://travis-ci.org/mubaris/curiosity.svg?branch=master)](https://travis-ci.org/mubaris/curiosity)
 [![CircleCI](https://circleci.com/gh/mubaris/curiosity.svg?style=svg)](https://circleci.com/gh/mubaris/curiosity)
 [![Say Thanks](https://img.shields.io/badge/Say%20Thanks!-%F0%9F%A6%89-1EAEDB.svg)](https://saythanks.io/to/mubaris)
