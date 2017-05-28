@@ -43,7 +43,7 @@ const addUsername = function addUsername() {
 };
 
 const addOneUsername = function addOneUsername(username) {
-    var usernames = JSON.parse(localStorage.getItem('usernames'));
+    let usernames = JSON.parse(localStorage.getItem('usernames'));
     usernames.push(username);
     localStorage.setItem('usernames', JSON.stringify(usernames));
     content.innerHTML = '';
@@ -53,7 +53,7 @@ const addOneUsername = function addOneUsername(username) {
 
 const removeUsername = function removeUsername() {
     inputOptions = new Promise((resolve) => {
-        var usernames = JSON.parse(localStorage.getItem('usernames'));
+        let usernames = JSON.parse(localStorage.getItem('usernames'));
         setTimeout(() => {
             resolve(usernames);
         }, 2000);
@@ -74,7 +74,7 @@ const removeUsername = function removeUsername() {
             });
         },
     }).then((index) => {
-        var userNameToRemove = removeUsernameAtIndex(index);
+        let userNameToRemove = removeUsernameAtIndex(index);
         swal({
             type: 'success',
             html: `You successfully removed ${userNameToRemove}`,
@@ -83,15 +83,15 @@ const removeUsername = function removeUsername() {
 };
 
 function removeUsernameAtIndex(index) {
-    var usernames = JSON.parse(localStorage.getItem('usernames'));
-    var userNameToRemove = usernames[index];
+    let usernames = JSON.parse(localStorage.getItem('usernames'));
+    let userNameToRemove = usernames[index];
     usernames.splice(index, 1);
     localStorage.setItem('usernames', JSON.stringify(usernames))
     content.innerHTML = '';
     getData();
     renderUsernames();
     return userNameToRemove;
-};
+}
 
 const showAllUsernames = function showAllUsernames() {
     showingAllUsernames = true;
@@ -111,7 +111,7 @@ const renderShowMoreLessUsernames = function renderShowMoreLessUsernames() {
 const generateUsernameSelector = function generateUsernameSelector() {
     let usernameSelector = '';
     let i = 0;
-    var usernames = JSON.parse(localStorage.getItem('usernames'));
+    let usernames = JSON.parse(localStorage.getItem('usernames'));
     if (showingAllUsernames || usernames.length <= MAX_USERNAMES_SHOWING) {
         for (; i < usernames.length - 1; i += 1) {
             usernameSelector += `<a class='selectors' href='https://github.com/${usernames[i]}?tab=stars'>${usernames[i]}</a>`;
