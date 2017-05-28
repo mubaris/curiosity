@@ -1,4 +1,4 @@
-const ANY_LANGUAGE = 'All';
+const ANY_LANGUAGE = 'Any';
 const NO_LANGUAGE = 'NoLanguage';
 let languageSelected = ANY_LANGUAGE;
 
@@ -10,13 +10,20 @@ const generateLanguageSelector = function generateLanguageSelector() {
         return optionElement;
     };
 
+    const generateSection = function generateSection(sectionName, languages) {
+        const sectionElement = document.createElement('optgroup');
+        sectionElement.label = sectionName;
+        return sectionElement;
+    };
+
     const languageSelectElement = document.createElement('select');
     languageSelectElement.id = 'languageSelectElement';
-    languageSelectElement.add(generateOption(ANY_LANGUAGE, 'All languages'));
-    languageSelectElement.add(generateOption(NO_LANGUAGE, 'No Language'));
-    LANGUAGES.forEach((language) => {
-        languageSelectElement.add(generateOption(language, language));
-    });
+    languageSelectElement.add(generateOption(ANY_LANGUAGE, 'Any languages'));
+    languageSelectElement.add(generateOption(NO_LANGUAGE, 'No language'));
+    languageSelectElement.add(generateSection("COMMON LANGUAGES"));
+    COMMON_LANGUAGES.forEach((language) =>  { languageSelectElement.add(generateOption(language, language)); });
+    languageSelectElement.add(generateSection("REST OF LANGAUGES"));
+    REST_OF_LANGUAGES.forEach((language) =>  { languageSelectElement.add(generateOption(language, language)); });
     languageSelectElement.addEventListener('change', selectLanguage, false);
     return languageSelectElement;
 };
