@@ -15,6 +15,7 @@
         "no-restricted-syntax": "off",
         "no-console": "off",
         "func-names": "off",
-        "no-alert": "off"
+        "no-alert": "off",
+        "prefer-const": "off"
     }
 }
