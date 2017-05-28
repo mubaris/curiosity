@@ -86,7 +86,7 @@ function removeUsernameAtIndex(index) {
     let usernames = JSON.parse(localStorage.getItem('usernames'));
     let userNameToRemove = usernames[index];
     usernames.splice(index, 1);
-    localStorage.setItem('usernames', JSON.stringify(usernames))
+    localStorage.setItem('usernames', JSON.stringify(usernames));
     content.innerHTML = '';
     getData();
     renderUsernames();
