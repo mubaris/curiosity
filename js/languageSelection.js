@@ -21,12 +21,12 @@ const generateLanguageSelector = function generateLanguageSelector() {
     languageSelectElement.add(generateOption(ANY_LANGUAGE, 'Any languages'));
     languageSelectElement.add(generateOption(NO_LANGUAGE, 'No language'));
     languageSelectElement.add(generateSection("COMMON LANGUAGES"));
-    COMMON_LANGUAGES.forEach((language) => { 
+    COMMON_LANGUAGES.forEach((language) => {
         languageSelectElement.add(generateOption(language, language)); 
     });
-    languageSelectElement.add(generateSection("REST OF LANGAUGES"));
-    REST_OF_LANGUAGES.forEach((language) => { 
-        languageSelectElement.add(generateOption(language, language)); 
+    languageSelectElement.add(generateSection("REST OF LANGUAGES"));
+    REST_OF_LANGUAGES.forEach((language) => {
+        languageSelectElement.add(generateOption(language, language));
     });
     languageSelectElement.addEventListener('change', selectLanguage, false);
     return languageSelectElement;
