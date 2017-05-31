@@ -13,7 +13,9 @@
         "mocha": "^3.4.2"
     },
     "scripts": {
-        "lint": "eslint js/**/*.js"
+        "lint": "eslint js/**/*.js",
+        "test-node": "mocha test/*.test.js",
+        "start": "node server/app.js"
     },
     "dependencies": {
         "dotenv": "^4.0.0",
