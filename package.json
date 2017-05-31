@@ -15,5 +15,11 @@
     "scripts": {
         "lint": "eslint js/**/*.js"
     },
-    "dependencies": {}
+    "dependencies": {
+        "dotenv": "^4.0.0",
+        "express": "^4.15.3",
+        "express-session": "^1.15.3",
+        "mongodb": "^2.2.27",
+        "mongoose": "^4.10.4"
+    }
 }
