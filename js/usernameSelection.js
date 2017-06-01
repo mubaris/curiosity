@@ -1,7 +1,6 @@
 const MAX_USERNAMES_SHOWING = 5;
 let showingAllUsernames = true;
-var store = require('store');
-var operationPlugin = require('store/plugins/operations');
+
 const addUsername = function addUsername() {
     swal({
         title: 'Submit Github Username',
@@ -110,6 +109,7 @@ const renderShowMoreLessUsernames = function renderShowMoreLessUsernames() {
 };
 
 const generateUsernameSelector = function generateUsernameSelector() {
+    console.log(localStorage);
     let usernameSelector = '';
     let i = 0;
     let usernames = JSON.parse(localStorage.getItem('usernames'));
