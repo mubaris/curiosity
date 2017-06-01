@@ -14,7 +14,7 @@
     },
     "scripts": {
         "lint": "eslint js/**/*.js",
-        "test-node": "mocha test/*.test.js",
+        "test": "NODE_ENV=test mocha test/**.test.js",
         "start": "node server/app.js"
     },
     "dependencies": {

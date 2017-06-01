@@ -1,3 +1,5 @@
+require('./../config/config');
+
 const mongoose = require('./../server/db/mongoose');
 const expect = require('expect');
 
