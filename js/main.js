@@ -79,6 +79,7 @@ const getData = function getData() {
     });
 };
 
+// called first time
 if (window.localStorage) {
     if (!localStorage.getItem('accessToken')) {
         swal({
@@ -106,6 +107,7 @@ if (window.localStorage) {
             localStorage.setItem('usernames', JSON.stringify(USERNAMES));
             getData();
             renderLanguageSelector();
+            console.log('calling from window.localStorage');
             renderUsernames();
             swal({
                 type: 'success',
@@ -119,10 +121,11 @@ if (window.localStorage) {
 
 accessToken = localStorage.getItem('accessToken');
 
+// called on refresh
 if (accessToken) {
-    localStorage.setItem('usernames', JSON.stringify(USERNAMES));
     getData();
     renderLanguageSelector();
+    console.log('calling from accessToken');
     renderUsernames();
 }
 
