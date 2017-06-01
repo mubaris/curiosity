@@ -1,6 +1,7 @@
 const MAX_USERNAMES_SHOWING = 5;
 let showingAllUsernames = true;
-
+var store = require('store');
+var operationPlugin = require('store/plugins/operations');
 const addUsername = function addUsername() {
     swal({
         title: 'Submit Github Username',
