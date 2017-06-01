@@ -31,6 +31,62 @@ I've collected usernames of amazing stargazers :star: in Github. By using Github
 
 You need to submit Github Token to access Github API.
 
+## Getting Started
+##### Pre-Installation Requirements
+###### Node
+- Download and install latest stable version of [Node](https://nodejs.org/en/download/).
+
+###### MongoDb
+- Download and Install [MongoDB Community Edition](https://docs.mongodb.com/manual/installation/#mongodb-community-edition).
+
+	- Create the data directory for mondoDB.
+      ```bash
+      mkdir -p </path/to/mongo-data>
+      ```
+	- Run MongoDB
+      ```bash
+      mongod --dbpath </path/to/mongo-data>
+      ```
+ 
+
+Now you should have mongoDB server running. If any issue please visit [mongoDB Doc](https://docs.mongodb.com/manual/installation/#tutorials). 
+
+Open another terminal/Command Prompt to clone this App.
+
+##### Installing and running curiosity
+
+```bash
+# Get the latest version
+git clone https://github.com/curiositylab/curiosity
+
+# Change directory
+cd curiosity 
+
+# First time install only
+yarn install
+
+# Start the app
+yarn run start
+```
+if installation is successful You should see following message. 
+
+visit ```http://localhost:3000``` to view website.
+```
+NODE_ENV -> dev
+MONGODB_URI -> mongodb://127.0.0.1:27017/curiosity
+Starting server on port 3000.
+```
+
+Other Scripts for developement and testing.
+```bash
+# run test for the app
+yarn run test-node
+
+# Start app with watch (10s delay)
+yarn run watch
+```
+
+
 ## Tools I used
 
 * [SweetAlert2](https://limonte.github.io/sweetalert2/)
