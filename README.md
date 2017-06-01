@@ -39,7 +39,7 @@ You need to submit Github Token to access Github API.
 ###### MongoDb
 - Download and Install [MongoDB Community Edition](https://docs.mongodb.com/manual/installation/#mongodb-community-edition).
 
-	- Create the data directory for mondoDB.
+	- Create new data directory for mondoDB.
       ```bash
       mkdir -p </path/to/mongo-data>
       ```
@@ -56,6 +56,8 @@ Open another terminal/Command Prompt to clone this App.
 ##### Installing and running curiosity
 
 ```bash
+# Rest of the guide assumes you already have MongoDB installed and MongoDB server is running.
+
 # Get the latest version
 git clone https://github.com/curiositylab/curiosity
 
@@ -68,9 +70,7 @@ yarn install
 # Start the app
 yarn run start
 ```
-if installation is successful You should see following message. 
-
-visit ```http://localhost:3000``` to view website.
+If installation is successful You should see following message. visit 'http://localhost:3000' to view website.
 ```
 NODE_ENV -> dev
 MONGODB_URI -> mongodb://127.0.0.1:27017/curiosity
