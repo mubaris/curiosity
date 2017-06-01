@@ -1,5 +1,7 @@
 # Curiosity
 
+[![Join the chat at https://gitter.im/curiositylab/curiosity](https://badges.gitter.im/curiositylab/curiosity.svg)](https://gitter.im/curiositylab/curiosity?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/a28af21730b647da8a84974696776cc0)](https://www.codacy.com/app/mubaris/curiosity?utm_source=github.com&utm_medium=referral&utm_content=mubaris/curiosity&utm_campaign=badger)
 [![Code Climate](https://codeclimate.com/github/mubaris/curiosity/badges/gpa.svg)](https://codeclimate.com/github/mubaris/curiosity)
 [![Build Status](https://travis-ci.org/mubaris/curiosity.svg?branch=master)](https://travis-ci.org/mubaris/curiosity)
