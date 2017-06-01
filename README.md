@@ -41,11 +41,11 @@ You need to submit Github Token to access Github API.
 
 	- Create new data directory for mondoDB.
       ```bash
-      mkdir -p </path/to/mongo-data>
+      mkdir -p </path/to/mongodb-data>
       ```
 	- Run MongoDB
       ```bash
-      mongod --dbpath </path/to/mongo-data>
+      mongod --dbpath </path/to/mongodb-data>
       ```
  
 
