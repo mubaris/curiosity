@@ -15,6 +15,7 @@
     "scripts": {
         "lint": "eslint js/**/*.js",
         "test": "NODE_ENV=test mocha test/**.test.js",
+        "watch": "nodemon --delay 10 server/app.js",
         "start": "node server/app.js"
     },
     "dependencies": {
