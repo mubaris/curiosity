@@ -1,8 +1,6 @@
 const MAX_USERNAMES_SHOWING = 5;
-let showingAllUsernames = true;
 
 const addUsername = function addUsername() {
-    document.getElementById("dropdown-addOrRemoveUsername").classList.toggle("show");
     swal({
         title: 'Submit Github Username',
         html: 'Who do you want to add?',
@@ -53,7 +51,6 @@ const addOneUsername = function addOneUsername(username) {
 };
 
 const removeUsername = function removeUsername() {
-    document.getElementById("dropdown-addOrRemoveUsername").classList.toggle("show");
     inputOptions = new Promise((resolve) => {
         let usernames = JSON.parse(localStorage.getItem('usernames'));
         setTimeout(() => {
@@ -96,45 +93,32 @@ function removeUsernameAtIndex(index) {
 }
 
 const showAllUsernames = function showAllUsernames() {
-    showingAllUsernames = true;
-    renderUsernames();
-};
-
-const showLessUsernames = function showLessUsernames() {
-    showingAllUsernames = false;
-    renderUsernames();
-};
-
-const renderShowMoreLessUsernames = function renderShowMoreLessUsernames() {
-    const moreLessUsernamesElement = document.getElementById('showMoreLessUsernames');
-    if (showingAllUsernames) { moreLessUsernamesElement.innerHTML = '<a href=javascript:showLessUsernames()><strong>Show less usernames</strong></a>'; } else { moreLessUsernamesElement.innerHTML = '<a href=javascript:showAllUsernames()><strong>Show more usernames</strong></a>'; }
+    console.log("showUsernames clicked");
+    var usernameSelector = document.getElementById("username_selector");            
+    usernameSelector.style.display = usernameSelector.style.display == "none" ? "block" : "none";
 };
 
 const generateUsernameSelector = function generateUsernameSelector() {
     let usernameSelector = '';
     let i = 0;
     let usernames = JSON.parse(localStorage.getItem('usernames'));
-    if (showingAllUsernames || usernames.length <= MAX_USERNAMES_SHOWING) {
-        for (; i < usernames.length - 1; i += 1) {
-            usernameSelector += `<a class='selectors' href='https://github.com/${usernames[i]}?tab=stars'>${usernames[i]}</a>`;
-            usernameSelector += ' | ';
-        }
-    } else {
-        for (; i < MAX_USERNAMES_SHOWING - 1; i += 1) {
-            usernameSelector += `<a class='selectors' href='https://github.com/${usernames[i]}?tab=stars'>${usernames[i]}</a>`;
-            usernameSelector += ' | ';
-        }
-    }
+    for (; i < usernames.length - 1; i += 1) {
+        usernameSelector += `<a class='selectors' href='https://github.com/${usernames[i]}?tab=stars'>${usernames[i]}</a>`;
+        usernameSelector += ' | ';
+    }        
     usernameSelector += `<a class='selectors' href='https://github.com/${usernames[i]}?tab=stars'>${usernames[i]}</a>`;
     return usernameSelector;
 };
 
 const renderUsernames = function renderUsernames() {
-    document.getElementById('username_selector').innerHTML = generateUsernameSelector();
+    document.getElementById("username_selector").innerHTML = generateUsernameSelector();
     document.getElementById("addUsername").setAttribute("href", "javascript:addUsername()");     
-    document.getElementById("removeUsername").setAttribute("href", "javascript:removeUsername()");
+    document.getElementById("removeUsername").setAttribute("href", "javascript:removeUsername()"); 
+    document.getElementById("showUsernames").setAttribute("href", "javascript:showAllUsernames()"); 
+
     document.getElementById("settings").onclick = function() {
-        document.getElementById("dropdown-addOrRemoveUsername").classList.toggle("show");
+        var settings = document.getElementById("dropdown_content");
+        console.log("settings clicked and " + settings.style.display);
+        settings.style.display = settings.style.display == (null || "none") ? "block" : "none";
     };
-    renderShowMoreLessUsernames();
 };

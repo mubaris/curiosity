@@ -77,8 +77,14 @@ const getData = function getData() {
     });
 };
 
+// things that are called once on first time/ refresh
+const initialize = function initialize() {
+    document.getElementById("username_selector").style.display = "none";
+    document.getElementById("dropdown_content").style.display = "none";
+}
 // called first time
 if (window.localStorage) {
+    console.log("localStorage");
     if (!localStorage.getItem('accessToken')) {
         swal({
             title: 'Submit Github Token',
@@ -120,9 +126,11 @@ accessToken = localStorage.getItem('accessToken');
 
 // called on refresh
 if (accessToken) {
+    console.log("accessToken");
     getData();
     renderLanguageSelector();
     renderUsernames();
+    initialize();
 }
 
 const OPTIONS = {

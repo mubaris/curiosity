@@ -78,10 +78,6 @@ li {
 
 .dropdown-content a:hover {background-color: #f1f1f1}
 
-.show {
-    display:block;
-}
-
 select {
     font-family: "Source Code Pro", monospace;
     background-color: #272822;
