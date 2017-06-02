@@ -2,7 +2,7 @@ if (!process.env.NODE_ENV) {
     process.env.NODE_ENV = 'dev';
 }
 
-let dotenv = require('dotenv').config({
+const dotenv = require('dotenv').config({
     path: `${__dirname}/.${process.env.NODE_ENV}.env`,
 });
 

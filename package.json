@@ -5,6 +5,9 @@
     "repository": "git@github.com:mubaris/curiosity.git",
     "author": "Mubaris",
     "license": "MIT",
+    "engines": {
+        "node": ">=6.0.0"
+    },
     "devDependencies": {
         "codecov": "^2.2.0",
         "eslint": "^3.19.0",

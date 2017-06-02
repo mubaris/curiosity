@@ -34,10 +34,10 @@ You need to submit Github Token to access Github API.
 ## Getting Started
 ##### Pre-Installation Requirements
 ###### Node
-- Download and install latest stable version of [Node](https://nodejs.org/en/download/).
+- Download and install latest stable version of [Node](https://nodejs.org/en/download/). This app is tested on Node version v6.10.3
 
 ###### MongoDb
-- Download and Install [MongoDB Community Edition](https://docs.mongodb.com/manual/installation/#mongodb-community-edition).
+- Download and Install [MongoDB Community Edition] (https://docs.mongodb.com/manual/installation/#mongodb-community-edition). This app is tested on MongoDB version v3.4.1
 
 	- Create new data directory for mondoDB.
       ```bash
