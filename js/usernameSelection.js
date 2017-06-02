@@ -14,7 +14,7 @@ const addUsername = function addUsername() {
                 setTimeout(() => {
                     if (username == '') {
                         reject('Username cannot be null.');
-                    } else if (JSON.parse(localStorage.getItem('usernames')).indexOf(username) > -1) {
+                    } else if (USERNAMES.indexOf(username) > -1) {
                         reject('Username already exists! Please add a different username.');
                     } else {
                         // check for valid username
@@ -43,21 +43,19 @@ const addUsername = function addUsername() {
 };
 
 const addOneUsername = function addOneUsername(username) {
-    let usernames = JSON.parse(localStorage.getItem('usernames'));
-    usernames.push(username);
-    localStorage.setItem('usernames', JSON.stringify(usernames));
+    USERNAMES.push(username);
     content.innerHTML = '';
     getData();
     renderUsernames();
 };
 
+const inputOptions = new Promise((resolve) => {
+    setTimeout(() => {
+        resolve(USERNAMES);
+    }, 2000);
+});
+
 const removeUsername = function removeUsername() {
-    inputOptions = new Promise((resolve) => {
-        let usernames = JSON.parse(localStorage.getItem('usernames'));
-        setTimeout(() => {
-            resolve(usernames);
-        }, 2000);
-    });
     swal({
         title: 'Select username to remove',
         input: 'radio',
@@ -74,24 +72,20 @@ const removeUsername = function removeUsername() {
             });
         },
     }).then((index) => {
-        let userNameToRemove = removeUsernameAtIndex(index);
         swal({
             type: 'success',
-            html: `You successfully removed ${userNameToRemove}`,
+            html: `You successfully removed ${USERNAMES[index]}`,
         });
+        removeUsernameAtIndex(index);
     });
 };
 
-function removeUsernameAtIndex(index) {
-    let usernames = JSON.parse(localStorage.getItem('usernames'));
-    let userNameToRemove = usernames[index];
-    usernames.splice(index, 1);
-    localStorage.setItem('usernames', JSON.stringify(usernames));
+const removeUsernameAtIndex = function removeUsernameAtIndex(index) {
+    USERNAMES.splice(index, 1);
     content.innerHTML = '';
     getData();
     renderUsernames();
-    return userNameToRemove;
-}
+};
 
 const showAllUsernames = function showAllUsernames() {
     showingAllUsernames = true;
@@ -112,19 +106,18 @@ const generateUsernameSelector = function generateUsernameSelector() {
     console.log(localStorage);
     let usernameSelector = '';
     let i = 0;
-    let usernames = JSON.parse(localStorage.getItem('usernames'));
-    if (showingAllUsernames || usernames.length <= MAX_USERNAMES_SHOWING) {
-        for (; i < usernames.length - 1; i += 1) {
-            usernameSelector += `<a class='selectors' href='https://github.com/${usernames[i]}?tab=stars'>${usernames[i]}</a>`;
+    if (showingAllUsernames || USERNAMES.length <= MAX_USERNAMES_SHOWING) {
+        for (; i < USERNAMES.length - 1; i += 1) {
+            usernameSelector += `<a class='selectors' href='https://github.com/${USERNAMES[i]}?tab=stars'>${USERNAMES[i]}</a>`;
             usernameSelector += ' | ';
         }
     } else {
         for (; i < MAX_USERNAMES_SHOWING - 1; i += 1) {
-            usernameSelector += `<a class='selectors' href='https://github.com/${usernames[i]}?tab=stars'>${usernames[i]}</a>`;
+            usernameSelector += `<a class='selectors' href='https://github.com/${USERNAMES[i]}?tab=stars'>${USERNAMES[i]}</a>`;
             usernameSelector += ' | ';
         }
     }
-    usernameSelector += `<a class='selectors' href='https://github.com/${usernames[i]}?tab=stars'>${usernames[i]}</a>`;
+    usernameSelector += `<a class='selectors' href='https://github.com/${USERNAMES[i]}?tab=stars'>${USERNAMES[i]}</a>`;
     return usernameSelector;
 };
 
