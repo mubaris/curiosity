@@ -2,6 +2,7 @@ const MAX_USERNAMES_SHOWING = 5;
 let showingAllUsernames = true;
 
 const addUsername = function addUsername() {
+    document.getElementById("dropdown-addOrRemoveUsername").classList.toggle("show");
     swal({
         title: 'Submit Github Username',
         html: 'Who do you want to add?',
@@ -52,6 +53,7 @@ const addOneUsername = function addOneUsername(username) {
 };
 
 const removeUsername = function removeUsername() {
+    document.getElementById("dropdown-addOrRemoveUsername").classList.toggle("show");
     inputOptions = new Promise((resolve) => {
         let usernames = JSON.parse(localStorage.getItem('usernames'));
         setTimeout(() => {
@@ -109,7 +111,6 @@ const renderShowMoreLessUsernames = function renderShowMoreLessUsernames() {
 };
 
 const generateUsernameSelector = function generateUsernameSelector() {
-    console.log(localStorage);
     let usernameSelector = '';
     let i = 0;
     let usernames = JSON.parse(localStorage.getItem('usernames'));
@@ -130,7 +131,10 @@ const generateUsernameSelector = function generateUsernameSelector() {
 
 const renderUsernames = function renderUsernames() {
     document.getElementById('username_selector').innerHTML = generateUsernameSelector();
-    document.getElementById('addOrRemoveUsername').innerHTML = "<a class='addOrRemoveUsername' href=javascript:addUsername()><strong>Add more username</strong></a>" +
-        " | <a class='addOrRemoveUsername' href=javascript:removeUsername()><strong>Remove username</strong></a>";
+    document.getElementById("addUsername").setAttribute("href", "javascript:addUsername()");     
+    document.getElementById("removeUsername").setAttribute("href", "javascript:removeUsername()");
+    document.getElementById("settings").onclick = function() {
+        document.getElementById("dropdown-addOrRemoveUsername").classList.toggle("show");
+    };
     renderShowMoreLessUsernames();
 };
