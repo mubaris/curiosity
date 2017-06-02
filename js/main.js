@@ -102,9 +102,9 @@ if (window.localStorage) {
             allowOutsideClick: false,
         }).then((token) => {
             accessToken = token;
+            localStorage.setItem('usernames', JSON.stringify(USERNAMES));
             getData();
             renderLanguageSelector();
-            console.log('calling from window.localStorage');
             renderUsernames();
             swal({
                 type: 'success',
@@ -122,7 +122,6 @@ accessToken = localStorage.getItem('accessToken');
 if (accessToken) {
     getData();
     renderLanguageSelector();
-    console.log('calling from accessToken');
     renderUsernames();
 }
 
