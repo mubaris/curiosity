@@ -5,15 +5,28 @@
     "repository": "git@github.com:mubaris/curiosity.git",
     "author": "Mubaris",
     "license": "MIT",
+    "engines": {
+        "node": ">=6.0.0"
+    },
     "devDependencies": {
         "codecov": "^2.2.0",
         "eslint": "^3.19.0",
         "eslint-config-airbnb-base": "^11.2.0",
         "eslint-plugin-import": "^2.3.0",
-        "mocha": "^3.4.2"
+        "mocha": "^3.4.2",
+        "dotenv": "^4.0.0",
+        "expect": "^1.20.2"
     },
     "scripts": {
-        "lint": "eslint js/**/*.js"
+        "lint": "eslint js/**/*.js",
+        "test-node": "NODE_ENV=test mocha test/**.test.js",
+        "watch": "nodemon --delay 10 server/app.js",
+        "start": "node server/app.js"
     },
-    "dependencies": {}
+    "dependencies": {
+        "express": "^4.15.3",
+        "express-session": "^1.15.3",
+        "mongodb": "^2.2.27",
+        "mongoose": "^4.10.4"
+    }
 }
