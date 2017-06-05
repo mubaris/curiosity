@@ -18,14 +18,13 @@ router.get('/', isAuthenticated, (req, res) => {
     res.send(req.user);
 });
 
-router.post('/auth', passport.authenticate('github', { scope: ['user:email'] }), (req, res) => {
+router.get('/auth', passport.authenticate('github', { scope: ['user:email'] }), (req, res) => {
     // The request will be redirected to GitHub for authentication, so this
     // function will not be called
 });
 
 router.get('/auth/callback',
   passport.authenticate('github', { failureRedirect: '/login' }), (req, res) => {
-      console.log(req.body);
       res.redirect('/');
   });
 
@@ -34,7 +33,8 @@ router.get('/login', (req, res) => {
 });
 
 router.get('/logout', (req, res) => {
-    res.send('You are logged out !..lol');
+    req.logout();
+    res.redirect('/');
 });
 
 module.exports.userRoutes = router;
