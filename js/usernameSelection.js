@@ -95,7 +95,7 @@ function removeUsernameAtIndex(index) {
 const showAllUsernames = function showAllUsernames() {
     console.log("showUsernames clicked");
     var usernameSelector = document.getElementById("username_selector");            
-    usernameSelector.style.display = usernameSelector.style.display == "none" ? "block" : "none";
+    usernameSelector.style.display = usernameSelector.style.display === "none" ? "block" : "none";
 };
 
 const generateUsernameSelector = function generateUsernameSelector() {
