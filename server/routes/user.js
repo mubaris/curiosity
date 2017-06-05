@@ -29,7 +29,7 @@ router.get('/auth/callback',
   });
 
 router.get('/login', (req, res) => {
-    res.send('You need to login ! :-(');
+    res.redirect('/loginErr.html');
 });
 
 router.get('/logout', (req, res) => {
