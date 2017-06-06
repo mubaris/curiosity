@@ -6,6 +6,7 @@
     "author": "Mubaris",
     "license": "MIT",
     "devDependencies": {
+        "all-contributors-cli": "^4.3.0",
         "codecov": "^2.2.0",
         "eslint": "^3.19.0",
         "eslint-config-airbnb-base": "^11.2.0",
@@ -13,7 +14,9 @@
         "mocha": "^3.4.2"
     },
     "scripts": {
-        "lint": "eslint js/**/*.js"
+        "lint": "eslint js/**/*.js",
+        "add": "all-contributors add",
+        "generate": "all-contributors generate"
     },
     "dependencies": {}
 }
