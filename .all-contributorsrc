@@ -1,0 +1,21 @@
+{
+  "projectName": "curiosity",
+  "projectOwner": "curiositylab",
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": true,
+  "contributors": [
+    {
+      "login": "vvvdeep",
+      "name": "Vishal Deep",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/28827885?v=3",
+      "profile": "https://github.com/vvvdeep",
+      "contributions": [
+        "code",
+        "doc"
+      ]
+    }
+  ]
+}

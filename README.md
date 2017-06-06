@@ -1,4 +1,5 @@
 # Curiosity
+[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors)
 
 [![Join the chat at https://gitter.im/curiositylab/curiosity](https://badges.gitter.im/curiositylab/curiosity.svg)](https://gitter.im/curiositylab/curiosity?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
@@ -35,3 +36,14 @@ You need to submit Github Token to access Github API.
 * [SweetAlert2](https://limonte.github.io/sweetalert2/)
 * [infinite-scroll](https://github.com/alexblack/infinite-scroll)
 * [Axios](https://github.com/mzabriskie/axios)
+
+## Contributors
+
+Thanks goes to these wonderful people ([emoji key](https://github.com/kentcdodds/all-contributors#emoji-key)):
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+| [<img src="https://avatars0.githubusercontent.com/u/28827885?v=3" width="100px;"/><br /><sub>Vishal Deep</sub>](https://github.com/vvvdeep)<br />[💻](https://github.com/curiositylab/curiosity/commits?author=vvvdeep "Code") [📖](https://github.com/curiositylab/curiosity/commits?author=vvvdeep "Documentation") |
+| :---: |
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
+This project follows the [all-contributors](https://github.com/kentcdodds/all-contributors) specification. Contributions of any kind welcome!
