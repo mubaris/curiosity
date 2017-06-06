@@ -26,6 +26,16 @@
         "code",
         "doc"
       ]
+    },
+    {
+      "login": "raulvillares",
+      "name": "Raúl Villares",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/19681704?v=3",
+      "profile": "http://raulvillares.com",
+      "contributions": [
+        "code",
+        "doc"
+      ]
     }
   ]
 }
