@@ -24,7 +24,8 @@
       "profile": "http://mubaris.com",
       "contributions": [
         "code",
-        "doc"
+        "doc",
+        "review"
       ]
     },
     {
@@ -34,7 +35,8 @@
       "profile": "http://raulvillares.com",
       "contributions": [
         "code",
-        "doc"
+        "doc",
+        "review"
       ]
     },
     {
@@ -43,7 +45,8 @@
       "avatar_url": "https://avatars2.githubusercontent.com/u/10360577?v=3",
       "profile": "http://maiquynhtruong.github.io",
       "contributions": [
-        "code"
+        "code",
+        "review"
       ]
     },
     {
@@ -52,7 +55,8 @@
       "avatar_url": "https://avatars0.githubusercontent.com/u/464978?v=3",
       "profile": "http://co.linkedin.com/in/alejandronanez/",
       "contributions": [
-        "code"
+        "code",
+        "review"
       ]
     },
     {
@@ -89,6 +93,16 @@
       "profile": "https://miguelpiedrafita.com",
       "contributions": [
         "doc"
+      ]
+    },
+    {
+      "login": "asiyani",
+      "name": "Ashok",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/7142320?v=3",
+      "profile": "https://github.com/asiyani",
+      "contributions": [
+        "code",
+        "review"
       ]
     }
   ]

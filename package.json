@@ -15,8 +15,8 @@
     },
     "scripts": {
         "lint": "eslint js/**/*.js",
-        "add": "all-contributors add",
-        "generate": "all-contributors generate"
+        "all-contributors:add": "all-contributors add",
+        "all-contributors:generate": "all-contributors generate"
     },
     "dependencies": {}
 }
