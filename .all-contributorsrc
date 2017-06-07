@@ -1,0 +1,109 @@
+{
+  "projectName": "curiosity",
+  "projectOwner": "curiositylab",
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "vvvdeep",
+      "name": "Vishal Deep",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/28827885?v=3",
+      "profile": "https://github.com/vvvdeep",
+      "contributions": [
+        "code",
+        "doc"
+      ]
+    },
+    {
+      "login": "mubaris",
+      "name": "Mubaris NK",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/13871723?v=3",
+      "profile": "http://mubaris.com",
+      "contributions": [
+        "code",
+        "doc",
+        "review"
+      ]
+    },
+    {
+      "login": "raulvillares",
+      "name": "Raúl Villares",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/19681704?v=3",
+      "profile": "http://raulvillares.com",
+      "contributions": [
+        "code",
+        "doc",
+        "review"
+      ]
+    },
+    {
+      "login": "maiquynhtruong",
+      "name": "Mai Truong",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/10360577?v=3",
+      "profile": "http://maiquynhtruong.github.io",
+      "contributions": [
+        "code",
+        "review"
+      ]
+    },
+    {
+      "login": "alejandronanez",
+      "name": "Alejandro Ñáñez Ortiz",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/464978?v=3",
+      "profile": "http://co.linkedin.com/in/alejandronanez/",
+      "contributions": [
+        "code",
+        "review"
+      ]
+    },
+    {
+      "login": "haganbmj",
+      "name": "Brendan Hagan",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/15820761?v=3",
+      "profile": "https://github.com/haganbmj",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "junedomingo",
+      "name": "June Domingo",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/5106887?v=3",
+      "profile": "https://github.com/junedomingo",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "Becareciclaje",
+      "name": "Becareciclaje",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/19283697?v=3",
+      "profile": "https://github.com/Becareciclaje",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "m1guelpf",
+      "name": "Miguel Piedrafita",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/23558090?v=3",
+      "profile": "https://miguelpiedrafita.com",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "asiyani",
+      "name": "Ashok",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/7142320?v=3",
+      "profile": "https://github.com/asiyani",
+      "contributions": [
+        "code",
+        "review"
+      ]
+    }
+  ]
+}
