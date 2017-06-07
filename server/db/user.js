@@ -18,6 +18,7 @@ userSchema.statics.findOrCreate = function (profile, accessToken) {
             // If user found return that user info
         if (user) {
                 // TODO:Need to update accessToken for this user
+            user.accessToken = accessToken;
             return Promise.resolve(user);
         }
             // Create new user
