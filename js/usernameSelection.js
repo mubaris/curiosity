@@ -115,8 +115,10 @@ const renderUsernames = function renderUsernames() {
     document.getElementById("removeUsername").setAttribute("href", "javascript:removeUsername()"); 
     document.getElementById("showUsernames").setAttribute("href", "javascript:showAllUsernames()"); 
 
-    document.getElementById("settings").onclick = function() {
-        var settings = document.getElementById("dropdown_content");
-        settings.style.display = settings.style.display == (null || "none") ? "block" : "none";
-    };
+    document.getElementById("settings").addEventListener('click', renderUsernamesHandler)
 };
+
+const renderUsernamesHandler = function renderUsernamesHandler() {
+    let settings = document.getElementById("dropdown_content");
+    settings.style.display = settings.style.display == (null || "none") ? "block" : "none";
+}
