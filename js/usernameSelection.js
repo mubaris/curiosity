@@ -93,8 +93,7 @@ function removeUsernameAtIndex(index) {
 }
 
 const showAllUsernames = function showAllUsernames() {
-    console.log("showUsernames clicked");
-    var usernameSelector = document.getElementById("username_selector");            
+    let usernameSelector = document.getElementById("username_selector");            
     usernameSelector.style.display = usernameSelector.style.display === "none" ? "block" : "none";
 };
 
@@ -118,7 +117,6 @@ const renderUsernames = function renderUsernames() {
 
     document.getElementById("settings").onclick = function() {
         var settings = document.getElementById("dropdown_content");
-        console.log("settings clicked and " + settings.style.display);
         settings.style.display = settings.style.display == (null || "none") ? "block" : "none";
     };
 };

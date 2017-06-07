@@ -84,7 +84,6 @@ const initialize = function initialize() {
 }
 // called first time
 if (window.localStorage) {
-    console.log('localStorage');
     if (!localStorage.getItem('accessToken')) {
         swal({
             title: 'Submit Github Token',
@@ -127,7 +126,6 @@ accessToken = localStorage.getItem('accessToken');
 
 // called on refresh
 if (accessToken) {
-    console.log('accessToken');
     getData();
     renderLanguageSelector();
     renderUsernames();
