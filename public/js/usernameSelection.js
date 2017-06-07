@@ -103,6 +103,7 @@ const renderShowMoreLessUsernames = function renderShowMoreLessUsernames() {
 };
 
 const generateUsernameSelector = function generateUsernameSelector() {
+    console.log(localStorage);
     let usernameSelector = '';
     let i = 0;
     if (showingAllUsernames || USERNAMES.length <= MAX_USERNAMES_SHOWING) {

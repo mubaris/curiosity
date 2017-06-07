@@ -77,6 +77,7 @@ const getData = function getData() {
     });
 };
 
+// called first time
 if (window.localStorage) {
     if (!localStorage.getItem('accessToken')) {
         swal({
@@ -103,6 +104,7 @@ if (window.localStorage) {
             accessToken = token;
             getData();
             renderLanguageSelector();
+            console.log('calling from window.localStorage');
             renderUsernames();
             swal({
                 type: 'success',
@@ -116,9 +118,11 @@ if (window.localStorage) {
 
 accessToken = localStorage.getItem('accessToken');
 
+// called on refresh
 if (accessToken) {
     getData();
     renderLanguageSelector();
+    console.log('calling from accessToken');
     renderUsernames();
 }
 
