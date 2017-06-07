@@ -2,7 +2,7 @@ body {
     font-family: "Source Code Pro", monospace;
     font-size: 20px;
     background-color: #272822;
-    color: white;
+    color: #ffffff;
     line-height: 200%;
     margin: 75px;
 }
@@ -58,6 +58,26 @@ li {
     font-size: 75%;
     font-family: "Source Code Pro", monospace;
     color: #fd971f;    
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    overflow: auto;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+.dropdown-content a {
+    color: #000000;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1
 }
 
 select {
