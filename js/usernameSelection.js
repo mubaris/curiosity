@@ -93,8 +93,8 @@ function removeUsernameAtIndex(index) {
 }
 
 const showAllUsernames = function showAllUsernames() {
-    let usernameSelector = document.getElementById("username_selector");            
-    usernameSelector.style.display = usernameSelector.style.display === "none" ? "block" : "none";
+    let usernameSelector = document.getElementById('username_selector');            
+    usernameSelector.style.display = usernameSelector.style.display === 'none' ? 'block' : 'none';
 };
 
 const generateUsernameSelector = function generateUsernameSelector() {
@@ -110,15 +110,15 @@ const generateUsernameSelector = function generateUsernameSelector() {
 };
 
 const renderUsernames = function renderUsernames() {
-    document.getElementById("username_selector").innerHTML = generateUsernameSelector();
-    document.getElementById("addUsername").setAttribute("href", "javascript:addUsername()");     
-    document.getElementById("removeUsername").setAttribute("href", "javascript:removeUsername()"); 
-    document.getElementById("showUsernames").setAttribute("href", "javascript:showAllUsernames()"); 
+    document.getElementById('username_selector').innerHTML = generateUsernameSelector();
+    document.getElementById('addUsername').setAttribute('href', 'javascript:addUsername()');     
+    document.getElementById('removeUsername').setAttribute('href', 'javascript:removeUsername()'); 
+    document.getElementById('showUsernames').setAttribute('href', 'javascript:showAllUsernames()'); 
 
-    document.getElementById("settings").addEventListener('click', renderUsernamesHandler)
+    document.getElementById('settings').addEventListener('click', renderUsernamesHandler)
 };
 
 const renderUsernamesHandler = function renderUsernamesHandler() {
-    let settings = document.getElementById("dropdown_content");
-    settings.style.display = settings.style.display == (null || "none") ? "block" : "none";
+    let settings = document.getElementById('dropdown_content');
+    settings.style.display = settings.style.display == (null || 'none') ? 'block' : 'none';
 }

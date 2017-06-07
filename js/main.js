@@ -38,7 +38,7 @@ const dataCollector = function dataCollector(response, username) {
             projectsCurrentCall += 1;
             if (!entry.description) entry.description = '';
             let innerContent = `<li><span class='link'><a href='${entry.html_url}' target='_blank'>${entry.name}<span> - ${String(entry.description)}</span><br/></a></span>`;
-            innerContent += "<div class='additional'>";
+            innerContent += '<div class="additional">';
             innerContent += `${nFormatter(entry.stargazers_count)} <i class='fa fa-star'></i>`;
             innerContent += `&emsp;${nFormatter(entry.forks)} <i class='fa fa-code-fork'></i>`;
             innerContent += (entry.language != null) ? `&emsp;${entry.language}` : '';
@@ -87,7 +87,7 @@ if (window.localStorage) {
     if (!localStorage.getItem('accessToken')) {
         swal({
             title: 'Submit Github Token',
-            html: "Curiosity requires a Github Token to access Github API. Your token will be saved in LocalStorage. So don't worry. Get new token <a target='_blank' href='https://github.com/settings/tokens/new?description=Curiosity'>here</a>.",
+            html: 'Curiosity requires a Github Token to access Github API. Your token will be saved in LocalStorage. So don\'t worry. Get new token <a target="_blank" href="https://github.com/settings/tokens/new?description=Curiosity">here</a>.',
             input: 'text',
             showCancelButton: true,
             confirmButtonText: 'Submit',
