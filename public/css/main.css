@@ -7,6 +7,16 @@ body {
     margin: 75px;
 }
 
+.authentication {
+  margin-left: 0px;
+  margin-top: -50px;
+}
+.authentication a {
+   cursor: pointer;
+   display:inline-block;
+   color: #a6e22e;
+}
+
 a {
     color: #66d9ef;
     text-decoration: none;

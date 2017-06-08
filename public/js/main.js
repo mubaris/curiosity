@@ -78,40 +78,44 @@ const getData = function getData() {
 };
 
 if (window.localStorage) {
-    if (!localStorage.getItem('accessToken')) {
-        swal({
-            title: 'Submit Github Token',
-            html: "Curiosity requires a Github Token to access Github API. Your token will be saved in LocalStorage. So don't worry. Get new token <a target='_blank' href='https://github.com/settings/tokens/new?description=Curiosity'>here</a>.",
-            input: 'text',
-            showCancelButton: true,
-            confirmButtonText: 'Submit',
-            showLoaderOnConfirm: false,
-            preConfirm(token) {
-                return new Promise((resolve, reject) => {
-                    setTimeout(() => {
-                        if (token === '') {
-                            reject('Enter Valid Token');
-                        } else {
-                            localStorage.setItem('accessToken', token);
-                            resolve();
-                        }
-                    }, 1000);
-                });
-            },
-            allowOutsideClick: false,
-        }).then((token) => {
-            accessToken = token;
+    getUserDetails().then((response) => {
+        console.log(response.data);
+        if (response.data) {
+            loggedIn.style.display = 'inline-block';
+            document.getElementById('userName').innerText = `Hi! ${response.data.name}`;
+            document.getElementById('userName').href = response.data.html_url;
+            localStorage.setItem('accessToken', response.data.accessToken);
+            accessToken = response.data.accessToken;
             getData();
             renderLanguageSelector();
             renderUsernames();
-            swal({
-                type: 'success',
-                title: 'Thank You',
-            });
-        });
-    }
+        } else {
+            login_button.style.display = 'inline-block';
+            showLoginAlert();
+        }
+    }).catch((err) => {
+        login_button.style.display = 'inline-block';
+        console.error(err);
+        showLoginAlert();
+    });
 } else {
     alert('Sorry! LocalStorage is not available');
+}
+
+function showLoginAlert() {
+    if (!localStorage.getItem('accessToken')) {
+        swal({
+            title: 'Login Via Github',
+            html: "Curiosity requires a Github Token to access Github API. Please <a href='/user/auth'>login</a>.",
+            showCloseButton: true,
+            showCancelButton: true,
+            confirmButtonText: 'Login',
+            showLoaderOnConfirm: false,
+            allowOutsideClick: true,
+        }).then(() => {
+            window.location = '/user/auth';
+        });
+    }
 }
 
 accessToken = localStorage.getItem('accessToken');
