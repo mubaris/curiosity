@@ -7,9 +7,12 @@
 [![Build Status](https://travis-ci.org/curiositylab/curiosity.svg?branch=master)](https://travis-ci.org/curiositylab/curiosity)
 [![Say Thanks](https://img.shields.io/badge/Say%20Thanks!-%F0%9F%A6%89-1EAEDB.svg)](https://saythanks.io/to/mubaris)
 
-Find amazing github projects as a feed. :zap: :zap:
+Find amazing github projects as a feed. Curiosity is a web app. :zap: :zap:
 
 ![gif](https://media.giphy.com/media/l2SpYDOZmp3H2cAAo/giphy.gif)
+
+## Updates
+We have 3 branches. gh-pages contains only front-end and it's hosted on Github Pages. v2 is the future of Curiosity. We are building a backend for this. The code for that is contained in v2. master is main branch. v2 will be merged to master once the process of building backend is done.
 
 ## Peek at Curiosity
 
@@ -29,9 +32,9 @@ I've collected usernames of amazing stargazers :star: in Github. By using Github
 
 ## What you need
 
-You need to submit Github Token to access Github API.
+You need to submit Github Token to access Github API. Get your token at your github settings page at: https://github.com/settings/tokens
 
-## Tools I used
+## Dependencies/list of libraries/frameworks/tools 
 
 * [SweetAlert2](https://limonte.github.io/sweetalert2/)
 * [infinite-scroll](https://github.com/alexblack/infinite-scroll)
@@ -47,4 +50,4 @@ Thanks goes to these wonderful people ([emoji key](https://github.com/kentcdodds
 | [<img src="https://avatars1.githubusercontent.com/u/19283697?v=3" width="100px;"/><br /><sub>Becareciclaje</sub>](https://github.com/Becareciclaje)<br />[💻](https://github.com/curiositylab/curiosity/commits?author=Becareciclaje "Code") | [<img src="https://avatars3.githubusercontent.com/u/23558090?v=3" width="100px;"/><br /><sub>Miguel Piedrafita</sub>](https://miguelpiedrafita.com)<br />[📖](https://github.com/curiositylab/curiosity/commits?author=m1guelpf "Documentation") | [<img src="https://avatars2.githubusercontent.com/u/7142320?v=3" width="100px;"/><br /><sub>Ashok</sub>](https://github.com/asiyani)<br />[💻](https://github.com/curiositylab/curiosity/commits?author=asiyani "Code") [👀](#review-asiyani "Reviewed Pull Requests") |
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
-This project follows the [all-contributors](https://github.com/kentcdodds/all-contributors) specification. Contributions of any kind welcome!
+This project follows the [all-contributors](https://github.com/kentcdodds/all-contributors) specification. Contributions of any kind welcome! If you'd like to contribute, please find issues with label "up-for-grabs". Any labels with "discussions" are open to thoughts on improvements.
