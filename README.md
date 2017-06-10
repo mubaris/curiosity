@@ -7,6 +7,7 @@
 [![Build Status](https://travis-ci.org/curiositylab/curiosity.svg?branch=master)](https://travis-ci.org/curiositylab/curiosity)
 [![Say Thanks](https://img.shields.io/badge/Say%20Thanks!-%F0%9F%A6%89-1EAEDB.svg)](https://saythanks.io/to/mubaris)
 
+## Features
 Find amazing github projects as a feed. :zap: :zap:
 
 ![gif](https://media.giphy.com/media/l2SpYDOZmp3H2cAAo/giphy.gif)
