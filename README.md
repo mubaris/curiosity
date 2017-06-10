@@ -33,7 +33,10 @@ I've collected usernames of amazing stargazers :star: in Github. By using Github
 
 ## What you need
 
-You need to submit Github Token to access Github API.
+You need to submit Github Token to access Github API. Do this by generating a personal token listed in your own settings at https://github.com/settings/tokens
+
+## How to use
+Once you added the chrome extension and also have granted Curiosity your own github token, when you open up a new Chrome browser tab, you'll see a feed of Github projects which are being used heavily (starred). 
 
 ## Tools I used
 
