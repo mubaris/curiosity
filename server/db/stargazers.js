@@ -1,9 +1,9 @@
-// Schema of usernames of stargazers in Github
+// Schema of stargazers in Github
 const mongoose = require('./mongoose');
 
 const Schema = mongoose.Schema;
 
-const usernameSchema = new Schema({
+const stargazersSchema = new Schema({
     _id: mongoose.Schema.Types.ObjectId,
     githubId: Number,
     login: String,
@@ -19,6 +19,6 @@ const usernameSchema = new Schema({
 });
 
 
-const Username = mongoose.model('Username', usernameSchema);
+const Stargazers = mongoose.model('Stargazers', stargazersSchema);
 
-module.exports.Username = Username;
+module.exports.Stargazers = Stargazers;

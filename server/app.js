@@ -3,7 +3,7 @@ require('./../config/config');
 const express = require('express');
 const session = require('express-session');
 const { mongoose } = require('./db/mongoose');
-const { usernameRoutes } = require('./routes/api/username');
+const { stargazersRoutes } = require('./routes/api/stargazers');
 const { userRoutes } = require('./routes/user');
 const { passport } = require('./auth');
 
@@ -19,7 +19,7 @@ app.use(passport.session());
 app.use(express.static(`${__dirname}/../public`));
 
 app.use('/user',userRoutes);
-app.use('/api/username', usernameRoutes);
+app.use('/api/stargazers', stargazersRoutes);
 
 app.listen(port, () => {
     console.log(`Starting server on port ${port}.`);
