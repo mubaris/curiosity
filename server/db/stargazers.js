@@ -4,7 +4,6 @@ const mongoose = require('./mongoose');
 const Schema = mongoose.Schema;
 
 const stargazersSchema = new Schema({
-    _id: mongoose.Schema.Types.ObjectId,
     githubId: Number,
     login: String,
     name: String,
@@ -14,9 +13,7 @@ const stargazersSchema = new Schema({
     public_repos: Number,
     public_gists: Number,
     followers: Number,
-    dbLastUpdated: Date,
-    starredIds: [mongoose.Schema.Types.ObjectId],
-});
+}, { timestamps: { updatedAt: 'recordLastModified_at' } });
 
 
 const Stargazers = mongoose.model('Stargazers', stargazersSchema);

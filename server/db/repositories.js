@@ -4,7 +4,7 @@ const mongoose = require('./mongoose');
 const Schema = mongoose.Schema;
 
 const repositorySchema = new Schema({
-    _id: mongoose.Schema.Types.ObjectId,
+    githubId: Number,
     name: String,
     html_url: String,
     description: String,
@@ -13,7 +13,8 @@ const repositorySchema = new Schema({
     created_at: Date,
     updated_at: Date,
     language: String,
-});
+    stargazersLogin: [String],
+}, { timestamps: { updatedAt: 'recordLastModified_at' } });
 
 
 const Repository = mongoose.model('Repository', repositorySchema);
