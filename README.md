@@ -48,3 +48,56 @@ Thanks goes to these wonderful people ([emoji key](https://github.com/kentcdodds
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 This project follows the [all-contributors](https://github.com/kentcdodds/all-contributors) specification. Contributions of any kind welcome!
+
+
+Elia's Udacity Project Movie Trailer Site
+=====================
+
+Demo project to view a list of movies and watch their trailers.
+
+Tested on Chrome, Safari & Firefox.
+
+---
+
+## Features
+- Clicking on the active movie cover shows its trailer
+
+---
+
+## Setup
+Clone this repo to a folder in your computer.
+```
+$ git clone https://github.com/pages/udacity/fullstackweb/1_1_Projectmovietrailer/
+```
+
+Go to the project directory.
+```
+$ cd 1_1_Projectmovietrailer
+```
+
+Install project dependencies.
+```
+$ npm install
+```
+
+---
+
+## Usage
+Make sure you are in the project directory and that you have python 3 installed.
+
+Build the project. This should automatically open a local HTML file in your default browser with a selected list of movies. Enjoy!
+```
+$ npm run build
+```
+
+---
+
+## Credits
+
+- Thanks to David Quirós  for his readme flow
+https://github.com/quiaro/movie-showcase
+
+---
+
+## License
+N/A
