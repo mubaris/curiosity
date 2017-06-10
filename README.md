@@ -1,7 +1,7 @@
 # Curiosity
 
 ## Features
-Find amazing github projects as a feed. :zap: :zap:
+Find amazing github projects as a feed using Google Chrome Extension. :zap: :zap:
 
 ![gif](https://media.giphy.com/media/l2SpYDOZmp3H2cAAo/giphy.gif)
 
