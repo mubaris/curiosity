@@ -1,4 +1,11 @@
 # Curiosity
+
+## Features
+Find amazing github projects as a feed using Google Chrome Extension. :zap: :zap:
+
+![gif](https://media.giphy.com/media/l2SpYDOZmp3H2cAAo/giphy.gif)
+
+## Updates/credits
 [![All Contributors](https://img.shields.io/badge/all_contributors-10-orange.svg?style=flat-square)](#contributors)
 
 [![Join the chat at https://gitter.im/curiositylab/curiosity](https://badges.gitter.im/curiositylab/curiosity.svg)](https://gitter.im/curiositylab/curiosity?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
@@ -7,13 +14,10 @@
 [![Build Status](https://travis-ci.org/curiositylab/curiosity.svg?branch=master)](https://travis-ci.org/curiositylab/curiosity)
 [![Say Thanks](https://img.shields.io/badge/Say%20Thanks!-%F0%9F%A6%89-1EAEDB.svg)](https://saythanks.io/to/mubaris)
 
-Find amazing github projects as a feed. :zap: :zap:
-
-![gif](https://media.giphy.com/media/l2SpYDOZmp3H2cAAo/giphy.gif)
-
 ## Peek at Curiosity
 
 ![peek](https://i.imgsafe.org/e6a506c205.png)
+
 
 ## Get Chrome Extension
 
@@ -29,7 +33,12 @@ I've collected usernames of amazing stargazers :star: in Github. By using Github
 
 ## What you need
 
-You need to submit Github Token to access Github API.
+You need to submit Github Token to access Github API. Do this by generating a personal token listed in your own settings at: https://github.com/settings/tokens
+
+## How to use
+1) Add Chrome Extension
+2) Granted Curiosity your own github token
+3) Open up a new Chrome browser tab, you'll see a feed of Github projects which are being used heavily (starred). 
 
 ## Tools I used
 
