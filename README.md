@@ -14,7 +14,7 @@ Curiosity is a web app.
 
 ## Peek at Curiosity
 
-![peek](https://i.imgsafe.org/e6a506c205.png)
+![peek](http://i.imgsafe.org/c45b215899.jpg)
 
 ## Get Chrome Extension
 
