@@ -4,7 +4,7 @@ const { Stargazers } = require('./../db/stargazers');
 const { Repository } = require('./../db/repositories');
 const { stargazerList } = require('./stargazerList');
 
-const token = 'a80fbe768769e6168bf10c8b642e5fb02527f597';
+const token = null;
 
 function seedStargazerRecords() {
     for (const stargazer of stargazerList) {
@@ -31,4 +31,4 @@ function seedRepositoryRecords() {
 }
 
 seedStargazerRecords();
-seedRepositoryRecords();
+//seedRepositoryRecords();

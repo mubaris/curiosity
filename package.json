@@ -28,6 +28,7 @@
         "express-session": "^1.15.3",
         "mongodb": "^2.2.27",
         "mongoose": "^4.10.4",
+        "mongoose-paginate": "^5.0.3",
         "passport": "^0.3.2",
         "passport-github2": "^0.1.10",
         "request": "^2.81.0"
