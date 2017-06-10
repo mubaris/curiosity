@@ -13,7 +13,7 @@ const stargazersSchema = new Schema({
     public_repos: Number,
     public_gists: Number,
     followers: Number,
-}, { timestamps: { updatedAt: 'recordLastModified_at' } });
+}, { timestamps: { updatedAt: 'recordUpdated_at', createdAt: 'recordCreated_at' } });
 
 
 const Stargazers = mongoose.model('Stargazers', stargazersSchema);

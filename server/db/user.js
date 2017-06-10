@@ -19,6 +19,10 @@ userSchema.statics.findOrCreate = function (profile, accessToken) {
         if (user) {
                 // TODO:Need to update accessToken for this user
             user.accessToken = accessToken;
+            user.save((err) => {
+                if (err) return handleError(err);
+                // saved!
+            });
             return Promise.resolve(user);
         }
             // Create new user
