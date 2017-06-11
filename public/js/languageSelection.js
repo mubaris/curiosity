@@ -42,7 +42,7 @@ const selectLanguage = function selectLanguage(event) {
     languageSelected = event.target.value;
     content.innerHTML = '';
     reqNo = Math.floor(Math.random() * 3) + 1;
-    projectsPerPage = (languageSelected == ANY_LANGUAGE) ? 2 : 100;
+    projectsPerPage = (languageSelected == ANY_LANGUAGE) ? 2 : 10;
     getData();
 };
 

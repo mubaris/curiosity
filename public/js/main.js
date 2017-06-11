@@ -17,8 +17,12 @@ const moreDataNeeded = function moreDataNeeded() {
     return ((allUsersChecked()) && (projectsCurrentCall < MIN_PROJECTS_PER_CALL));
 };
 
-const userFormatter = function userFormatter(username) {
-    return `<a href='https://github.com/${username}?tab=stars'>${username}</a>`;
+const userFormatter = function userFormatter(usernames) {
+    let usernameStr = '';
+    for (username of usernames) {
+        usernameStr += `<a href='https://github.com/${username}?tab=stars'>${username}</a>, `;
+    }
+    return usernameStr.slice(0, -2);
 };
 
 const nFormatter = function nFormatter(num) {
@@ -40,9 +44,10 @@ const dataCollector = function dataCollector(response, username) {
             let innerContent = `<li><span class='link'><a href='${entry.html_url}' target='_blank'>${entry.name}<span> - ${String(entry.description)}</span><br/></a></span>`;
             innerContent += "<div class='additional'>";
             innerContent += `${nFormatter(entry.stargazers_count)} <i class='fa fa-star'></i>`;
-            innerContent += `&emsp;${nFormatter(entry.forks)} <i class='fa fa-code-fork'></i>`;
+            innerContent += `&emsp;${nFormatter(entry.forks_count)} <i class='fa fa-code-fork'></i>`;
             innerContent += (entry.language != null) ? `&emsp;${entry.language}` : '';
-            innerContent += `&emsp;(from ${userFormatter(username)})`;
+            // innerContent += `&emsp;(from ${userFormatter(username)})`;
+            innerContent += `&emsp;(from ${userFormatter(entry.stargazersLogin)})`;
             innerContent += '</div></li>';
             innerContent = EMOJI.replace_unified(innerContent);
             CONTENT.innerHTML += EMOJI.replace_colons(innerContent);
@@ -64,7 +69,8 @@ const getData = function getData() {
     callInProgress = true;
     reqNo += 1;
     USERNAMES.forEach((username) => {
-        const url = `https://api.github.com/users/${username}/starred?per_page=${projectsPerPage}&access_token=${accessToken}&page=${reqNo}`;
+        // const url = `https://api.github.com/users/${username}/starred?per_page=${projectsPerPage}&access_token=${accessToken}&page=${reqNo}`;
+        const url = `http://localhost:3000/api/repos/v1/search?stargazer=${username}&language=${languageSelected}&per_page=${projectsPerPage}&page=${reqNo}`;
         axios({
             url,
             method: 'get',

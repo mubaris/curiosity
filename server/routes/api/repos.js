@@ -27,6 +27,7 @@ router.get('/v1/search', (req, res) => {
             query.language = new RegExp(`^${req.query.language}$`, 'i');
         }
     }
+    console.log(query);
     Repository.paginate(query,
         { page: parseInt(req.query.page, 10) || 1,
             limit: parseInt(req.query.per_page, 10) || 10 })
