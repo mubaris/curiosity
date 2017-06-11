@@ -16,6 +16,13 @@ Find amazing github projects as a feed. :zap: :zap:
 
 ![peek](https://i.imgsafe.org/c45b215899.jpg)
 
+## What you need
+
+Access the web app on here:
+https://curiositylab.github.io/curiosity/
+
+To use the web app, you need to submit Github Token to access Github API. Generate your Github token here: https://github.com/settings/tokens
+
 ## Get Chrome Extension
 
 Curiosity Chrome extension is available now. Which is made by [Aswanth](https://github.com/aswanthkoleri)
@@ -28,15 +35,23 @@ Curiosity Chrome extension is available now. Which is made by [Aswanth](https://
 
 I've collected usernames of amazing stargazers :star: in Github. By using Github API, Curiosity will collect their stars and will show as a feed.
 
-## What you need
 
-You need to submit Github Token to access Github API. Generate your token here: https://github.com/settings/tokens
-
-## Tools I used
+## Dependencies (libraries/frameworks/tools)
 
 * [SweetAlert2](https://limonte.github.io/sweetalert2/)
 * [infinite-scroll](https://github.com/alexblack/infinite-scroll)
 * [Axios](https://github.com/mzabriskie/axios)
+
+## Labels
+* `up-for-grabs` labels are the issues need to solved. 
+* `discussion` label is for discussions of tasks. 
+* `enhancement` are features to make project better.
+* `testing` are features that aren't implemented yet but are being tested.
+* `difficulty` and whatever degree it is assesses the skill needed to help with that task
+* `code style` are features/tasks to integrate code better in the project
+
+## Contributing/notes
+For branching/contributing to this repo, we have 3 branches. `gh-pages` contains only front-end and it's hosted on Github Pages. `v2` is the future of Curiosity. We are building a backend for this. The code for that is contained in `v2`. master is main branch. `v2` will be merged to `master` once the process of building backend is done. Please feel free to contribute!
 
 ## Contributors
 
