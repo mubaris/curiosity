@@ -30,14 +30,14 @@ repositorySchema.statics.updateRepoWithStargazer = function (repo, stargazer) {
                         Object.assign(repository, repo);
                         repository.save((error, doc) => {
                             if (error) throw error;
-                            console.log(`Updated: ${repo.name} from: ${stargazer}`);
+                            //console.log(`Updated: ${repo.name} from: ${stargazer}`);
                         });
                     } else {
                         repository = new Repository(repo);
                         repository.stargazersLogin.push(stargazer);
                         repository.save((error, doc) => {
                             if (error) throw error;
-                            console.log(`Added: ${repo.name} from: ${stargazer}`);
+                            //console.log(`Added: ${repo.name} from: ${stargazer}`);
                         });
                     }
                     resolve(repository);
