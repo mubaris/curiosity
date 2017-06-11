@@ -9,12 +9,12 @@
 
 ## Features
 Find amazing github projects as a feed. :zap: :zap:
-Curiosity is a web app.
+
 ![gif](https://media.giphy.com/media/l2SpYDOZmp3H2cAAo/giphy.gif)
 
 ## Peek at Curiosity
 
-![peek](http://i.imgsafe.org/c45b215899.jpg)
+![peek](https://i.imgsafe.org/c45b215899.jpg)
 
 ## Get Chrome Extension
 
@@ -30,7 +30,7 @@ I've collected usernames of amazing stargazers :star: in Github. By using Github
 
 ## What you need
 
-You need to submit Github Token to access Github API.
+You need to submit Github Token to access Github API. Generate your token here: https://github.com/settings/tokens
 
 ## Tools I used
 
