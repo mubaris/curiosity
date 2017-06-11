@@ -68,6 +68,9 @@ const getData = function getData() {
     usersCurrentCall = 0;
     callInProgress = true;
     reqNo += 1;
+    if (reqNo > 10) {
+        return console.log('rejecting request', reqNo);
+    }
     USERNAMES.forEach((username) => {
         // const url = `https://api.github.com/users/${username}/starred?per_page=${projectsPerPage}&access_token=${accessToken}&page=${reqNo}`;
         const url = `http://localhost:3000/api/repos/v1/search?stargazer=${username}&language=${languageSelected}&per_page=${projectsPerPage}&page=${reqNo}`;
