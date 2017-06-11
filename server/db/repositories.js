@@ -1,5 +1,6 @@
 // Repositories
 const mongoose = require('./mongoose');
+const mongoosePaginate = require('mongoose-paginate');
 
 const Schema = mongoose.Schema;
 
@@ -44,6 +45,8 @@ repositorySchema.statics.updateRepoWithStargazer = function (repo, stargazer) {
                 .catch(e => reject(e));
     });
 };
+
+repositorySchema.plugin(mongoosePaginate);
 
 const Repository = mongoose.model('Repository', repositorySchema);
 

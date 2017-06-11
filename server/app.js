@@ -4,6 +4,7 @@ const express = require('express');
 const session = require('express-session');
 const { mongoose } = require('./db/mongoose');
 const { stargazersRoutes } = require('./routes/api/stargazers');
+const { reposRoutes } = require('./routes/api/repos');
 const { userRoutes } = require('./routes/user');
 const { passport } = require('./auth');
 
@@ -20,6 +21,7 @@ app.use(express.static(`${__dirname}/../public`));
 
 app.use('/user',userRoutes);
 app.use('/api/stargazers', stargazersRoutes);
+app.use('/api/repos', reposRoutes);
 
 app.listen(port, () => {
     console.log(`Starting server on port ${port}.`);
