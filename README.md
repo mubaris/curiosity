@@ -44,14 +44,14 @@ I've collected usernames of amazing stargazers :star: in Github. By using Github
 
 ## Labels
 * `up-for-grabs` labels are the issues need to solved. 
-* `discussion` label is for discussions of tasks. 
+* `discussion` labels are for discussions of tasks. 
 * `enhancement` are features to make project better.
-* `testing` are features that aren't implemented yet but are being tested.
-* `difficulty` and whatever degree it is assesses the skill needed to help with that task
-* `code style` are features/tasks to integrate code better in the project
+* `testing` labels are for unit testing, code testing and code coverage.
+* `difficulty` and whatever degree (i.e. low, medium, etc.) it is assesses the skill needed to help with that task.
+* `code style` label are features/tasks to integrate code better in the project.
 
 ## Contributing/notes
-For branching/contributing to this repo, we have 3 branches. `gh-pages` contains only front-end and it's hosted on Github Pages. `v2` is the future of Curiosity. We are building a backend for this. The code for that is contained in `v2`. master is main branch. `v2` will be merged to `master` once the process of building backend is done. Please feel free to contribute!
+For branching/contributing to this repo, we maintain 3 branches. `gh-pages` contains only front-end and it's hosted on Github Pages. `v2` is the future of Curiosity. We are building a backend for this. The code for that is contained in `v2`. master is main branch. `v2` will be merged to `master` once the process of building backend is done. Please feel free to contribute!
 
 ## Contributors
 
