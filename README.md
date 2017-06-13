@@ -8,7 +8,6 @@ Find amazing github projects as a feed using Google Chrome Extension. :zap: :zap
 ![gif](https://media.giphy.com/media/l2SpYDOZmp3H2cAAo/giphy.gif)
 
 ## Updates/credits
-[![All Contributors](https://img.shields.io/badge/all_contributors-10-orange.svg?style=flat-square)](#contributors)
 >>>>>>> 488fa6142afc82696d26c38e3729142856c7a8e7
 
 [![Join the chat at https://gitter.im/curiositylab/curiosity](https://badges.gitter.im/curiositylab/curiosity.svg)](https://gitter.im/curiositylab/curiosity?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
