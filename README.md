@@ -1,5 +1,16 @@
 # Curiosity
+<<<<<<< HEAD
 [![All Contributors](https://img.shields.io/badge/all_contributors-11-orange.svg?style=flat-square)](#contributors)
+=======
+
+## Features
+Find amazing github projects as a feed using Google Chrome Extension. :zap: :zap:
+
+![gif](https://media.giphy.com/media/l2SpYDOZmp3H2cAAo/giphy.gif)
+
+## Updates/credits
+[![All Contributors](https://img.shields.io/badge/all_contributors-10-orange.svg?style=flat-square)](#contributors)
+>>>>>>> 488fa6142afc82696d26c38e3729142856c7a8e7
 
 [![Join the chat at https://gitter.im/curiositylab/curiosity](https://badges.gitter.im/curiositylab/curiosity.svg)](https://gitter.im/curiositylab/curiosity?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
@@ -7,11 +18,14 @@
 [![Build Status](https://travis-ci.org/curiositylab/curiosity.svg?branch=master)](https://travis-ci.org/curiositylab/curiosity)
 [![Say Thanks](https://img.shields.io/badge/Say%20Thanks!-%F0%9F%A6%89-1EAEDB.svg)](https://saythanks.io/to/mubaris)
 
+<<<<<<< HEAD
 ## Features
 Find amazing github projects as a feed. :zap: :zap:
 
 ![gif](https://media.giphy.com/media/l2SpYDOZmp3H2cAAo/giphy.gif)
 
+=======
+>>>>>>> 488fa6142afc82696d26c38e3729142856c7a8e7
 ## Peek at Curiosity
 
 ![peek](https://i.imgsafe.org/c45b215899.jpg)
@@ -22,6 +36,7 @@ Access the web app on here:
 https://curiositylab.github.io/curiosity/
 
 To use the web app, you need to submit Github Token to access Github API. Generate your Github token here: https://github.com/settings/tokens
+
 
 ## Get Chrome Extension
 
@@ -35,6 +50,17 @@ Curiosity Chrome extension is available now. Which is made by [Aswanth](https://
 
 I've collected usernames of amazing stargazers :star: in Github. By using Github API, Curiosity will collect their stars and will show as a feed.
 
+<<<<<<< HEAD
+=======
+## What you need
+
+You need to submit Github Token to access Github API. Do this by generating a personal token listed in your own settings at: https://github.com/settings/tokens
+
+## How to use
+1) Add Chrome Extension
+2) Granted Curiosity your own github token
+3) Open up a new Chrome browser tab, you'll see a feed of Github projects which are being used heavily (starred). 
+>>>>>>> 488fa6142afc82696d26c38e3729142856c7a8e7
 
 ## Dependencies (libraries/frameworks/tools)
 
