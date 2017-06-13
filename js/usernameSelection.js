@@ -17,8 +17,7 @@ const addUsername = function addUsername() {
                         reject('Username already exists! Please add a different username.');
                     } else {
                         // check for valid username
-                        var accessToken = localStorage.getItem('accessToken');
-                        const url = `https://api.github.com/users/${username}?access_token=${accessToken}`;
+                        const url = `https://api.github.com/users/${username}`;
                         axios({
                             url,
                             method: 'get',
