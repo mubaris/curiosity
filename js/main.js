@@ -126,7 +126,6 @@ accessToken = localStorage.getItem('accessToken');
 
 // called on refresh
 if (accessToken) {
-    localStorage.setItem('usernames', JSON.stringify(USERNAMES));
     getData();
     renderLanguageSelector();
     renderUsernames();
