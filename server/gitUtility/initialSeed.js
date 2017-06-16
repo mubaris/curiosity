@@ -16,7 +16,6 @@ function seedStargazerRecords(token) {
                                         { new: true, upsert: true },
                                         (error, doc) => {
                                             if (error) throw error;
-                                            //logger.debug(`Updated: ${stargazer}`);
                                         });
         }).catch(e => logger.error(e));
     }

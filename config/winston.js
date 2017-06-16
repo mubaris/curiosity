@@ -19,6 +19,4 @@ const logger = new (winston.Logger)({
 
 logger.level = 'info';
 
-// logger.debug('Test Log Message', { anything: 'This is metadata' });
-
 module.exports.logger = logger;

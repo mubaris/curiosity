@@ -1,5 +1,6 @@
 const ANY_LANGUAGE = 'Any';
 const NO_LANGUAGE = 'NoLanguage';
+const MAX_PROJECTPERPAGE = 10;
 let languageSelected = ANY_LANGUAGE;
 
 const generateLanguageSelector = function generateLanguageSelector() {
@@ -42,7 +43,7 @@ const selectLanguage = function selectLanguage(event) {
     languageSelected = event.target.value;
     content.innerHTML = '';
     reqNo = Math.floor(Math.random() * 3) + 1;
-    projectsPerPage = (languageSelected == ANY_LANGUAGE) ? 2 : 10;
+    projectsPerPage = (languageSelected == ANY_LANGUAGE) ? 2 : MAX_PROJECTPERPAGE;
     getData();
 };
 

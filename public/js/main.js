@@ -1,5 +1,6 @@
 const MIN_PROJECTS_PER_CALL = 5;
 const MAX_PROJECTS_PER_USER = 2;
+const MAXAPICALL = 10;
 const CONTENT = document.getElementById('content');
 const EMOJI = new EmojiConvertor();
 let projectsCurrentCall = 0;
@@ -46,7 +47,6 @@ const dataCollector = function dataCollector(response, username) {
             innerContent += `${nFormatter(entry.stargazers_count)} <i class='fa fa-star'></i>`;
             innerContent += `&emsp;${nFormatter(entry.forks_count)} <i class='fa fa-code-fork'></i>`;
             innerContent += (entry.language != null) ? `&emsp;${entry.language}` : '';
-            // innerContent += `&emsp;(from ${userFormatter(username)})`;
             innerContent += `&emsp;(from ${userFormatter(entry.stargazersLogin)})`;
             innerContent += '</div></li>';
             innerContent = EMOJI.replace_unified(innerContent);
@@ -68,11 +68,10 @@ const getData = function getData() {
     usersCurrentCall = 0;
     callInProgress = true;
     reqNo += 1;
-    if (reqNo > 10) {
+    if (reqNo > MAXAPICALL) {
         return console.log('rejecting request', reqNo);
     }
     USERNAMES.forEach((username) => {
-        // const url = `https://api.github.com/users/${username}/starred?per_page=${projectsPerPage}&access_token=${accessToken}&page=${reqNo}`;
         const url = `http://localhost:3000/api/repos/v1/search?stargazer=${username}&language=${languageSelected}&per_page=${projectsPerPage}&page=${reqNo}`;
         axios({
             url,

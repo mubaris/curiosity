@@ -21,7 +21,7 @@ const gitService = {
         return new Promise((resolve, reject) => {
             logger.info('Calling api.github.com/users/user', { login });
             request(options, (error, response, body) => {
-                if (!error && response.statusCode == 200) {
+                if (!error && response.statusCode === 200) {
                     const user = JSON.parse(body);
                     const stargazer = {
                         githubId: user.id,
@@ -44,6 +44,7 @@ const gitService = {
     },
 
     getStarredRepository(login, token, page = 1) {
+        let headers;
         if (token) {
             headers = {
                 'User-Agent': 'request',
@@ -61,7 +62,7 @@ const gitService = {
         return new Promise((resolve, reject) => {
             logger.info('Calling api.github.com/users/login/starred', { login, page });
             request(options, (error, response, body) => {
-                if (!error && response.statusCode == 200) {
+                if (!error && response.statusCode === 200) {
                     const repos = JSON.parse(body);
                     // Only select required info from data received.
                     const filterRepos = repos.map(repo => ({
