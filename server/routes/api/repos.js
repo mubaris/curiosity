@@ -12,7 +12,6 @@ const isAuthenticated = (req, res, next) => {
     }
     console.log('isAuthenticated: No');
     res.redirect('/user/login');
-    return 0;
 };
 
 router.get('/v1/search', (req, res) => {
