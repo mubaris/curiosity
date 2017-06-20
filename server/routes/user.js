@@ -9,7 +9,7 @@ const isAuthenticated = (req, res, next) => {
     if (req.isAuthenticated()) {
         return next();
     }
-    console.log('isAuthenticated: failed');
+    console.log('isAuthenticated: No');
     res.redirect('/user/login');
     return 0;
 };

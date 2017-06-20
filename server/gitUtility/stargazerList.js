@@ -1,9 +1,3 @@
-// API related to username here.
-
-const express = require('express');
-
-const router = express.Router();
-
 const USERNAMES = [
     'tj',
     'addyosmani',
@@ -43,9 +37,4 @@ const USERNAMES = [
     'jaredly',
 ];
 
-
-router.get('/all', (req, res) => {
-    res.send(USERNAMES);
-});
-
-module.exports.usernameRoutes = router;
+module.exports.stargazerList = USERNAMES;

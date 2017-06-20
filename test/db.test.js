@@ -4,7 +4,7 @@ const mongoose = require('./../server/db/mongoose');
 const expect = require('expect');
 
 const { Repository } = require('./../server/db/repositories');
-const { Username } = require('./../server/db/username');
+const { Stargazers } = require('./../server/db/Stargazers');
 const { User } = require('./../server/db/user');
 
 

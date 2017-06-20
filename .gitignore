@@ -1,3 +1,4 @@
 node_modules
 .vscode
 config/.dev.env
+filelog-debug.log
