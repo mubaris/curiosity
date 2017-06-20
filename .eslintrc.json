@@ -16,7 +16,7 @@
         "no-console": "off",
         "func-names": "off",
         "no-alert": "off",
-        "prefer-const": ["error", {"destructuring": "all"}],
+        "prefer-const": "error",
         "no-underscore-dangle": ["error", { "allow": ["_json"] }]
     }
 }
