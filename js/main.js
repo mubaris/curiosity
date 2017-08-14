@@ -118,23 +118,21 @@ if (window.localStorage) {
 accessToken = localStorage.getItem('accessToken');
 
 if (accessToken) {
-
     if (!localStorage.getItem('usernames')) {
-        
         localStorage.setItem('usernames', JSON.stringify(DEFAULTUSERNAMES));
-        
     }
     USERNAMES = JSON.parse(localStorage.getItem('usernames'));
     getData();
     renderLanguageSelector();
     renderUsernames();
-    
 }
 
 const OPTIONS = {
     distance: 1,
     callback(done) {
-        if (!callInProgress) getData();
+        if (!callInProgress) {
+            getData();
+        }
         done();
     },
 };
