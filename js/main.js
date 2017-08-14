@@ -119,12 +119,16 @@ accessToken = localStorage.getItem('accessToken');
 
 if (accessToken) {
 
-    if (!localStorage.getItem('usernames'))
+    if (!localStorage.getItem('usernames')) {
+        
         localStorage.setItem('usernames', JSON.stringify(DEFAULTUSERNAMES));
-    USERNAMES=JSON.parse(localStorage.getItem('usernames'));
+        
+    }
+    USERNAMES = JSON.parse(localStorage.getItem('usernames'));
     getData();
     renderLanguageSelector();
     renderUsernames();
+    
 }
 
 const OPTIONS = {
