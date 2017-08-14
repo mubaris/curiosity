@@ -18,7 +18,8 @@ const addUsername = function addUsername() {
                         reject('Username already exists! Please add a different username.');
                     } else {
                         // check for valid username
-                        const url = `https://api.github.com/users/${username}`;
+                        let accessToken = localStorage.getItem('accessToken');
+                        const url = `https://api.github.com/users/${username}?access_token=${accessToken}`;
                         axios({
                             url,
                             method: 'get',
@@ -44,6 +45,7 @@ const addUsername = function addUsername() {
 
 const addOneUsername = function addOneUsername(username) {
     USERNAMES.push(username);
+    localStorage.setItem('usernames', JSON.stringify(USERNAMES));
     content.innerHTML = '';
     getData();
     renderUsernames();
@@ -82,6 +84,7 @@ const removeUsername = function removeUsername() {
 
 const removeUsernameAtIndex = function removeUsernameAtIndex(index) {
     USERNAMES.splice(index, 1);
+    localStorage.setItem('usernames', JSON.stringify(USERNAMES));
     content.innerHTML = '';
     getData();
     renderUsernames();

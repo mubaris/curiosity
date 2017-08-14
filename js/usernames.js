@@ -1,4 +1,4 @@
-const USERNAMES = [
+const DEFAULTUSERNAMES = [
     'tj',
     'addyosmani',
     'paulirish',

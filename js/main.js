@@ -7,7 +7,8 @@ let usersCurrentCall = 0;
 let callInProgress = true;
 let reqNo = Math.floor(Math.random() * 3) + 1;
 let projectsPerPage = 2;
-let accessToken;
+let USERNAMES;
+
 
 const allUsersChecked = function allUsersChecked() {
     return usersCurrentCall === USERNAMES.length;
@@ -117,6 +118,10 @@ if (window.localStorage) {
 accessToken = localStorage.getItem('accessToken');
 
 if (accessToken) {
+    if (!localStorage.getItem('usernames')) {
+        localStorage.setItem('usernames', JSON.stringify(DEFAULTUSERNAMES));
+    }
+    USERNAMES = JSON.parse(localStorage.getItem('usernames'));
     getData();
     renderLanguageSelector();
     renderUsernames();
@@ -125,7 +130,9 @@ if (accessToken) {
 const OPTIONS = {
     distance: 1,
     callback(done) {
-        if (!callInProgress) getData();
+        if (!callInProgress) {
+            getData();
+        }
         done();
     },
 };
