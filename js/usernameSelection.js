@@ -14,7 +14,7 @@ const addUsername = function addUsername() {
                 setTimeout(() => {
                     if (username == '') {
                         reject('Username cannot be null.');
-                    } else if (USERNAMES.indexOf(username) > -1) {
+                    } else if (checkIfUsernameAlreadyExists(username)) {
                         reject('Username already exists! Please add a different username.');
                     } else {
                         // check for valid username
@@ -128,4 +128,8 @@ const renderUsernames = function renderUsernames() {
     document.getElementById('addOrRemoveUsername').innerHTML = "<a class='addOrRemoveUsername' href=javascript:addUsername()><strong>Add more username</strong></a>" +
         " | <a class='addOrRemoveUsername' href=javascript:removeUsername()><strong>Remove username</strong></a>";
     renderShowMoreLessUsernames();
+};
+
+const checkIfUsernameAlreadyExists = function checkIfUsernameAlreadyExists(username) {
+    return USERNAMES.includes(username);
 };
