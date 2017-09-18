@@ -79,6 +79,11 @@ const getData = function getData() {
 };
 
 if (window.localStorage) {
+    if (!localStorage.getItem('usernames')) {
+        localStorage.setItem('usernames', JSON.stringify(DEFAULTUSERNAMES));
+    }
+    USERNAMES = JSON.parse(localStorage.getItem('usernames'));
+
     if (!localStorage.getItem('accessToken')) {
         swal({
             title: 'Submit Github Token',
@@ -93,8 +98,15 @@ if (window.localStorage) {
                         if (token === '') {
                             reject('Enter Valid Token');
                         } else {
-                            localStorage.setItem('accessToken', token);
-                            resolve();
+                            const url = `https://api.github.com/?access_token=${token}`;
+                            axios({
+                                url,
+                                method: 'get',
+                                responseType: 'json',
+                            }).then(() => {
+                                localStorage.setItem('accessToken', token);
+                                resolve();
+                            }).catch(() => reject('Error: invalid token'));
                         }
                     }, 1000);
                 });
@@ -118,10 +130,6 @@ if (window.localStorage) {
 accessToken = localStorage.getItem('accessToken');
 
 if (accessToken) {
-    if (!localStorage.getItem('usernames')) {
-        localStorage.setItem('usernames', JSON.stringify(DEFAULTUSERNAMES));
-    }
-    USERNAMES = JSON.parse(localStorage.getItem('usernames'));
     getData();
     renderLanguageSelector();
     renderUsernames();
