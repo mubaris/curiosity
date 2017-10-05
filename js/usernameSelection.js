@@ -13,9 +13,9 @@ const addUsername = function addUsername() {
             return new Promise((resolve, reject) => {
                 setTimeout(() => {
                     if (username == '') {
-                        reject('Username cannot be null.');
+                        reject(new Error('Username cannot be null.'));
                     } else if (checkIfUsernameAlreadyExists(username)) {
-                        reject('Username already exists! Please add a different username.');
+                        reject(new Error('Username already exists! Please add a different username.'));
                     } else {
                         // check for valid username
                         let accessToken = localStorage.getItem('accessToken');
@@ -27,7 +27,7 @@ const addUsername = function addUsername() {
                         }).then((response) => {
                             resolve();
                         }).catch((err) => {
-                            reject('Username not found!');
+                            reject(new Error('Username not found!'));
                         });
                     }
                 }, 1000);
@@ -69,7 +69,7 @@ const removeUsername = function removeUsername() {
                 if (index) {
                     resolve();
                 } else {
-                    reject('You need to select a username!');
+                    reject(new Error('You need to select a username!'));
                 }
             });
         },
