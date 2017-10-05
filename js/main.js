@@ -96,7 +96,7 @@ if (window.localStorage) {
                 return new Promise((resolve, reject) => {
                     setTimeout(() => {
                         if (token === '') {
-                            reject('Enter Valid Token');
+                            reject(new Error('Enter Valid Token'));
                         } else {
                             const url = `https://api.github.com/?access_token=${token}`;
                             axios({
@@ -106,7 +106,7 @@ if (window.localStorage) {
                             }).then(() => {
                                 localStorage.setItem('accessToken', token);
                                 resolve();
-                            }).catch(() => reject('Error: invalid token'));
+                            }).catch(() => reject(new Error('Error: invalid token')));
                         }
                     }, 1000);
                 });
