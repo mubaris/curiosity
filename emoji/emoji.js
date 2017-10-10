@@ -2,7 +2,7 @@
 
 (function () {
     let root = this;
-    let previous_emoji = root.EmojiConvertor;
+    let previousEmoji = root.EmojiConvertor;
 
 
     /**
@@ -21,11 +21,11 @@
          */
         self.img_set = 'apple';
 
-        /**
-         * Configuration details for different image sets. This includes a path to a directory containing the
-         * individual images (`path`) and a URL to sprite sheets (`sheet`). All of these images can be found
-         * in the [emoji-data repository]{@link https://github.com/iamcal/emoji-data}. Using a CDN for these
-         * is not a bad idea.
+        /** Configuration details for different image sets.
+         * This includes a path to a directory containing the
+         * individual images (`path`) and a URL to sprite sheets (`sheet`).
+         * All of these images can be found in the [emoji-data repository]{@link https://github.com/iamcal/emoji-data}.
+         * Using a CDN for these is not a bad idea.
          *
          * @memberof emoji
          * @type {object}
@@ -131,7 +131,7 @@
     };
 
     emoji.prototype.noConflict = function () {
-        root.EmojiConvertor = previous_emoji;
+        root.EmojiConvertor = previousEmoji;
         return emoji;
     };
 
@@ -162,28 +162,28 @@
     emoji.prototype.replace_emoticons_with_colons = function (str) {
         let self = this;
         self.init_emoticons();
-        let _prev_offset = 0;
-        let emoticons_with_parens = [];
-        let str_replaced = str.replace(self.rx_emoticons, (m, $1, emoticon, offset) => {
-            let prev_offset = _prev_offset;
-            _prev_offset = offset + m.length;
+        let prevOffset = 0;
+        let emoticonsWithParens = [];
+        let strReplaced = str.replace(self.rx_emoticons, (m, $1, emoticon, offset) => {
+            let previousOffset = prevOffset;
+            previousOffset = offset + m.length;
 
-            let has_open_paren = emoticon.indexOf('(') !== -1;
-            let has_close_paren = emoticon.indexOf(')') !== -1;
+            let hasOpenParen = emoticon.indexOf('(') !== -1;
+            let hasCloseParen = emoticon.indexOf(')') !== -1;
 
             /*
              * Track paren-having emoticons for fixing later
              */
-            if ((has_open_paren || has_close_paren) && emoticons_with_parens.indexOf(emoticon) == -1) {
-                emoticons_with_parens.push(emoticon);
+            if ((hasOpenParen || hasCloseParen) && emoticonsWithParens.indexOf(emoticon) == -1) {
+                emoticonsWithParens.push(emoticon);
             }
 
             /*
              * Look for preceding open paren for emoticons that contain a close paren
              * This prevents matching "8)" inside "(around 7 - 8)"
              */
-            if (has_close_paren && !has_open_paren) {
-                let piece = str.substring(prev_offset, offset);
+            if (hasCloseParen && !hasOpenParen) {
+                let piece = str.substring(previousOffset, offset);
                 if (piece.indexOf('(') !== -1 && piece.indexOf(')') === -1) return m;
             }
 
@@ -192,8 +192,8 @@
              * This prevents matching "8)" inside "7) foo\n8) bar"
              */
             if (m === '\n8)') {
-                let before_match = str.substring(0, offset);
-                if (/\n?(6\)|7\))/.test(before_match)) return m;
+                let beforeMatch = str.substring(0, offset);
+                if (/\n?(6\)|7\))/.test(beforeMatch)) return m;
             }
 
             let val = self.data[self.map.emoticons[emoticon]][3][0];
@@ -205,17 +205,17 @@
          * It's useful to do self at the end so we don't get tripped up by other,
          * normal emoticons
          */
-        if (emoticons_with_parens.length) {
-            let escaped_emoticons = emoticons_with_parens.map(self.escape_rx);
-            let parenthetical_rx = new RegExp(`(\\(.+)(${escaped_emoticons.join('|')})(.+\\))`, 'g');
+        if (emoticonsWithParens.length) {
+            let escapedEmoticons = emoticonsWithParens.map(self.escape_rx);
+            let parentheticalRx = new RegExp(`(\\(.+)(${escapedEmoticons.join('|')})(.+\\))`, 'g');
 
-            str_replaced = str_replaced.replace(parenthetical_rx, (m, $1, emoticon, $2) => {
+            strReplaced = strReplaced.replace(parentheticalRx, (m, $1, emoticon, $2) => {
                 let val = self.data[self.map.emoticons[emoticon]][3][0];
                 return val ? `${$1}:${val}:${$2}` : m;
             });
         }
 
-        return str_replaced;
+        return strReplaced;
     };
 
     /**
@@ -228,6 +228,7 @@
      */
     emoji.prototype.replace_colons = function (str) {
         let self = this;
+        let val;
         self.init_colons();
 
         return str.replace(self.rx_colons, (m) => {
@@ -236,23 +237,23 @@
 
             // special case - an emoji with a skintone modified
             if (idx.indexOf('::skin-tone-') > -1) {
-                let skin_tone = idx.substr(-1, 1);
-                let skin_idx = `skin-tone-${skin_tone}`;
-                let skin_val = self.map.colons[skin_idx];
+                let skinTone = idx.substr(-1, 1);
+                let skinIdx = `skin-tone-${skinTone}`;
+                let skinVal = self.map.colons[skinIdx];
 
                 idx = idx.substr(0, idx.length - 13);
 
-                var val = self.map.colons[idx];
+                val = self.map.colons[idx];
                 if (val) {
                     return self.replacement(val, idx, ':', {
-                        idx: skin_val,
-                        actual: skin_idx,
+                        idx: skinVal,
+                        actual: skinIdx,
                         wrapper: ':',
                     });
                 }
-                return `:${idx}:${self.replacement(skin_val, skin_idx, ':')}`;
+                return `:${idx}:${self.replacement(skinVal, skinIdx, ':')}`;
             }
-            var val = self.map.colons[idx];
+            val = self.map.colons[idx];
             return val ? self.replacement(val, idx, ':') : m;
         });
     };
@@ -300,19 +301,19 @@
     emoji.prototype.removeAliases = function (list) {
         let self = this;
 
-        for (let i = 0; i < list.length; i++) {
+        for (let i = 0; i < list.length; i + 1) {
             let alias = list[i];
 
             // first, delete the alias mapping
             delete self.map.colons[alias];
 
             // now reset it to the default, if one exists
-            finder_block: {
+            finderBlock: {
                 for (let j in self.data) {
-                    for (let k = 0; k < self.data[j][3].length; k++) {
+                    for (let k = 0; k < self.data[j][3].length; k + 1) {
                         if (alias == self.data[j][3][k]) {
                             self.map.colons[alias] = j;
-                            break finder_block;
+                            break finderBlock;
                         }
                     }
                 }
@@ -325,33 +326,30 @@
     /** @private */
     emoji.prototype.replacement = function (idx, actual, wrapper, variation) {
         let self = this;
-
-        let full_idx = idx;
-
+        let fullIdx = idx;
         // for emoji with variation modifiers, set `extra` to the standalone output for the
-        // modifier (used if we can't combine the glyph) and set variation_idx to key of the
+        // modifier (used if we can't combine the glyph) and set variationIdx to key of the
         // variation modifier (used below)
         let extra = '';
-        let variation_idx = 0;
+        let variationIdx = 0;
         if (typeof variation === 'object') {
             extra = self.replacement(variation.idx, variation.actual, variation.wrapper);
-            variation_idx = `${idx}-${variation.idx}`;
+            variationIdx = `${idx}-${variation.idx}`;
         }
-
-        let img_set = self.img_set;
-
+        let imgSet = self.img_set;
         // When not using sheets (which all contain all emoji),
-        // make sure we use an img_set that contains this emoji.
+        // make sure we use an imgSet that contains this emoji.
         // For now, assume set "apple" has all individual images.
-        if ((!self.use_sheet || !self.supports_css) && !(self.data[idx][6] & self.img_sets[self.img_set].mask)) {
-            img_set = 'apple';
+        if ((!self.use_sheet || !self.supports_css)
+            && !(self.data[idx][6] & self.img_sets[self.img_set].mask)) {
+            imgSet = 'apple';
         }
-
         // deal with simple modes (colons and text) first
         wrapper = wrapper || '';
         if (self.colons_mode) return `:${self.data[idx][3][0]}:${extra}`;
-        let text_name = (actual) ? wrapper + actual + wrapper : self.data[idx][8] || wrapper + self.data[idx][3][0] + wrapper;
-        if (self.text_mode) return text_name + extra;
+        let textName = (actual) ? wrapper + actual + wrapper
+            : self.data[idx][8] || wrapper + self.data[idx][3][0] + wrapper;
+        if (self.text_mode) return textName + extra;
 
         // native modes next.
         // for variations selectors, we just need to output them raw, which `extra` will contain.
@@ -361,29 +359,34 @@
         if (self.replace_mode == 'google' && self.allow_native && self.data[idx][2]) return self.data[idx][2] + extra;
 
         // finally deal with image modes.
-        // variation selectors are more complex here - if the image set and particular emoji supports variations, then
-        // use the variation image. otherwise, return it as a separate image (already calculated in `extra`).
+        // variation selectors are more complex here
+        // - if the image set and particular emoji supports variations,
+        // then use the variation image.
+        // otherwise, return it as a separate image (already calculated in `extra`).
         // first we set up the params we'll use if we can't use a variation.
-        let img = self.data[idx][7] || `${self.img_sets[img_set].path + idx}.png${self.img_suffix}`;
+        let img = self.data[idx][7] || `${self.img_sets[imgSet].path + idx}.png${self.img_suffix}`;
         let title = self.include_title ? ` title="${actual || self.data[idx][3][0]}"` : '';
         let text = self.include_text ? wrapper + (actual || self.data[idx][3][0]) + wrapper : '';
         let px = self.data[idx][4];
         let py = self.data[idx][5];
 
-        // now we'll see if we can use a varition. if we can, we can override the params above and blank
+        // now we'll see if we can use a varition.
+        // if we can, we can override the params above and blank
         // out `extra` so we output a sinlge glyph.
         // we need to check that:
         //  * we requested a variation
         //  * such a variation exists in `emoji.variations_data`
         //  * we're not using a custom image for self glyph
         //  * the variation has an image defined for the current image set
-        if (variation_idx && self.variations_data[variation_idx] && self.variations_data[variation_idx][2] && !self.data[idx][7]) {
-            if (self.variations_data[variation_idx][2] & self.img_sets[self.img_set].mask) {
-                img = `${self.img_sets[self.img_set].path + variation_idx}.png`;
-                px = self.variations_data[variation_idx][0];
-                py = self.variations_data[variation_idx][1];
+        if (variationIdx && self.variations_data[variationIdx]
+            && self.variations_data[variationIdx][2]
+            && !self.data[idx][7]) {
+            if (self.variations_data[variationIdx][2] & self.img_sets[self.img_set].mask) {
+                img = `${self.img_sets[self.img_set].path + variationIdx}.png`;
+                px = self.variations_data[variationIdx][0];
+                py = self.variations_data[variationIdx][1];
                 extra = '';
-                full_idx = variation_idx;
+                fullIdx = variationIdx;
 
                 // add variation text
                 if (self.include_text && variation && variation.actual && variation.wrapper) {
@@ -395,14 +398,14 @@
         if (self.supports_css) {
             if (self.use_sheet && px != null && py != null) {
                 let mul = 100 / (self.sheet_size - 1);
-                let style = `background: url(${self.img_sets[img_set].sheet});background-position:${mul * px}% ${mul * py}%;background-size:${self.sheet_size}00%`;
-                return `<span class="emoji-outer emoji-sizer"><span class="emoji-inner" style="${style}"${title} data-codepoints="${full_idx}">${text}</span></span>${extra}`;
+                let style = `background: url(${self.img_sets[imgSet].sheet});background-position:${mul * px}% ${mul * py}%;background-size:${self.sheet_size}00%`;
+                return `<span class="emoji-outer emoji-sizer"><span class="emoji-inner" style="${style}"${title} data-codepoints="${fullIdx}">${text}</span></span>${extra}`;
             } else if (self.use_css_imgs) {
-                return `<span class="emoji emoji-${idx}"${title} data-codepoints="${full_idx}">${text}</span>${extra}`;
+                return `<span class="emoji emoji-${idx}"${title} data-codepoints="${fullIdx}">${text}</span>${extra}`;
             }
-            return `<span class="emoji emoji-sizer" style="background-image:url(${img})"${title} data-codepoints="${full_idx}">${text}</span>${extra}`;
+            return `<span class="emoji emoji-sizer" style="background-image:url(${img})"${title} data-codepoints="${fullIdx}">${text}</span>${extra}`;
         }
-        return `<img src="${img}" class="emoji" data-codepoints="${full_idx}" ${title}/>${extra}`;
+        return `<img src="${img}" class="emoji" data-codepoints="${fullIdx}" ${title}/>${extra}`;
     };
 
     // Initializes the text emoticon data
@@ -416,7 +419,8 @@
         let a = [];
         self.map.emoticons = {};
         for (let i in self.emoticons_data) {
-            // because we never see some characters in our text except as entities, we must do some replacing
+            // because we never see some characters in our text except as entities,
+            // we must do some replacing
             let emoticon = i.replace(/\&/g, '&amp;').replace(/\</g, '&lt;').replace(/\>/g, '&gt;');
 
             if (!self.map.colons[self.emoticons_data[i]]) continue;
@@ -436,7 +440,7 @@
         self.rx_colons = new RegExp('\:[a-zA-Z0-9-_+]+\:(\:skin-tone-[2-6]\:)?', 'g');
         self.map.colons = {};
         for (let i in self.data) {
-            for (let j = 0; j < self.data[i][3].length; j++) {
+            for (let j = 0; j < self.data[i][3].length; j + 1) {
                 self.map.colons[self.data[i][3][j]] = i;
             }
         }
@@ -453,7 +457,7 @@
         self.map.unified = {};
 
         for (let i in self.data) {
-            for (let j = 0; j < self.data[i][0].length; j++) {
+            for (let j = 0; j < self.data[i][0].length; j + 1) {
                 a.push(self.data[i][0][j].replace('*', '\\*'));
                 self.map.unified[self.data[i][0][j]] = i;
             }
@@ -469,12 +473,13 @@
     /** @private */
     emoji.prototype.init_env = function () {
         let self = this;
+        let ua;
         if (self.inits.env) return;
         self.inits.env = 1;
         self.replace_mode = 'img';
         self.supports_css = false;
         if (typeof (navigator) !== 'undefined') {
-            var ua = navigator.userAgent;
+            ua = navigator.userAgent;
             if (window.getComputedStyle) {
                 try {
                     let st = window.getComputedStyle(document.body);
@@ -2302,7 +2307,7 @@
             ['\uD83D\uDC93'], '\uE327', '\uDBBA\uDF0D', ['heartbeat'], 19, 35, 15, 0,
         ],
         '1f494': [
-            ['\uD83D\uDC94'], '\uE023', '\uDBBA\uDF0E', ['broken_heart'], 19, 36, 15, 0, '<\/3',
+            ['\uD83D\uDC94'], '\uE023', '\uDBBA\uDF0E', ['broken_heart'], 19, 36, 15, 0, '</3',
         ],
         '1f495': [
             ['\uD83D\uDC95'], '\uE327', '\uDBBA\uDF0F', ['two_hearts'], 19, 37, 15, 0,
