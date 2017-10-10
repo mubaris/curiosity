@@ -325,9 +325,7 @@
     /** @private */
     emoji.prototype.replacement = function (idx, actual, wrapper, variation) {
         let self = this;
-
         let fullIdx = idx;
-
         // for emoji with variation modifiers, set `extra` to the standalone output for the
         // modifier (used if we can't combine the glyph) and set variationIdx to key of the
         // variation modifier (used below)
@@ -337,9 +335,7 @@
             extra = self.replacement(variation.idx, variation.actual, variation.wrapper);
             variationIdx = `${idx}-${variation.idx}`;
         }
-
         let imgSet = self.img_set;
-
         // When not using sheets (which all contain all emoji),
         // make sure we use an imgSet that contains this emoji.
         // For now, assume set "apple" has all individual images.
