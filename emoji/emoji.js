@@ -228,6 +228,7 @@
      */
     emoji.prototype.replace_colons = function (str) {
         let self = this;
+        let val;
         self.init_colons();
 
         return str.replace(self.rx_colons, (m) => {
@@ -242,7 +243,7 @@
 
                 idx = idx.substr(0, idx.length - 13);
 
-                var val = self.map.colons[idx];
+                val = self.map.colons[idx];
                 if (val) {
                     return self.replacement(val, idx, ':', {
                         idx: skinVal,
@@ -252,7 +253,7 @@
                 }
                 return `:${idx}:${self.replacement(skinVal, skinIdx, ':')}`;
             }
-            var val = self.map.colons[idx];
+            val = self.map.colons[idx];
             return val ? self.replacement(val, idx, ':') : m;
         });
     };
@@ -300,7 +301,7 @@
     emoji.prototype.removeAliases = function (list) {
         let self = this;
 
-        for (let i = 0; i < list.length; i++) {
+        for (let i = 0; i < list.length; i + 1) {
             let alias = list[i];
 
             // first, delete the alias mapping
@@ -309,7 +310,7 @@
             // now reset it to the default, if one exists
             finderBlock: {
                 for (let j in self.data) {
-                    for (let k = 0; k < self.data[j][3].length; k++) {
+                    for (let k = 0; k < self.data[j][3].length; k + 1) {
                         if (alias == self.data[j][3][k]) {
                             self.map.colons[alias] = j;
                             break finderBlock;
@@ -339,14 +340,15 @@
         // When not using sheets (which all contain all emoji),
         // make sure we use an imgSet that contains this emoji.
         // For now, assume set "apple" has all individual images.
-        if ((!self.use_sheet || !self.supports_css) && !(self.data[idx][6] & self.img_sets[self.img_set].mask)) {
+        if ((!self.use_sheet || !self.supports_css)
+            && !(self.data[idx][6] & self.img_sets[self.img_set].mask)) {
             imgSet = 'apple';
         }
-
         // deal with simple modes (colons and text) first
         wrapper = wrapper || '';
         if (self.colons_mode) return `:${self.data[idx][3][0]}:${extra}`;
-        let textName = (actual) ? wrapper + actual + wrapper : self.data[idx][8] || wrapper + self.data[idx][3][0] + wrapper;
+        let textName = (actual) ? wrapper + actual + wrapper
+            : self.data[idx][8] || wrapper + self.data[idx][3][0] + wrapper;
         if (self.text_mode) return textName + extra;
 
         // native modes next.
@@ -357,8 +359,10 @@
         if (self.replace_mode == 'google' && self.allow_native && self.data[idx][2]) return self.data[idx][2] + extra;
 
         // finally deal with image modes.
-        // variation selectors are more complex here - if the image set and particular emoji supports variations, then
-        // use the variation image. otherwise, return it as a separate image (already calculated in `extra`).
+        // variation selectors are more complex here
+        // - if the image set and particular emoji supports variations,
+        // then use the variation image.
+        // otherwise, return it as a separate image (already calculated in `extra`).
         // first we set up the params we'll use if we can't use a variation.
         let img = self.data[idx][7] || `${self.img_sets[imgSet].path + idx}.png${self.img_suffix}`;
         let title = self.include_title ? ` title="${actual || self.data[idx][3][0]}"` : '';
@@ -366,14 +370,17 @@
         let px = self.data[idx][4];
         let py = self.data[idx][5];
 
-        // now we'll see if we can use a varition. if we can, we can override the params above and blank
+        // now we'll see if we can use a varition.
+        // if we can, we can override the params above and blank
         // out `extra` so we output a sinlge glyph.
         // we need to check that:
         //  * we requested a variation
         //  * such a variation exists in `emoji.variations_data`
         //  * we're not using a custom image for self glyph
         //  * the variation has an image defined for the current image set
-        if (variationIdx && self.variations_data[variationIdx] && self.variations_data[variationIdx][2] && !self.data[idx][7]) {
+        if (variationIdx && self.variations_data[variationIdx]
+            && self.variations_data[variationIdx][2]
+            && !self.data[idx][7]) {
             if (self.variations_data[variationIdx][2] & self.img_sets[self.img_set].mask) {
                 img = `${self.img_sets[self.img_set].path + variationIdx}.png`;
                 px = self.variations_data[variationIdx][0];
@@ -412,7 +419,8 @@
         let a = [];
         self.map.emoticons = {};
         for (let i in self.emoticons_data) {
-            // because we never see some characters in our text except as entities, we must do some replacing
+            // because we never see some characters in our text except as entities,
+            // we must do some replacing
             let emoticon = i.replace(/\&/g, '&amp;').replace(/\</g, '&lt;').replace(/\>/g, '&gt;');
 
             if (!self.map.colons[self.emoticons_data[i]]) continue;
@@ -432,7 +440,7 @@
         self.rx_colons = new RegExp('\:[a-zA-Z0-9-_+]+\:(\:skin-tone-[2-6]\:)?', 'g');
         self.map.colons = {};
         for (let i in self.data) {
-            for (let j = 0; j < self.data[i][3].length; j++) {
+            for (let j = 0; j < self.data[i][3].length; j + 1) {
                 self.map.colons[self.data[i][3][j]] = i;
             }
         }
@@ -449,7 +457,7 @@
         self.map.unified = {};
 
         for (let i in self.data) {
-            for (let j = 0; j < self.data[i][0].length; j++) {
+            for (let j = 0; j < self.data[i][0].length; j + 1) {
                 a.push(self.data[i][0][j].replace('*', '\\*'));
                 self.map.unified[self.data[i][0][j]] = i;
             }
