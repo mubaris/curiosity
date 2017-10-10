@@ -22,6 +22,8 @@ Find amazing github projects as a feed. :zap: :zap:
 Access the web app on here:
 https://mubaris.github.io/curiosity/
 
+![preview](https://i.imgur.com/C2srD26.png)
+
 To use the web app, you need to submit Github Token to access Github API. Generate your Github token here: https://github.com/settings/tokens
 
 ## Get Chrome Extension
