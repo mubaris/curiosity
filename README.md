@@ -13,16 +13,12 @@ Find amazing github projects as a feed. :zap: :zap:
 
 ![gif](https://media.giphy.com/media/l2SpYDOZmp3H2cAAo/giphy.gif)
 
-## Peek at Curiosity
-
-![peek](https://i.imgsafe.org/c45b215899.jpg)
-
 ## What you need
 
 Access the web app on here:
 https://mubaris.github.io/curiosity/
 
-![preview](https://i.imgur.com/C2srD26.png)
+![preview](https://i.imgur.com/anLXIMF.png)
 
 To use the web app, you need to submit Github Token to access Github API. Generate your Github token here: https://github.com/settings/tokens
 
