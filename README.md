@@ -15,6 +15,7 @@ Find amazing github projects as a feed. :zap: :zap:
 
 ## What you need
 
+
 Access the web app on here:
 https://mubaris.github.io/curiosity/
 
