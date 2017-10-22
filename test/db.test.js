@@ -9,7 +9,7 @@ const { User } = require('./../server/db/user');
 
 
 const user = new User({
-    _id: new mongoose.Types.ObjectId(),
+    id: new mongoose.Types.ObjectId(),
     githubId: 1111111,
     login: 'testUser1',
     name: 'testUser1',
@@ -18,7 +18,7 @@ const user = new User({
 });
 
 const repo = new Repository({
-    _id: new mongoose.Types.ObjectId(),
+    id: new mongoose.Types.ObjectId(),
     name: 'curiosity',
     html_url: 'https://github.com/mubaris/curiosity',
     description: 'Find Amazing Github Projects',
@@ -29,21 +29,20 @@ const repo = new Repository({
     language: 'Javascript',
 });
 
-describe('Simple DB test', function (){
-        it('User:Should save user to db', function (done) {
-            user.save().then((usr) => {
-                expect(usr._id).toBe(user._id);
-                done();
-            })
+describe('Simple DB test', () => {
+    it('User:Should save user to db', (done) => {
+        user.save().then((usr) => {
+            expect(usr.id).toBe(user.id);
+            done();
+        })
            .catch(e => done(e));
-        });
-        it('Repository:Should save repository to db', function (done) {
-            repo.save().then((rep) => {
-                expect(rep._id).toBe(rep._id);
-                done();
-            })
+    });
+    it('Repository:Should save repository to db', (done) => {
+        repo.save().then((rep) => {
+            expect(rep.id).toBe(rep.id);
+            done();
+        })
            .catch(e => done(e));
-        });
+    });
 });
-
 
