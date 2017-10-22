@@ -1,4 +1,19 @@
-const COMMON_LANGUAGES = ['C', 'CSharp', 'C++', 'Clojure', 'Go', 'Groovy', 'Java', 'JavaScript', 'Kotlin', 'Objective-C', 'PHP', 'Python', 'Ruby', 'Scala'];
+const COMMON_LANGUAGES = [
+    'C',
+    'CSharp',
+    'C++',
+    'Clojure',
+    'Go',
+    'Groovy',
+    'Java',
+    'JavaScript',
+    'Kotlin',
+    'Objective-C',
+    'PHP',
+    'Python',
+    'Ruby',
+    'Scala',
+];
 
 const REST_OF_LANGUAGES = [
     'ABAP',
@@ -35,7 +50,7 @@ const REST_OF_LANGUAGES = [
     'Brainfuck',
     'Brightscript',
     'Bro',
-    'Cap\'n Proto',
+    "Cap'n Proto",
     'CartoCSS',
     'Ceylon',
     'Chapel',
@@ -228,7 +243,7 @@ const REST_OF_LANGUAGES = [
     'Rebol',
     'Red',
     'Redcode',
-    'Ren\'Py',
+    "Ren'Py",
     'RenderScript',
     'RobotFramework',
     'Rouge',
@@ -291,4 +306,5 @@ const REST_OF_LANGUAGES = [
     'Xtend',
     'Yacc',
     'Zephir',
-    'Zimpl'];
+    'Zimpl',
+];

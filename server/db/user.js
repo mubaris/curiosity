@@ -14,25 +14,27 @@ const userSchema = new Schema({
 
 userSchema.statics.findOrCreate = function (profile, accessToken) {
     const User = this;
-    return User.findOne({ githubId: profile.id }).then((user) => {
+    return User.findOne({ githubId: profile.id })
+        .then((user) => {
             // If user found return that user info
-        if (user) {
+            if (user) {
                 // TODO:Need to update accessToken for this user
-            user.accessToken = accessToken;
-            return Promise.resolve(user);
-        }
+                user.accessToken = accessToken;
+                return Promise.resolve(user);
+            }
             // Create new user
-        const NewUser = new User({
-            githubId: profile.id,
-            login: profile._json.login,
-            name: profile._json.name,
-            avatar_url: profile._json.avatar_url,
-            html_url: profile._json.html_url,
-            accessToken,
-        });
+            const NewUser = new User({
+                githubId: profile.id,
+                login: profile._json.login,
+                name: profile._json.name,
+                avatar_url: profile._json.avatar_url,
+                html_url: profile._json.html_url,
+                accessToken,
+            });
 
-        return NewUser.save();
-    }).catch(err => Promise.reject(err));
+            return NewUser.save();
+        })
+        .catch(err => Promise.reject(err));
 };
 
 const User = mongoose.model('User', userSchema);

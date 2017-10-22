@@ -7,7 +7,6 @@ const { Repository } = require('./../server/db/repositories');
 const { Username } = require('./../server/db/username');
 const { User } = require('./../server/db/user');
 
-
 const user = new User({
     id: new mongoose.Types.ObjectId(),
     githubId: 1111111,
@@ -31,18 +30,21 @@ const repo = new Repository({
 
 describe('Simple DB test', () => {
     it('User:Should save user to db', (done) => {
-        user.save().then((usr) => {
-            expect(usr.id).toBe(user.id);
-            done();
-        })
-           .catch(e => done(e));
+        user
+            .save()
+            .then((usr) => {
+                expect(usr.id).toBe(user.id);
+                done();
+            })
+            .catch(e => done(e));
     });
     it('Repository:Should save repository to db', (done) => {
-        repo.save().then((rep) => {
-            expect(rep.id).toBe(rep.id);
-            done();
-        })
-           .catch(e => done(e));
+        repo
+            .save()
+            .then((rep) => {
+                expect(rep.id).toBe(rep.id);
+                done();
+            })
+            .catch(e => done(e));
     });
 });
-

@@ -23,11 +23,13 @@ const addUsername = function addUsername() {
                             url,
                             method: 'get',
                             responseType: 'json',
-                        }).then((response) => {
-                            resolve();
-                        }).catch((err) => {
-                            reject('Username not found!');
-                        });
+                        })
+                            .then((response) => {
+                                resolve();
+                            })
+                            .catch((err) => {
+                                reject('Username not found!');
+                            });
                     }
                 }, 1000);
             });
@@ -99,7 +101,13 @@ const showLessUsernames = function showLessUsernames() {
 
 const renderShowMoreLessUsernames = function renderShowMoreLessUsernames() {
     const moreLessUsernamesElement = document.getElementById('showMoreLessUsernames');
-    if (showingAllUsernames) { moreLessUsernamesElement.innerHTML = '<a href=javascript:showLessUsernames()><strong>Show less usernames</strong></a>'; } else { moreLessUsernamesElement.innerHTML = '<a href=javascript:showAllUsernames()><strong>Show more usernames</strong></a>'; }
+    if (showingAllUsernames) {
+        moreLessUsernamesElement.innerHTML =
+            '<a href=javascript:showLessUsernames()><strong>Show less usernames</strong></a>';
+    } else {
+        moreLessUsernamesElement.innerHTML =
+            '<a href=javascript:showAllUsernames()><strong>Show more usernames</strong></a>';
+    }
 };
 
 const generateUsernameSelector = function generateUsernameSelector() {
@@ -107,12 +115,16 @@ const generateUsernameSelector = function generateUsernameSelector() {
     let i = 0;
     if (showingAllUsernames || USERNAMES.length <= MAX_USERNAMES_SHOWING) {
         for (; i < USERNAMES.length - 1; i += 1) {
-            usernameSelector += `<a class='selectors' href='https://github.com/${USERNAMES[i]}?tab=stars'>${USERNAMES[i]}</a>`;
+            usernameSelector += `<a class='selectors' href='https://github.com/${USERNAMES[i]}?tab=stars'>${USERNAMES[
+                i
+            ]}</a>`;
             usernameSelector += ' | ';
         }
     } else {
         for (; i < MAX_USERNAMES_SHOWING - 1; i += 1) {
-            usernameSelector += `<a class='selectors' href='https://github.com/${USERNAMES[i]}?tab=stars'>${USERNAMES[i]}</a>`;
+            usernameSelector += `<a class='selectors' href='https://github.com/${USERNAMES[i]}?tab=stars'>${USERNAMES[
+                i
+            ]}</a>`;
             usernameSelector += ' | ';
         }
     }
@@ -122,7 +134,8 @@ const generateUsernameSelector = function generateUsernameSelector() {
 
 const renderUsernames = function renderUsernames() {
     document.getElementById('username_selector').innerHTML = generateUsernameSelector();
-    document.getElementById('addOrRemoveUsername').innerHTML = "<a class='addOrRemoveUsername' href=javascript:addUsername()><strong>Add more username</strong></a>" +
+    document.getElementById('addOrRemoveUsername').innerHTML =
+        "<a class='addOrRemoveUsername' href=javascript:addUsername()><strong>Add more username</strong></a>" +
         " | <a class='addOrRemoveUsername' href=javascript:removeUsername()><strong>Remove username</strong></a>";
     renderShowMoreLessUsernames();
 };

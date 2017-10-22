@@ -14,13 +14,15 @@
     "eslint-config-airbnb-base": "^11.2.0",
     "eslint-plugin-import": "^2.3.0",
     "expect": "^1.20.2",
-    "mocha": "^3.4.2"
+    "mocha": "^3.4.2",
+    "prettier-eslint-cli": "^4.4.0"
   },
   "scripts": {
     "lint": "eslint **/*.js -f table",
     "test-node": "NODE_ENV=test mocha test/**.test.js",
     "watch": "nodemon --delay 10 server/app.js",
-    "start": "node server/app.js"
+    "start": "node server/app.js",
+    "format": "./node_modules/.bin/prettier-eslint --config ./.prettierrc --write \"**/*.js\""
   },
   "dependencies": {
     "dotenv": "^4.0.0",

@@ -18,7 +18,6 @@ const usernameSchema = new Schema({
     starredIds: [mongoose.Schema.Types.ObjectId],
 });
 
-
 const Username = mongoose.model('Username', usernameSchema);
 
 module.exports.Username = Username;
