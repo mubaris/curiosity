@@ -43,7 +43,6 @@ const USERNAMES = [
     'jaredly',
 ];
 
-
 router.get('/all', (req, res) => {
     res.send(USERNAMES);
 });

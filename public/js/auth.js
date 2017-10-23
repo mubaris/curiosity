@@ -10,17 +10,18 @@ function getUserDetails() {
     });
 }
 
-
 logout_button.addEventListener('click', () => {
     axios({
         url: '/user/logout',
         method: 'post',
-    }).then((response) => {
-        login_button.style.display = 'inline-block';
-        loggedIn.style.display = 'none';
-    }).catch((err) => {
-        login_button.style.display = 'inline-block';
-        loggedIn.style.display = 'none';
-        console.error(err);
-    });
+    })
+        .then((response) => {
+            login_button.style.display = 'inline-block';
+            loggedIn.style.display = 'none';
+        })
+        .catch((err) => {
+            login_button.style.display = 'inline-block';
+            loggedIn.style.display = 'none';
+            console.error(err);
+        });
 });

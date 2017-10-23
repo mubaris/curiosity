@@ -42,17 +42,21 @@ const selectLanguage = function selectLanguage(event) {
     languageSelected = event.target.value;
     content.innerHTML = '';
     reqNo = Math.floor(Math.random() * 3) + 1;
-    projectsPerPage = (languageSelected == ANY_LANGUAGE) ? 2 : 100;
+    projectsPerPage = languageSelected == ANY_LANGUAGE ? 2 : 100;
     getData();
 };
 
 const languageFilter = function (languageToFilter) {
     if (languageToFilter == ANY_LANGUAGE) {
-        return function (project) { return true; };
+        return function (project) {
+            return true;
+        };
     } else if (languageSelected == NO_LANGUAGE) {
         return function (project) {
             return project.language == null;
         };
     }
-    return function (project) { return project.language == languageToFilter; };
+    return function (project) {
+        return project.language == languageToFilter;
+    };
 };

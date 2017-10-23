@@ -14,7 +14,7 @@ const allUsersChecked = function allUsersChecked() {
 };
 
 const moreDataNeeded = function moreDataNeeded() {
-    return ((allUsersChecked()) && (projectsCurrentCall < MIN_PROJECTS_PER_CALL));
+    return allUsersChecked() && projectsCurrentCall < MIN_PROJECTS_PER_CALL;
 };
 
 const userFormatter = function userFormatter(username) {
@@ -33,22 +33,27 @@ const nFormatter = function nFormatter(num) {
 const dataCollector = function dataCollector(response, username) {
     usersCurrentCall += 1;
     const filterFunction = languageFilter(languageSelected);
-    response.data.filter(filterFunction).slice(0, MAX_PROJECTS_PER_USER).forEach((entry) => {
-        if (typeof entry !== 'undefined') {
-            projectsCurrentCall += 1;
-            if (!entry.description) entry.description = '';
-            let innerContent = `<li><span class='link'><a href='${entry.html_url}' target='_blank'>${entry.name}<span> - ${String(entry.description)}</span><br/></a></span>`;
-            innerContent += "<div class='additional'>";
-            innerContent += `${nFormatter(entry.stargazers_count)} <i class='fa fa-star'></i>`;
-            innerContent += `&emsp;${nFormatter(entry.forks)} <i class='fa fa-code-fork'></i>`;
-            innerContent += (entry.language != null) ? `&emsp;${entry.language}` : '';
-            innerContent += `&emsp;(from ${userFormatter(username)})`;
-            innerContent += '</div></li>';
-            innerContent = EMOJI.replace_unified(innerContent);
-            CONTENT.innerHTML += EMOJI.replace_colons(innerContent);
-            EMOJI.img_sets.apple.path = 'http://cdn.mubaris.com/emojis/';
-        }
-    });
+    response.data
+        .filter(filterFunction)
+        .slice(0, MAX_PROJECTS_PER_USER)
+        .forEach((entry) => {
+            if (typeof entry !== 'undefined') {
+                projectsCurrentCall += 1;
+                if (!entry.description) entry.description = '';
+                let innerContent = `<li><span class='link'><a href='${entry.html_url}' target='_blank'>${entry.name}<span> - ${String(
+                    entry.description,
+                )}</span><br/></a></span>`;
+                innerContent += "<div class='additional'>";
+                innerContent += `${nFormatter(entry.stargazers_count)} <i class='fa fa-star'></i>`;
+                innerContent += `&emsp;${nFormatter(entry.forks)} <i class='fa fa-code-fork'></i>`;
+                innerContent += entry.language != null ? `&emsp;${entry.language}` : '';
+                innerContent += `&emsp;(from ${userFormatter(username)})`;
+                innerContent += '</div></li>';
+                innerContent = EMOJI.replace_unified(innerContent);
+                CONTENT.innerHTML += EMOJI.replace_colons(innerContent);
+                EMOJI.img_sets.apple.path = 'http://cdn.mubaris.com/emojis/';
+            }
+        });
     if (moreDataNeeded()) {
         getData(localStorage.getItem('accessToken'));
     } else if (allUsersChecked()) {
@@ -69,35 +74,39 @@ const getData = function getData() {
             url,
             method: 'get',
             responseType: 'json',
-        }).then((response) => {
-            dataCollector(response, username);
-        }).catch((err) => {
-            console.error(err);
-        });
+        })
+            .then((response) => {
+                dataCollector(response, username);
+            })
+            .catch((err) => {
+                console.error(err);
+            });
     });
 };
 
 if (window.localStorage) {
-    getUserDetails().then((response) => {
-        console.log(response.data);
-        if (response.data) {
-            loggedIn.style.display = 'inline-block';
-            document.getElementById('userName').innerText = `Hi! ${response.data.name}`;
-            document.getElementById('userName').href = response.data.html_url;
-            localStorage.setItem('accessToken', response.data.accessToken);
-            accessToken = response.data.accessToken;
-            getData();
-            renderLanguageSelector();
-            renderUsernames();
-        } else {
+    getUserDetails()
+        .then((response) => {
+            console.log(response.data);
+            if (response.data) {
+                loggedIn.style.display = 'inline-block';
+                document.getElementById('userName').innerText = `Hi! ${response.data.name}`;
+                document.getElementById('userName').href = response.data.html_url;
+                localStorage.setItem('accessToken', response.data.accessToken);
+                accessToken = response.data.accessToken;
+                getData();
+                renderLanguageSelector();
+                renderUsernames();
+            } else {
+                login_button.style.display = 'inline-block';
+                showLoginAlert();
+            }
+        })
+        .catch((err) => {
             login_button.style.display = 'inline-block';
+            console.error(err);
             showLoginAlert();
-        }
-    }).catch((err) => {
-        login_button.style.display = 'inline-block';
-        console.error(err);
-        showLoginAlert();
-    });
+        });
 } else {
     alert('Sorry! LocalStorage is not available');
 }

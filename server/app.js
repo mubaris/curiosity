@@ -18,7 +18,7 @@ app.use(passport.session());
 
 app.use(express.static(`${__dirname}/../public`));
 
-app.use('/user',userRoutes);
+app.use('/user', userRoutes);
 app.use('/api/username', usernameRoutes);
 
 app.listen(port, () => {
@@ -26,4 +26,3 @@ app.listen(port, () => {
 });
 
 module.exports.app = app;
-

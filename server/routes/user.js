@@ -23,10 +23,9 @@ router.get('/auth', passport.authenticate('github', { scope: ['user:email'] }), 
     // function will not be called
 });
 
-router.get('/auth/callback',
-  passport.authenticate('github', { failureRedirect: '/login' }), (req, res) => {
-      res.redirect('/');
-  });
+router.get('/auth/callback', passport.authenticate('github', { failureRedirect: '/login' }), (req, res) => {
+    res.redirect('/');
+});
 
 router.get('/login', (req, res) => {
     res.redirect('/loginErr.html');
