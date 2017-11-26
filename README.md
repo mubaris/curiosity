@@ -1,6 +1,6 @@
 # Curiosity
 
-<img src="curiosity.png" alt="Curiosity" style="display: block;margin: 0 auto;">
+<center><img src="curiosity.png" alt="Curiosity" style="display: block;margin: 0 auto;"></center>
 
 [![All Contributors](https://img.shields.io/badge/all_contributors-10-orange.svg?style=flat-square)](#contributors)
 
