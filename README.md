@@ -1,4 +1,7 @@
 # Curiosity
+
+<img src="curiosity.png" alt="Curiosity" style="display: block;margin: 0 auto;">
+
 [![All Contributors](https://img.shields.io/badge/all_contributors-10-orange.svg?style=flat-square)](#contributors)
 
 [![Join the chat at https://gitter.im/curiositylab/curiosity](https://badges.gitter.im/curiositylab/curiosity.svg)](https://gitter.im/curiositylab/curiosity?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
