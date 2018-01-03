@@ -47,7 +47,8 @@ const dataCollector = function dataCollector(response, username) {
             innerContent += '</div></li>';
             innerContent = EMOJI.replace_unified(innerContent);
             CONTENT.innerHTML += EMOJI.replace_colons(innerContent);
-            EMOJI.img_sets.apple.path = 'http://cdn.mubaris.com/emojis/';
+            EMOJI.img_sets.apple.path = 'https://unicodey.com/js-emoji/build/emoji-data/img-apple-64/';
+            EMOJI.img_sets.apple.sheet = 'https://unicodey.com/js-emoji/build/emoji-data/sheet_apple_64.png';
         }
     });
     if (moreDataNeeded()) {
