@@ -38,7 +38,7 @@ const dataCollector = function dataCollector(response, username) {
         if (typeof entry !== 'undefined') {
             projectsCurrentCall += 1;
             if (!entry.description) entry.description = '';
-            let innerContent = `<li><span class='link'><a href='${entry.html_url}' target='_blank'>${entry.name}<span> - ${String(entry.description)}</span><br/></a></span>`;
+            let innerContent = `<li><span class='link'><a href='${entry.html_url}' target='_blank'>${entry.full_name}<span> - ${String(entry.description)}</span><br/></a></span>`;
             innerContent += "<div class='additional'>";
             innerContent += `${nFormatter(entry.stargazers_count)} <i class='fa fa-star'></i>`;
             innerContent += `&emsp;${nFormatter(entry.forks)} <i class='fa fa-code-fork'></i>`;
