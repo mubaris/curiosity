@@ -60,7 +60,8 @@ const dataCollector = function dataCollector(response, username) {
 };
 
 const getData = function getData() {
-    document.getElementById('searching').innerHTML = '<br/>Fetching projects...';
+    const loadingText = document.getElementById('searching')
+    loadingText.innerHTML = '<br/>Fetching projects...';
     usersCurrentCall = 0;
     callInProgress = true;
     reqNo += 1;
@@ -73,6 +74,7 @@ const getData = function getData() {
         }).then((response) => {
             dataCollector(response, username);
         }).catch((err) => {
+            loadingText.innerHTML = '<br/>Could not Fetch projects! check your access token and try again...';
             console.error(err);
         });
     });
