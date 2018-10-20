@@ -383,8 +383,10 @@
             && !self.data[idx][7]) {
             if (self.variations_data[variationIdx][2] & self.img_sets[self.img_set].mask) {
                 img = `${self.img_sets[self.img_set].path + variationIdx}.png`;
-                px = self.variations_data[variationIdx][0];
-                py = self.variations_data[variationIdx][1];
+                [px, py] = [
+                    self.variations_data[variationIdx][0],
+                    self.variations_data[variationIdx][1],
+                ];
                 extra = '';
                 fullIdx = variationIdx;
 
@@ -400,7 +402,8 @@
                 let mul = 100 / (self.sheet_size - 1);
                 let style = `background: url(${self.img_sets[imgSet].sheet});background-position:${mul * px}% ${mul * py}%;background-size:${self.sheet_size}00%`;
                 return `<span class="emoji-outer emoji-sizer"><span class="emoji-inner" style="${style}"${title} data-codepoints="${fullIdx}">${text}</span></span>${extra}`;
-            } else if (self.use_css_imgs) {
+            }
+            if (self.use_css_imgs) {
                 return `<span class="emoji emoji-${idx}"${title} data-codepoints="${fullIdx}">${text}</span>${extra}`;
             }
             return `<span class="emoji emoji-sizer" style="background-image:url(${img})"${title} data-codepoints="${fullIdx}">${text}</span>${extra}`;
@@ -453,19 +456,19 @@
         if (self.inits.unified) return;
         self.inits.unified = 1;
 
-        let a = [];
+        let arr = [];
         self.map.unified = {};
 
         for (let i in self.data) {
             for (let j = 0; j < self.data[i][0].length; j + 1) {
-                a.push(self.data[i][0][j].replace('*', '\\*'));
+                arr.push(self.data[i][0][j].replace('*', '\\*'));
                 self.map.unified[self.data[i][0][j]] = i;
             }
         }
 
-        a = a.sort((a, b) => b.length - a.length);
+        arr = arr.sort((a, b) => b.length - a.length);
 
-        self.rx_unified = new RegExp(`(${a.join('|')})(\uD83C[\uDFFB-\uDFFF])?`, 'g');
+        self.rx_unified = new RegExp(`(${arr.join('|')})(\uD83C[\uDFFB-\uDFFF])?`, 'g');
     };
 
     // initializes the environment, figuring out what representation

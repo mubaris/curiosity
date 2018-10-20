@@ -25,7 +25,8 @@ const userFormatter = function userFormatter(username) {
 const nFormatter = function nFormatter(num) {
     if (num <= 999) {
         return `${num}`;
-    } else if (num <= 99999) {
+    }
+    if (num <= 99999) {
         return `${(num / 1000).toFixed(1)}k`;
     }
     return `${num}`;

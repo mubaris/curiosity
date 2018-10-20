@@ -49,7 +49,8 @@ const selectLanguage = function selectLanguage(event) {
 const languageFilter = function (languageToFilter) {
     if (languageToFilter == ANY_LANGUAGE) {
         return function (project) { return true; };
-    } else if (languageSelected == NO_LANGUAGE) {
+    }
+    if (languageSelected == NO_LANGUAGE) {
         return function (project) {
             return project.language == null;
         };

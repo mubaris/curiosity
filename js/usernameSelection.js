@@ -125,8 +125,8 @@ const generateUsernameSelector = function generateUsernameSelector() {
 
 const renderUsernames = function renderUsernames() {
     document.getElementById('username_selector').innerHTML = generateUsernameSelector();
-    document.getElementById('addOrRemoveUsername').innerHTML = "<a class='addOrRemoveUsername' href=javascript:addUsername()><strong>Add more username</strong></a>" +
-        " | <a class='addOrRemoveUsername' href=javascript:removeUsername()><strong>Remove username</strong></a>";
+    document.getElementById('addOrRemoveUsername').innerHTML = "<a class='addOrRemoveUsername' href=javascript:addUsername()><strong>Add more username</strong></a>"
+       + " | <a class='addOrRemoveUsername' href=javascript:removeUsername()><strong>Remove username</strong></a>";
     renderShowMoreLessUsernames();
 };
 
