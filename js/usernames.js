@@ -35,4 +35,8 @@ const DEFAULTUSERNAMES = [
     'Kureev',
     'mxstbr',
     'jaredly',
+    'JuliaVega',
+    'LidaAnn',
+    'LondenRiver',
+    'KissaSins'
 ];
