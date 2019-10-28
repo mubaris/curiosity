@@ -1,6 +1,8 @@
 const COMMON_LANGUAGES = ['C', 'CSharp', 'C++', 'Clojure', 'Go', 'Groovy', 'Java', 'JavaScript', 'Kotlin', 'Objective-C', 'PHP', 'Python', 'Ruby', 'Scala'];
 
 const REST_OF_LANGUAGES = [
+    'TypeScript',
+    'socket programming',
     'ABAP',
     'ActionScript',
     'Ada',
