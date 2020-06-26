@@ -106,7 +106,7 @@ if (window.localStorage) {
                             }).then(() => {
                                 localStorage.setItem('accessToken', token);
                                 resolve();
-                            }).catch(() => reject(new Error('Error: invalid token')));
+                            }).catch(() => reject(new Error('Invalid token')));
                         }
                     }, 1000);
                 });
