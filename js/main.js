@@ -9,13 +9,14 @@ let reqNo = Math.floor(Math.random() * 3) + 1;
 let projectsPerPage = 2;
 let USERNAMES;
 
+let isDataLoaded = false;
 
 const allUsersChecked = function allUsersChecked() {
     return usersCurrentCall === USERNAMES.length;
 };
 
 const moreDataNeeded = function moreDataNeeded() {
-    return ((allUsersChecked()) && (projectsCurrentCall < MIN_PROJECTS_PER_CALL));
+    return allUsersChecked() && projectsCurrentCall < MIN_PROJECTS_PER_CALL;
 };
 
 const userFormatter = function userFormatter(username) {
@@ -34,22 +35,32 @@ const nFormatter = function nFormatter(num) {
 const dataCollector = function dataCollector(response, username) {
     usersCurrentCall += 1;
     const filterFunction = languageFilter(languageSelected);
-    response.data.filter(filterFunction).slice(0, MAX_PROJECTS_PER_USER).forEach((entry) => {
-        if (typeof entry !== 'undefined') {
-            projectsCurrentCall += 1;
-            if (!entry.description) entry.description = '';
-            let innerContent = `<li><span class='link'><a href='${entry.html_url}' target='_blank'>${entry.full_name}<span> - ${String(entry.description)}</span><br/></a></span>`;
-            innerContent += "<div class='additional'>";
-            innerContent += `${nFormatter(entry.stargazers_count)} <i class='fa fa-star'></i>`;
-            innerContent += `&emsp;${nFormatter(entry.forks)} <i class='fa fa-code-fork'></i>`;
-            innerContent += (entry.language != null) ? `&emsp;${entry.language}` : '';
-            innerContent += `&emsp;(from ${userFormatter(username)})`;
-            innerContent += '</div></li>';
-            innerContent = EMOJI.replace_unified(innerContent);
-            CONTENT.innerHTML += EMOJI.replace_colons(innerContent);
-            EMOJI.img_sets.apple.path = 'http://cdn.mubaris.com/emojis/';
-        }
-    });
+    // console.table(response.data);
+    response.data
+        .filter(filterFunction)
+        .slice(0, MAX_PROJECTS_PER_USER)
+        .forEach((entry) => {
+            if (typeof entry !== 'undefined') {
+                projectsCurrentCall += 1;
+                if (!entry.description) entry.description = '';
+                let innerContent = `<li>
+                <span class='link'><a href='${entry.html_url}' target='_blank'>
+                    ${entry.full_name}<span> - ${String(entry.description)}
+                </span><br/></a></span>`;
+                innerContent += "<div class='additional'>";
+                innerContent += `${nFormatter(entry.stargazers_count)}
+                                <i class='fa fa-star'></i>`;
+                innerContent += `&emsp;${nFormatter(entry.forks)}
+                <i class='fa fa-code-fork'></i>`;
+                innerContent +=
+                    entry.language != null ? `&emsp;${entry.language}` : '';
+                innerContent += `&emsp;(from ${userFormatter(username)})`;
+                innerContent += '</div></li>';
+                innerContent = EMOJI.replace_unified(innerContent);
+                CONTENT.innerHTML += EMOJI.replace_colons(innerContent);
+                EMOJI.img_sets.apple.path = 'http://cdn.mubaris.com/emojis/';
+            }
+        });
     if (moreDataNeeded()) {
         getData(localStorage.getItem('accessToken'));
     } else if (allUsersChecked()) {
@@ -60,21 +71,27 @@ const dataCollector = function dataCollector(response, username) {
 };
 
 const getData = function getData() {
-    document.getElementById('searching').innerHTML = '<br/>Fetching projects...';
+    document.getElementById('searching').innerHTML =
+        '<br/>Fetching projects...';
     usersCurrentCall = 0;
     callInProgress = true;
     reqNo += 1;
     USERNAMES.forEach((username) => {
-        const url = `https://api.github.com/users/${username}/starred?per_page=${projectsPerPage}&access_token=${accessToken}&page=${reqNo}`;
-        axios({
-            url,
-            method: 'get',
-            responseType: 'json',
-        }).then((response) => {
-            dataCollector(response, username);
-        }).catch((err) => {
-            console.error(err);
-        });
+        console.log(`Fetching data for:  ${username}`);
+        const url = `https://api.github.com/users/${username}/starred?per_page=${projectsPerPage}&page=${reqNo}`;
+        axios
+            .get(url, {
+                headers: {
+                    Authorization: `token ${accessToken}`,
+                },
+            })
+            .then((response) => {
+                console.log(response);
+                dataCollector(response, username);
+            })
+            .catch((err) => {
+                console.error(err);
+            });
     });
 };
 
@@ -87,7 +104,8 @@ if (window.localStorage) {
     if (!localStorage.getItem('accessToken')) {
         swal({
             title: 'Submit Github Token',
-            html: "Curiosity requires a Github Token to access Github API. Your token will be saved in LocalStorage. So don't worry. Get new token <a target='_blank' href='https://github.com/settings/tokens/new?description=Curiosity'>here</a>.",
+            html:
+                "Curiosity requires a Github Token to access Github API. Your token will be saved in LocalStorage. So don't worry. Get new token <a target='_blank' href='https://github.com/settings/tokens/new?description=Curiosity'>here</a>.",
             input: 'text',
             showCancelButton: true,
             confirmButtonText: 'Submit',
@@ -98,15 +116,20 @@ if (window.localStorage) {
                         if (token === '') {
                             reject(new Error('Enter Valid Token'));
                         } else {
-                            const url = `https://api.github.com/?access_token=${token}`;
-                            axios({
-                                url,
-                                method: 'get',
-                                responseType: 'json',
-                            }).then(() => {
-                                localStorage.setItem('accessToken', token);
-                                resolve();
-                            }).catch(() => reject(new Error('Error: invalid token')));
+                            const url = 'https://api.github.com';
+                            axios
+                                .get(url, {
+                                    headers: {
+                                        Authorization: `token ${token}`,
+                                    },
+                                })
+                                .then(() => {
+                                    localStorage.setItem('accessToken', token);
+                                    resolve();
+                                })
+                                .catch(() =>
+                                    reject(new Error('Error: invalid token')),
+                                );
                         }
                     }, 1000);
                 });
@@ -121,6 +144,7 @@ if (window.localStorage) {
                 type: 'success',
                 title: 'Thank You',
             });
+            isDataLoaded = true;
         });
     }
 } else {
@@ -129,7 +153,7 @@ if (window.localStorage) {
 
 accessToken = localStorage.getItem('accessToken');
 
-if (accessToken) {
+if (accessToken && !isDataLoaded) {
     getData();
     renderLanguageSelector();
     renderUsernames();
