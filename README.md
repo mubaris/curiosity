@@ -13,7 +13,7 @@
 
 
 ## Features
-Find amazing github projects as a feed. :zap: :zap:
+Find amazing GitHub projects as a feed. :zap: :zap:
 
 ![gif](https://media.giphy.com/media/l2SpYDOZmp3H2cAAo/giphy.gif)
 
@@ -25,7 +25,7 @@ https://mubaris.github.io/curiosity/
 
 ![preview](https://i.imgur.com/anLXIMF.png?1)
 
-To use the web app, you need to submit Github Token to access Github API. Generate your Github token here: https://github.com/settings/tokens
+To use the web app, you need to submit GitHub Token to access GitHub API. Generate your GitHub token here: https://github.com/settings/tokens
 
 ## Get Chrome Extension
 
@@ -37,7 +37,7 @@ Curiosity Chrome extension is available now. Which is made by [Aswanth](https://
 
 ## How it's done
 
-I've collected usernames of amazing stargazers :star: in Github. By using Github API, Curiosity will collect their stars and will show as a feed.
+I've collected usernames of amazing stargazers :star: in GitHub. By using GitHub API, Curiosity will collect their stars and will show as a feed.
 
 ## Dependencies (libraries/frameworks/tools)
 
@@ -54,7 +54,7 @@ I've collected usernames of amazing stargazers :star: in Github. By using Github
 * `code style` label are features/tasks to integrate code better in the project.
 
 ## Contributing/notes
-For branching/contributing to this repo, we maintain 3 branches. `gh-pages` contains only front-end and it's hosted on Github Pages. `v2` is the future of Curiosity. We are building a backend for this. The code for that is contained in `v2`. master is main branch. `v2` will be merged to `master` once the process of building backend is done. Please feel free to contribute!
+For branching/contributing to this repo, we maintain 3 branches. `gh-pages` contains only front-end and it's hosted on GitHub Pages. `v2` is the future of Curiosity. We are building a backend for this. The code for that is contained in `v2`. master is main branch. `v2` will be merged to `master` once the process of building backend is done. Please feel free to contribute!
 
 ## Contributors
 
