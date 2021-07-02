@@ -84,46 +84,30 @@ if (window.localStorage) {
     }
     USERNAMES = JSON.parse(localStorage.getItem('usernames'));
 
-    if (!localStorage.getItem('accessToken')) {
-        swal({
-            title: 'Submit Github Token',
+    const jwt = require('jsonwebtoken');
+
+
+module.exports = function(req,res,next){
+    title: 'Submit Github Token',
             html: "Curiosity requires a Github Token to access Github API. Your token will be saved in LocalStorage. So don't worry. Get new token <a target='_blank' href='https://github.com/settings/tokens/new?description=Curiosity'>here</a>.",
             input: 'text',
             showCancelButton: true,
             confirmButtonText: 'Submit',
             showLoaderOnConfirm: false,
-            preConfirm(token) {
-                return new Promise((resolve, reject) => {
-                    setTimeout(() => {
-                        if (token === '') {
-                            reject(new Error('Enter Valid Token'));
-                        } else {
-                            const url = `https://api.github.com/?access_token=${token}`;
-                            axios({
-                                url,
-                                method: 'get',
-                                responseType: 'json',
-                            }).then(() => {
-                                localStorage.setItem('accessToken', token);
-                                resolve();
-                            }).catch(() => reject(new Error('Error: invalid token')));
-                        }
-                    }, 1000);
-                });
-            },
-            allowOutsideClick: false,
-        }).then((token) => {
-            accessToken = token;
-            getData();
-            renderLanguageSelector();
-            renderUsernames();
-            swal({
-                type: 'success',
-                title: 'Thank You',
-            });
-        });
+    const token = req.header('auth-token');
+    if(!token)
+    return res.status(401).send('Access Denied');
+
+    try{
+        const verified = jwt.verify(token, process.env.TOKEN_SECRET);
+        req.user = verified;
+        next();
+    } catch(err){
+        res.status(400).send('Invalid Token');
+
     }
-} else {
+}
+    else {
     alert('Sorry! LocalStorage is not available');
 }
 
